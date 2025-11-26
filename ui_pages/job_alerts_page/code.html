@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Manage Job Alerts</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee8c",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#111827] dark:text-gray-200">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex w-full justify-center border-b border-gray-200/80 dark:border-gray-800/80 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-10">
+<div class="flex items-center justify-between whitespace-nowrap px-4 sm:px-6 lg:px-8 py-3 max-w-7xl w-full">
+<div class="flex items-center gap-4 text-[#0d1b14] dark:text-gray-100">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_330">
+<rect fill="white" height="48" width="48"></rect>
+</clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">VueJobs</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center items-center gap-9">
+<a class="text-sm font-medium leading-normal text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" href="#">Jobs</a>
+<a class="text-sm font-medium leading-normal text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" href="#">Companies</a>
+<a class="text-sm font-medium leading-normal text-gray-900 dark:text-white" href="#">My Profile</a>
+<a class="text-sm font-medium leading-normal text-primary" href="#">Job Alerts</a>
+</div>
+<div class="flex flex-1 justify-end items-center gap-4">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary/20 text-[#0d1b14] dark:text-gray-200 dark:bg-primary/30">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDsuvXn931NZFRt_fOLEJOkr5P4x6fYs1A9K61VbwsrKgPFuOddGcR8zbelrRYrTQ6o_HXjo9-DNBfK-LxRiSDhNZAixEEgqMU5Wm2yeaFeeFECkWX_a_aZ35aYiMirsDQVfplzFdDJRRwpaFIeWGlLS6BuMEOqGn7pjLf42T3LTdHW5gQkg5U4789wG0p9ug6UDn4chftHTCdaV4uhTzLFbOpLKYOh2kc6uL9TADJ_uW1jIcxcCQaepedLLNJKa_WOi2n8HA8JmtmL");'></div>
+</div>
+</div>
+</header>
+<main class="px-4 sm:px-6 lg:px-8 flex flex-1 justify-center py-8 md:py-12">
+<div class="layout-content-container flex flex-col w-full max-w-4xl flex-1 gap-8">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<p class="text-4xl font-black leading-tight tracking-[-0.033em]">Manage Job Alerts</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-[#0d1b14] gap-2 text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="truncate">Create New Alert</span>
+</button>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Card 1 -->
+<div class="w-full bg-white dark:bg-gray-900/50 rounded-xl border border-gray-200/80 dark:border-gray-800/80 shadow-sm p-5 @container">
+<div class="flex flex-col @md:flex-row gap-4 @md:gap-6">
+<div class="flex flex-col flex-grow gap-3">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<p class="text-xs font-medium uppercase tracking-wider text-primary">Active</p>
+<p class="text-lg font-bold leading-tight tracking-[-0.015em]">Senior Frontend Developer - Remote US</p>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex cursor-pointer items-center">
+<input checked="" class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 dark:border-gray-600 dark:bg-gray-700"></div>
+</label>
+</div>
+<div class="flex gap-2 flex-wrap">
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-1.5 rounded-md bg-primary/20 dark:bg-primary/30 px-2.5">
+<p class="text-xs font-medium text-gray-800 dark:text-gray-200">Keyword: 'Vuex'</p>
+</div>
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-1.5 rounded-md bg-primary/20 dark:bg-primary/30 px-2.5">
+<p class="text-xs font-medium text-gray-800 dark:text-gray-200">Location: 'Remote'</p>
+</div>
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-1.5 rounded-md bg-primary/20 dark:bg-primary/30 px-2.5">
+<p class="text-xs font-medium text-gray-800 dark:text-gray-200">Experience: 'Senior'</p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-2">
+<div class="flex flex-col gap-0.5 text-sm text-gray-500 dark:text-gray-400">
+<p>Frequency: Daily</p>
+<p>Last Sent: Jan 15, 2024</p>
+</div>
+<div class="flex items-center gap-2 self-end sm:self-center">
+<button class="flex h-9 w-9 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="flex h-9 w-9 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 text-red-500/80 dark:text-red-500/80 hover:bg-red-500/10 dark:hover:bg-red-500/20">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="w-full bg-white dark:bg-gray-900/50 rounded-xl border border-gray-200/80 dark:border-gray-800/80 shadow-sm p-5 @container">
+<div class="flex flex-col @md:flex-row gap-4 @md:gap-6">
+<div class="flex flex-col flex-grow gap-3">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<p class="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500">Inactive</p>
+<p class="text-lg font-bold leading-tight tracking-[-0.015em]">Mid-level Nuxt.js Developer</p>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex cursor-pointer items-center">
+<input class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 dark:border-gray-600 dark:bg-gray-700"></div>
+</label>
+</div>
+<div class="flex gap-2 flex-wrap">
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-1.5 rounded-md bg-primary/20 dark:bg-primary/30 px-2.5">
+<p class="text-xs font-medium text-gray-800 dark:text-gray-200">Keyword: 'Nuxt'</p>
+</div>
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-1.5 rounded-md bg-primary/20 dark:bg-primary/30 px-2.5">
+<p class="text-xs font-medium text-gray-800 dark:text-gray-200">Location: 'New York, NY'</p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-2">
+<div class="flex flex-col gap-0.5 text-sm text-gray-500 dark:text-gray-400">
+<p>Frequency: Weekly</p>
+<p>Last Sent: Jan 10, 2024</p>
+</div>
+<div class="flex items-center gap-2 self-end sm:self-center">
+<button class="flex h-9 w-9 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="flex h-9 w-9 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 text-red-500/80 dark:text-red-500/80 hover:bg-red-500/10 dark:hover:bg-red-500/20">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State Example -->
+<div class="w-full text-center bg-white dark:bg-gray-900/50 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-700 p-12 mt-4">
+<div class="flex flex-col items-center gap-4">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 dark:bg-primary/30">
+<span class="material-symbols-outlined text-4xl text-primary">mail</span>
+</div>
+<h3 class="text-xl font-bold">No job alerts yet</h3>
+<p class="max-w-xs text-gray-500 dark:text-gray-400">Create your first alert to get notified about new opportunities that match your criteria.</p>
+<button class="mt-2 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-[#0d1b14] gap-2 text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="truncate">Create Your First Alert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

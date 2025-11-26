@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Find your next Vue.js opportunity</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#4FC08D",
+              "background-light": "#F8F9FA",
+              "background-dark": "#102219",
+              "text-primary": "#2c3e50",
+              "text-secondary": "#888",
+              "card-light": "#FFFFFF",
+              "card-dark": "#1a2c23",
+              "border-light": "#EAECEF",
+              "border-dark": "#2c3e50",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-primary dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-4 sm:px-6 lg:px-10 py-3 bg-card-light dark:bg-card-dark sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-6 text-[#42b883]">
+<svg fill="currentColor" viewbox="0 0 256 198" xmlns="http://www.w3.org/2000/svg">
+<path d="M204.8 0H256L128 197.12L0 0h97.28L128 51.2L158.72 0H204.8Z"></path>
+<path d="m0 0l128 197.12L256 0h-51.2L128 133.12L51.2 0H0Z"></path>
+<path d="m51.2 0l76.8 133.12L204.8 0h-46.08L128 51.2L97.28 0H51.2Z"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em] text-text-primary dark:text-gray-100">VueJobs</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal text-primary" href="#">Dashboard</a>
+<a class="text-sm font-medium leading-normal text-text-primary dark:text-gray-300 hover:text-primary" href="#">My Applications</a>
+<a class="text-sm font-medium leading-normal text-text-primary dark:text-gray-300 hover:text-primary" href="#">Saved Jobs</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-primary/10 dark:bg-primary/20 text-text-primary dark:text-gray-300 hover:bg-primary/20 dark:hover:bg-primary/30">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzd5XA7uOorNcHvAnkXFwQ8ohj2TvkEnwz_I-FcAgHLK4DwJcEfEv3zHuGpXZo4OD1UOJK8vUpWPvvpidNKGU8PtLeaT8nCFWRyccZIrQXVfgibQUhCu1lGmexJYzF-4pMaKpOFLm7keLCObcUbUQk4My3lP_t3TXA1Klvb_ZqdWRchMJ4jEWa3_rBrTErYRjLaUfF1MP3_N0GMdqQRI02nB9kmJt-TC0KY3BIn1pL7wo_ThcJsHHAM0z2FkBKjd2Jy_NR88DNbVFL");'></div>
+</div>
+</header>
+<main class="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col gap-6 lg:flex-row lg:gap-8">
+<!-- Left Column: Filters -->
+<aside class="w-full lg:w-1/3 lg:max-w-xs shrink-0">
+<div class="sticky top-24 space-y-6">
+<!-- Filter Card -->
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+<h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] mb-5 text-text-primary dark:text-gray-100">Filters</h2>
+<div class="space-y-6">
+<!-- Keyword Search -->
+<div>
+<label class="block text-sm font-medium text-text-secondary dark:text-gray-400 mb-1.5" for="keyword">Keyword</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary dark:text-gray-400 text-xl">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark rounded-lg focus:ring-primary focus:border-primary" id="keyword" placeholder="e.g. Nuxt, Senior" type="text"/>
+</div>
+</div>
+<!-- Location -->
+<div>
+<label class="block text-sm font-medium text-text-secondary dark:text-gray-400 mb-1.5" for="location">Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary dark:text-gray-400 text-xl">location_on</span>
+<input class="w-full pl-10 pr-4 py-2.5 border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark rounded-lg focus:ring-primary focus:border-primary" id="location" placeholder="e.g. New York, Remote" type="text"/>
+</div>
+</div>
+<!-- Candidate Toggles -->
+<div class="space-y-4 pt-2">
+<div class="flex items-center gap-4 justify-between">
+<div class="flex flex-col">
+<p class="text-base font-medium leading-normal line-clamp-1 text-text-primary dark:text-gray-200">Show only remote jobs</p>
+</div>
+<label class="relative flex h-[26px] w-[44px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-600 p-0.5 has-[:checked]:bg-primary">
+<div class="h-5 w-5 rounded-full bg-white transition-transform duration-300 ease-in-out transform has-[:checked]:translate-x-[18px]"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+<div class="flex items-center gap-4 justify-between">
+<div class="flex flex-col">
+<p class="text-base font-medium leading-normal line-clamp-1 text-text-primary dark:text-gray-200">Jobs I haven't applied to</p>
+</div>
+<label class="relative flex h-[26px] w-[44px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-600 p-0.5 has-[:checked]:bg-primary">
+<div class="h-5 w-5 rounded-full bg-white transition-transform duration-300 ease-in-out transform has-[:checked]:translate-x-[18px]"></div>
+<input class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Job Type Checkboxes -->
+<div>
+<h3 class="font-semibold mb-2 text-text-primary dark:text-gray-200">Job Type</h3>
+<div class="space-y-2">
+<label class="flex items-center space-x-3 cursor-pointer">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-text-secondary dark:text-gray-400">Full-time</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-text-secondary dark:text-gray-400">Part-time</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-text-secondary dark:text-gray-400">Contract</span>
+</label>
+</div>
+</div>
+<!-- Experience Level Dropdown -->
+<div>
+<label class="block text-sm font-medium text-text-secondary dark:text-gray-400 mb-1.5" for="experience">Experience Level</label>
+<select class="w-full py-2.5 px-3 border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark rounded-lg focus:ring-primary focus:border-primary" id="experience">
+<option>All Levels</option>
+<option>Entry Level</option>
+<option>Mid Level</option>
+<option>Senior Level</option>
+<option>Lead / Principal</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Saved Searches Card -->
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold text-text-primary dark:text-gray-100">Saved Searches</h2>
+<a class="text-sm font-medium text-primary hover:underline" href="#">Manage Alerts</a>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center group">
+<a class="font-medium text-text-primary dark:text-gray-300 group-hover:text-primary" href="#">Senior, Remote, Nuxt</a>
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-text-secondary dark:text-gray-400 hover:text-blue-500"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="text-text-secondary dark:text-gray-400 hover:text-red-500"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</div>
+<div class="flex justify-between items-center group">
+<a class="font-medium text-text-primary dark:text-gray-300 group-hover:text-primary" href="#">Mid-level, New York</a>
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-text-secondary dark:text-gray-400 hover:text-blue-500"><span class="material-symbols-outlined text-base">edit</span></button>
+<button class="text-text-secondary dark:text-gray-400 hover:text-red-500"><span class="material-symbols-outlined text-base">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Column: Job Listings -->
+<div class="w-full lg:w-2/3">
+<div class="mb-6">
+<h1 class="text-3xl font-black leading-tight tracking-[-0.03em] text-text-primary dark:text-gray-100">Showing 125 Vue.js Jobs</h1>
+<p class="text-text-secondary dark:text-gray-400 text-base font-normal leading-normal">Based on your profile and filters</p>
+</div>
+<div class="space-y-4">
+<!-- Job Listing Card 1 -->
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col sm:flex-row gap-6">
+<div class="shrink-0">
+<div class="size-14 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+<img class="h-8 w-auto" data-alt="Company logo for GitLab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl8n3CVN6RTmDVa3k3mD2fYdTWqkKHsQqanMQEEoUVuhM-IUKGXU3bTBEjxsQVCVGYAWVXWj7be1xVsQCWYYCx-pVlPL4407MPTB8uVlWbu_3ZI1wrnjNS2dZUFMTT1mYNzAAMkPdmPGL3xS3vk6-fcICf7kiynBQx79y-KTluKzPyTvD48V9Z2Hnk7bUK5xwvvqOGaZIdsRHaR1u14M5VJhd3vDo1WVQ02OVXA_pteyzv-_QJjWiM-6WYSwpLa8e4Kz7LsoJjiTuP"/>
+</div>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex flex-col sm:flex-row justify-between gap-2">
+<div>
+<div class="flex items-center gap-3">
+<h3 class="text-lg font-bold text-text-primary dark:text-gray-100">Senior Frontend Engineer</h3>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">95% Match</span>
+</div>
+<p class="text-text-secondary dark:text-gray-400">GitLab · San Francisco, CA (Remote)</p>
+</div>
+<button class="shrink-0 text-yellow-500 self-start">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<p class="text-text-secondary dark:text-gray-400">$120,000 - $160,000 / year</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">Vue.js</span>
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">Nuxt</span>
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">TypeScript</span>
+</div>
+<div class="flex items-center gap-4 pt-2">
+<button class="px-5 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-opacity-90">Quick Apply</button>
+<button class="px-5 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-text-primary dark:text-gray-200 font-bold text-sm hover:bg-gray-200 dark:hover:bg-gray-600">View Details</button>
+</div>
+</div>
+</div>
+<!-- Job Listing Card 2 -->
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col sm:flex-row gap-6">
+<div class="shrink-0">
+<div class="size-14 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+<img class="h-8 w-auto" data-alt="Company logo for Netflix" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt574Hdp4a62-a1iC1awhQ5Y_2RZFcAtgbo_Fck51Y68G8xn53WAQdXS5bTRzL4ozdfA1LF6RuQwCqxfx4UcGyEdJeEtrcHbXQo3eMMo2saJzwEo9D0yV52umT-BkTwhwdbWzORLRXoI81Nyp9GDsehroz4tGyHes9--4-AytJI37P7UtH6HmAlZxlUVbWY_5PubUa833hlQTCDMX9GO4yj1Ft8YIzo5-7BFqOSKw888BSKS9Nw9iKwZXTBepIOVmWtxv8egBiNLkQ"/>
+</div>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex flex-col sm:flex-row justify-between gap-2">
+<div>
+<div class="flex items-center gap-3">
+<h3 class="text-lg font-bold text-text-primary dark:text-gray-100">Vue.js Developer (Contract)</h3>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">82% Match</span>
+</div>
+<p class="text-text-secondary dark:text-gray-400">Netflix · Los Gatos, CA</p>
+</div>
+<button class="shrink-0 text-text-secondary dark:text-gray-500 hover:text-yellow-500 self-start">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<p class="text-text-secondary dark:text-gray-400">Competitive Salary</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">Vue 3</span>
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">Pinia</span>
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">Vite</span>
+</div>
+<div class="flex items-center gap-4 pt-2">
+<button class="px-5 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-opacity-90">Quick Apply</button>
+<button class="px-5 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-text-primary dark:text-gray-200 font-bold text-sm hover:bg-gray-200 dark:hover:bg-gray-600">View Details</button>
+</div>
+</div>
+</div>
+<!-- Job Listing Card 3 -->
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-xl border border-border-light dark:border-border-dark flex flex-col sm:flex-row gap-6">
+<div class="shrink-0">
+<div class="size-14 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+<img class="h-8 w-auto" data-alt="Company logo for Vercel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1F_PNXKnjT2uk-QHClE3WMY3MKUFgdw-JHl9sUuEKyhglkFezJgXuWPNJpZC9G82JRwkPVi-5Py6y6UDIaCEvtd6_D4zVlGCQTgXKwvIBgYIhycuaG3BtaV0uzM-2avVzNUEaWNP3Ms4XL1dvqSX_RrG3NMQBx7aW4K0vcMojjQQyxO60V-6oUnJlWBjaFoiHXqEY3rRF9oiultZBHjBfzEOe26eEKr1xR7yEuX9zBITmLIkhHYLGfByrBIbiFzuEwXVZEV8ZqQ3B"/>
+</div>
+</div>
+<div class="flex-grow space-y-4">
+<div class="flex flex-col sm:flex-row justify-between gap-2">
+<div>
+<div class="flex items-center gap-3">
+<h3 class="text-lg font-bold text-text-primary dark:text-gray-100">Mid-Level Frontend Developer</h3>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">75% Match</span>
+</div>
+<p class="text-text-secondary dark:text-gray-400">Vercel · Remote</p>
+</div>
+<button class="shrink-0 text-text-secondary dark:text-gray-500 hover:text-yellow-500 self-start">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<p class="text-text-secondary dark:text-gray-400">$90,000 - $115,000 / year</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">Vue.js</span>
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">JavaScript</span>
+<span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-700 text-text-secondary dark:text-gray-300">CSS</span>
+</div>
+<div class="flex items-center gap-4 pt-2">
+<button class="px-5 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-opacity-90">Quick Apply</button>
+<button class="px-5 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-text-primary dark:text-gray-200 font-bold text-sm hover:bg-gray-200 dark:hover:bg-gray-600">View Details</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center pt-6">
+<nav aria-label="Pagination" class="flex items-center gap-2">
+<a class="inline-flex items-center justify-center size-9 rounded-lg text-text-secondary dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-xl">chevron_left</span>
+</a>
+<a class="inline-flex items-center justify-center size-9 rounded-lg text-sm font-medium bg-primary text-white" href="#">1</a>
+<a class="inline-flex items-center justify-center size-9 rounded-lg text-sm font-medium text-text-secondary dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary" href="#">2</a>
+<a class="inline-flex items-center justify-center size-9 rounded-lg text-sm font-medium text-text-secondary dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary" href="#">3</a>
+<span class="inline-flex items-center justify-center size-9 text-sm font-medium text-text-secondary dark:text-gray-400">...</span>
+<a class="inline-flex items-center justify-center size-9 rounded-lg text-sm font-medium text-text-secondary dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary" href="#">10</a>
+<a class="inline-flex items-center justify-center size-9 rounded-lg text-text-secondary dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-xl">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

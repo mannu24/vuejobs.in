@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Manage Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2bee8c",
+            "background-light": "#f6f8f7",
+            "background-dark": "#102219",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Top Nav Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 dark:border-primary/10 bg-background-light dark:bg-background-dark px-6 md:px-10 py-3 sticky top-0 z-20">
+<div class="flex items-center gap-4 text-slate-800 dark:text-slate-200">
+<div class="size-6 text-[#42b883]">
+<svg fill="currentColor" viewbox="0 0 256 221" xmlns="http://www.w3.org/2000/svg">
+<path d="M204.8 0H256L128 220.8L0 0h97.92L128 51.2L157.44 0h47.36Z"></path>
+<path d="m0 0l128 220.8L256 0h-51.2L128 132.48L51.2 0H0Z"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-slate-50 text-lg font-bold leading-tight tracking-[-0.015em]">VueJobs</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary" href="#">Jobs</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary" href="#">Companies</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary" href="#">Messages</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end items-center gap-4">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg size-10 bg-primary/20 text-slate-800 dark:text-slate-200 hover:bg-primary/30">
+<span class="material-symbols-outlined text-lg">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDc0FQ9rByt5MMtokZwFMJaMU2IIoSi5gWkcJ1-GOkQwa-bX0ZaWUmPYjxU3VO-mkgU08woK_GAGQfaVoJzdVWGHKLEmiUC0VfAM1LVpwd06FP3fUOBcOe_wtzkQ4HFo9vlPewTVuRpAXBkATij27hm0C2HOll3AQpGeBsqCion1lCt6XAMP-en-Hxn4JjxuJqvdJrv6JNWg1xD71yq6AGxfzr65ajIJ9nPPwHuZpZFf7wbESlvh62LE6YJXrh7IyCb4xZIS10rxZEh");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Side Navigation -->
+<aside class="md:col-span-3 lg:col-span-2">
+<div class="sticky top-24">
+<div class="flex h-full min-h-[700px] flex-col justify-between p-4 bg-transparent">
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 dark:bg-primary/10" href="#profile">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200" style="font-variation-settings: 'FILL' 1">person</span>
+<p class="text-slate-900 dark:text-slate-50 text-sm font-medium leading-normal">Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10" href="#about">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">badge</span>
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">About</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10" href="#skills">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">psychology</span>
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Skills</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10" href="#experience">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">work</span>
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Experience</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10" href="#education">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">school</span>
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Education</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10" href="#links">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">link</span>
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Links</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10" href="#resume">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">description</span>
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Resume</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10" href="#settings">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">settings</span>
+<p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">Settings</p>
+</a>
+</div>
+</div>
+</div>
+</aside>
+<!-- Form Sections -->
+<div class="md:col-span-9 lg:col-span-10 space-y-8">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<div class="flex min-w-72 flex-col gap-3">
+<h1 class="text-slate-900 dark:text-slate-50 text-4xl font-black leading-tight tracking-[-0.033em]">Manage Your Profile</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-normal">Keep your professional details up-to-date to attract the best opportunities.</p>
+</div>
+</div>
+<!-- Profile Header Section -->
+<div class="p-4 @container bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl" id="profile">
+<div class="flex w-full flex-col gap-4 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center p-4">
+<div class="flex gap-6 items-center">
+<div class="relative group">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-32" data-alt="Jordan Lee's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcsD7Q0Nf_JvadEFOPiP_6ExryG6Xg5e4ncePojevmFeJn9_hyavEhz60R6MSJijPsekKe0hUqPIbU-xB8gU9ouuCL3WKU_FV00j874xTUZJjtBH2e1mixUNUorIvxKcpDWL8ooMC95lY9yvL2gHIO2-Fb8wdrl5evZS-hlErUWspOMlHB1PQaMTdtJ_EkDQLUlg1hWOoj30qxuB5uetKR97NK5FR2FLEfvJsQIaTsikQZheoqcuEFoeV95wgYO2ivOOu5IrIzDhCv");'></div>
+<div class="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white text-3xl">photo_camera</span>
+</div>
+</div>
+<div class="flex flex-col justify-center gap-1">
+<p class="text-slate-900 dark:text-slate-50 text-[22px] font-bold leading-tight tracking-[-0.015em]">Jordan Lee</p>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-normal">Senior Frontend Developer</p>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-normal">San Francisco, CA</p>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 mt-4 p-4">
+<div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-lg p-1 @[480px]:flex-row @[480px]:items-center">
+<div class="flex flex-col gap-1">
+<p class="text-slate-800 dark:text-slate-200 text-base font-bold leading-tight">Available for work</p>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-normal">Let recruiters know you are open to new opportunities.</p>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-slate-200 dark:bg-slate-700 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary">
+<div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+</div>
+<!-- About Section -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 space-y-4" id="about">
+<h2 class="text-xl font-bold text-slate-900 dark:text-slate-50">About</h2>
+<div class="min-h-[150px] w-full rounded-lg border border-slate-300 dark:border-slate-700 p-3 text-slate-700 dark:text-slate-300 focus-within:ring-2 focus-within:ring-primary/50 focus-within:border-primary/50" contenteditable="true">
+              Passionate Senior Frontend Developer with over 8 years of experience specializing in the Vue.js ecosystem. Proven track record of building scalable, high-performance web applications. Eager to join a mission-driven company to create impactful user experiences.
+            </div>
+</div>
+<!-- Skills Section -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 space-y-4" id="skills">
+<h2 class="text-xl font-bold text-slate-900 dark:text-slate-50">Skills</h2>
+<div class="flex flex-wrap gap-2 p-2 border border-slate-300 dark:border-slate-700 rounded-lg">
+<span class="flex items-center gap-1.5 bg-primary/20 dark:bg-primary/10 text-slate-800 dark:text-slate-200 px-3 py-1 rounded-full text-sm font-medium">Vue.js <button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+<span class="material-symbols-outlined !text-base">close</span>
+</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 dark:bg-primary/10 text-slate-800 dark:text-slate-200 px-3 py-1 rounded-full text-sm font-medium">Nuxt.js <button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+<span class="material-symbols-outlined !text-base">close</span>
+</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 dark:bg-primary/10 text-slate-800 dark:text-slate-200 px-3 py-1 rounded-full text-sm font-medium">Pinia <button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+<span class="material-symbols-outlined !text-base">close</span>
+</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 dark:bg-primary/10 text-slate-800 dark:text-slate-200 px-3 py-1 rounded-full text-sm font-medium">Vuex <button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+<span class="material-symbols-outlined !text-base">close</span>
+</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 dark:bg-primary/10 text-slate-800 dark:text-slate-200 px-3 py-1 rounded-full text-sm font-medium">Vite <button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+<span class="material-symbols-outlined !text-base">close</span>
+</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 dark:bg-primary/10 text-slate-800 dark:text-slate-200 px-3 py-1 rounded-full text-sm font-medium">TypeScript <button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
+<span class="material-symbols-outlined !text-base">close</span>
+</button></span>
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-sm text-slate-700 dark:text-slate-300 placeholder-slate-400 dark:placeholder-slate-500" placeholder="Add a skill..." type="text"/>
+</div>
+</div>
+<!-- Experience Section -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 space-y-4" id="experience">
+<div class="flex justify-between items-center">
+<h2 class="text-xl font-bold text-slate-900 dark:text-slate-50">Experience</h2>
+<button class="flex items-center gap-2 cursor-pointer rounded-lg h-10 px-4 bg-primary/20 text-slate-800 dark:text-slate-200 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/30">
+<span class="material-symbols-outlined !text-base">add</span>
+<span>Add Experience</span>
+</button>
+</div>
+<div class="space-y-6">
+<div class="p-4 border border-slate-200 dark:border-slate-800 rounded-lg">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200">Senior Frontend Developer</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">TechSolutions Inc. · San Francisco, CA</p>
+<p class="text-xs text-slate-500 dark:text-slate-500 mt-1">Jan 2020 - Present</p>
+</div>
+<div class="flex gap-2">
+<button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-slate-500 hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Led the development of a new client-facing dashboard using Vue 3, Pinia, and TypeScript, improving user engagement by 40%.</p>
+</div>
+<div class="p-4 border border-slate-200 dark:border-slate-800 rounded-lg">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200">Frontend Developer</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400">Innovate Co. · Remote</p>
+<p class="text-xs text-slate-500 dark:text-slate-500 mt-1">Jun 2017 - Dec 2019</p>
+</div>
+<div class="flex gap-2">
+<button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-slate-500 hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<p class="mt-2 text-sm text-slate-700 dark:text-slate-300">Developed and maintained components for a large-scale e-commerce platform using Vue 2 and Vuex.</p>
+</div>
+</div>
+</div>
+<!-- Resume Section -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 space-y-4" id="resume">
+<h2 class="text-xl font-bold text-slate-900 dark:text-slate-50">Resume</h2>
+<div class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg text-center">
+<span class="material-symbols-outlined text-4xl text-slate-400 dark:text-slate-500">upload_file</span>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-400"><span class="font-semibold text-primary/80">Click to upload</span> or drag and drop</p>
+<p class="text-xs text-slate-500">PDF, DOC, DOCX (max 5MB)</p>
+</div>
+<div class="p-4 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<div>
+<p class="font-medium text-sm text-slate-800 dark:text-slate-200">Jordan_Lee_Resume_2024.pdf</p>
+<p class="text-xs text-slate-500">Uploaded on 12 Jul 2024</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"><span class="material-symbols-outlined">download</span></button>
+<button class="text-slate-500 hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+</div>
+<!-- Settings Section -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 space-y-6" id="settings">
+<h2 class="text-xl font-bold text-slate-900 dark:text-slate-50">Settings</h2>
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300" for="timezone">Timezone</label>
+<select class="w-full bg-background-light dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-lg focus:ring-primary/50 focus:border-primary/50 text-slate-700 dark:text-slate-300" id="timezone">
+<option>(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+<option>(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+</select>
+</div>
+<div class="space-y-4">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Email Notifications</p>
+<div class="flex items-center gap-3">
+<input checked="" class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary/50" id="new-messages" type="checkbox"/>
+<label class="text-sm text-slate-700 dark:text-slate-300" for="new-messages">New messages</label>
+</div>
+<div class="flex items-center gap-3">
+<input checked="" class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary/50" id="job-alerts" type="checkbox"/>
+<label class="text-sm text-slate-700 dark:text-slate-300" for="job-alerts">Job alerts and recommendations</label>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Profile Visibility</p>
+<div class="flex items-center gap-3">
+<input checked="" class="h-4 w-4 border-slate-300 text-primary focus:ring-primary/50" id="public" name="visibility" type="radio"/>
+<label class="text-sm text-slate-700 dark:text-slate-300" for="public">Public (Visible to everyone)</label>
+</div>
+<div class="flex items-center gap-3">
+<input class="h-4 w-4 border-slate-300 text-primary focus:ring-primary/50" id="recruiters" name="visibility" type="radio"/>
+<label class="text-sm text-slate-700 dark:text-slate-300" for="recruiters">Recruiters Only (Visible to logged-in recruiters)</label>
+</div>
+<div class="flex items-center gap-3">
+<input class="h-4 w-4 border-slate-300 text-primary focus:ring-primary/50" id="private" name="visibility" type="radio"/>
+<label class="text-sm text-slate-700 dark:text-slate-300" for="private">Private (Only you can see it)</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Actions -->
+<footer class="sticky bottom-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-t border-slate-200 dark:border-slate-800 p-4 mt-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-end items-center gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-slate-700 dark:text-slate-300 text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-800">
+<span class="truncate">Preview Profile</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-slate-900 text-sm font-bold hover:bg-opacity-90">
+<span class="truncate">Save Changes</span>
+</button>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

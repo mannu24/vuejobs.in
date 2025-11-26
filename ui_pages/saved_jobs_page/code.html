@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Saved Jobs - VueJobs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+
+    .material-symbols-outlined.fill-1 {
+      font-variation-settings: 'FILL' 1;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#42b883",
+            "background-light": "#f6f8f7",
+            "background-dark": "#102219",
+            "danger": "#ef4444",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-zinc-900 dark:text-zinc-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[1100px] flex-1 gap-8">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-zinc-200 dark:border-zinc-700 px-4 py-4">
+<div class="flex items-center gap-4 text-zinc-900 dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_330"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">VueJobs</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary" href="#">Browse Jobs</a>
+<a class="text-sm font-bold leading-normal text-primary" href="#">Saved Jobs</a>
+<a class="text-sm font-medium leading-normal text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary" href="#">Profile</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-primary/20 hover:bg-primary/30 text-primary gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCEB9MHqpT7B2CvDrJjlFSTBG-l8OydKCYDAUC43_Fj5S_9RbH4pR842yCyEWt9W2nJEaAfOzPvy3JIZMAu0abyzjfsZLJ9nXMvA01Tg8aM9kpBsTs1FiXP7Om1_ZrhU1e17CIf7XeF4Qpi6BJWgwhKyYofYDZ5NGC1JivOTqp5gVgPz3nyY5YMZHPoqfVKA98--VZafyTpsxv9Us3dGS72se_F_9hG1dNyJz2-QdSgwtCna_1EFo0t_h3F_zfAcRUpNpEjN3xIKCbq");'></div>
+</div>
+</header>
+<main class="flex flex-col gap-6 px-4">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between gap-3">
+<h1 class="text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Saved Jobs</h1>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/20">
+<div class="flex items-center gap-4">
+<input class="h-5 w-5 rounded border-zinc-300 dark:border-zinc-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary/50 focus:ring-offset-background-light dark:focus:ring-offset-background-dark" id="select-all" type="checkbox"/>
+<label class="text-sm font-medium text-zinc-700 dark:text-zinc-300" for="select-all">Select All</label>
+</div>
+<div class="flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-4">
+<p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex-1 truncate">Show only active jobs</p>
+<label class="relative flex h-[26px] w-[44px] cursor-pointer items-center rounded-full border-none bg-zinc-200 dark:bg-zinc-700 p-0.5 has-[:checked]:bg-primary">
+<div class="h-full aspect-square rounded-full bg-white transition-transform duration-200 ease-in-out transform translate-x-0 has-[:checked]:+translate-x-[18px]"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+<button aria-label="Remove Selected Jobs" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 text-white text-sm font-bold leading-normal tracking-[0.015em] bg-danger/50 dark:bg-danger/50" disabled="">
+<span class="truncate">Remove Selected</span>
+</button>
+</div>
+</div>
+<!-- Job Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Job Card 1 -->
+<div class="flex flex-col gap-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/20 p-5 group">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<input class="h-5 w-5 rounded border-zinc-300 dark:border-zinc-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary/50 focus:ring-offset-0" type="checkbox"/>
+<div class="flex size-12 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-700">
+<img class="h-8 w-8 object-contain" data-alt="Innovate LLC company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCe9MDEGxm3kSI4SklU2iI9krom_MwvTQlzcZXO7XQuH2eb24BJfyUDz6ATP7GQFlEZ29uauyDkc6EAvm5Ow6jbwOIxMQk_HeAy1yXm04tkPCMK_qqYq3HASBBzDihmLyKNO7qyoQkjZXJF7wGts0IdbwU9L5DpgFDJ3CCWFEeo12JB9r6kouZjIHOVH9BP1JE-1r9NBWpx8tBeZXcJ2v_bmYN2CNNuByaRk3J4RgIV6_Oqc0_ahP1SuLOB2DDKaEpJxze6FMqiLBY"/>
+</div>
+</div>
+<button class="p-2 text-zinc-500 dark:text-zinc-400 hover:text-danger dark:hover:text-danger rounded-full hover:bg-danger/10">
+<span class="material-symbols-outlined fill-1 text-2xl">bookmark_remove</span>
+</button>
+</div>
+<div>
+<h3 class="text-lg font-bold text-zinc-900 dark:text-white">Senior Vue.js Developer</h3>
+<p class="text-sm text-zinc-600 dark:text-zinc-400">Innovate LLC</p>
+</div>
+<div class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span>Remote, USA</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-xs font-medium px-2 py-1 rounded bg-primary/20 text-primary">Senior</span>
+<span class="text-xs font-medium px-2 py-1 rounded bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300">Full-time</span>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="flex flex-col gap-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/20 p-5 group">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<input class="h-5 w-5 rounded border-zinc-300 dark:border-zinc-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary/50 focus:ring-offset-0" type="checkbox"/>
+<div class="flex size-12 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-700">
+<img class="h-8 w-8 object-contain" data-alt="Acme Inc. company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1H366TRxTghlimBDgDuoBgAWgORJ_3BKrr1K-kwYdhJ-6m-pgaAN3wfn1srdjTeDImesycBXu-TKCTQI3hXnEgDf9a4A0tuO3dCrHju8IkCpLtNxnrSB9auNP5gkOf4yKMzjiZoPM60tFoeMcOHZCyIQJWo9clhe7iCvl5bvWh36rkJ9xVuY8vmBP0dXtLLO4ID9ojs7vU_62Up3nHu8rB_g29Gch639QMA3MRa75iJBknBeXqWXxWZw7KPr51Bd7fpyE_wwzw0El"/>
+</div>
+</div>
+<button class="p-2 text-zinc-500 dark:text-zinc-400 hover:text-danger dark:hover:text-danger rounded-full hover:bg-danger/10">
+<span class="material-symbols-outlined fill-1 text-2xl">bookmark_remove</span>
+</button>
+</div>
+<div>
+<h3 class="text-lg font-bold text-zinc-900 dark:text-white">Frontend Engineer (Vue)</h3>
+<p class="text-sm text-zinc-600 dark:text-zinc-400">Acme Inc.</p>
+</div>
+<div class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span>New York, NY</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-xs font-medium px-2 py-1 rounded bg-primary/20 text-primary">Mid-Level</span>
+<span class="text-xs font-medium px-2 py-1 rounded bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300">Full-time</span>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="flex flex-col gap-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/20 p-5 group">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<input class="h-5 w-5 rounded border-zinc-300 dark:border-zinc-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary/50 focus:ring-offset-0" type="checkbox"/>
+<div class="flex size-12 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-700">
+<img class="h-8 w-8 object-contain" data-alt="Creative Solutions company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDceDmstESorR8GCgcvCiLV78JghZdT9dH_hBY6Ilk_WMSuOhVejtend3tLKhkLJ3IV81lRLx6mLZHeUVeXltc9412wqyr2n5Y-J4TOBvldGhpVWQe3sYyrPQLCexTZG-URluLqF4wbiyvoQAIjNTrW0h_Z_p01yhoW271LCk_DrLMVMVuHfMzR8oxtbnSkh__JzMA2HDka7Rzia5pOfhN3nwem6C8YVUqq6SfVU8UOkwN4SdHdCPhqPJImU_0mtw-sVtCZT5doEAhL"/>
+</div>
+</div>
+<button class="p-2 text-zinc-500 dark:text-zinc-400 hover:text-danger dark:hover:text-danger rounded-full hover:bg-danger/10">
+<span class="material-symbols-outlined fill-1 text-2xl">bookmark_remove</span>
+</button>
+</div>
+<div>
+<h3 class="text-lg font-bold text-zinc-900 dark:text-white">Junior Vue Developer</h3>
+<p class="text-sm text-zinc-600 dark:text-zinc-400">Creative Solutions</p>
+</div>
+<div class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span>London, UK</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-xs font-medium px-2 py-1 rounded bg-primary/20 text-primary">Junior</span>
+<span class="text-xs font-medium px-2 py-1 rounded bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300">Contract</span>
+</div>
+</div>
+</div>
+<!-- Empty State Component (Example) -->
+<div class="hidden flex-col items-center justify-center gap-6 text-center py-20 px-4 rounded-xl border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800/20">
+<div class="flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-4xl">bookmark_add</span>
+</div>
+<div class="flex flex-col gap-2">
+<h2 class="text-2xl font-bold text-zinc-900 dark:text-white">No Saved Jobs Yet</h2>
+<p class="text-zinc-600 dark:text-zinc-400 max-w-sm">Start browsing and save jobs you're interested in. They will appear here for you to review later.</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-zinc-900 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+<span class="truncate">Find Your Next Job</span>
+</button>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-4 pt-6">
+<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700">Previous</button>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center size-10 rounded-lg bg-primary text-zinc-900 text-sm font-bold">1</button>
+<button class="flex items-center justify-center size-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700">2</button>
+<button class="flex items-center justify-center size-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700">3</button>
+</div>
+<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700">Next</button>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</body></html>

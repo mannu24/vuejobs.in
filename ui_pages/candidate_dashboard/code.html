@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Candidate Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4FC08D",
+                        "background-light": "#F5F7FA",
+                        "background-dark": "#102219",
+                        "text-primary": "#2C3E50",
+                        "text-secondary": "#8A94A6",
+                        "text-dark-primary": "#E0E6F1",
+                        "text-dark-secondary": "#A0AEC0",
+                        "border-light": "#E2E8F0",
+                        "border-dark": "#2D3748",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1A202C",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-primary dark:text-text-dark-primary">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-6 md:px-10 py-3 bg-surface-light dark:bg-surface-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-text-primary dark:text-text-dark-primary">
+<div class="size-7 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_330"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">VueJobs</h2>
+</div>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-6">
+<div class="flex items-center gap-6">
+<a class="text-text-primary dark:text-text-dark-primary text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-text-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Jobs</a>
+<a class="text-text-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Messages</a>
+<a class="text-text-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full size-10 text-text-secondary dark:text-text-dark-secondary hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/50" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDuEyP3QYTqm2Wg-raFAVjr7UlCYJJlDSnBCv1pGAibMee9nWU2fUnFRjALjJTHp-smJidDTiXMCetwd2j0C2wa3NAMRA06Z_ISAChCoj49LWEl1sLhSFRM8y_b8tWYoo9xUhXQGf42i6UO4me3Wh6hetGFjhKOGTt1jDWb4Xek8v5ikAOj69_kTgEPpk4kMdbtojl9eyUDZVsnof1-FhWHQxb3la7Ai9_KsTWkH7JH24kNh925vilS0xZVubrw1MNkhFi03UhdlIDT");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<div class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Column -->
+<main class="lg:col-span-2 flex flex-col gap-8">
+<!-- Welcome Section -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-border-light dark:border-border-dark">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-start gap-4 mb-4">
+<p class="text-text-primary dark:text-text-dark-primary text-4xl font-black leading-tight tracking-[-0.033em]">Welcome back, Alex!</p>
+</div>
+<!-- ProgressBar -->
+<div class="flex flex-col gap-2">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-text-primary dark:text-text-dark-primary text-base font-medium leading-normal">Profile Completion</p>
+<p class="text-text-primary dark:text-text-dark-primary text-sm font-bold leading-normal">75%</p>
+</div>
+<div class="rounded-full bg-slate-200 dark:bg-slate-700 h-2.5">
+<div class="h-2.5 rounded-full bg-primary" style="width: 75%;"></div>
+</div>
+<p class="text-text-secondary dark:text-text-dark-secondary text-sm font-normal leading-normal">Complete your profile to get better job recommendations.</p>
+</div>
+</section>
+<!-- Quick Stats -->
+<section>
+<!-- Stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-4 sm:p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+<p class="text-text-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">Applications Sent</p>
+<p class="text-text-primary dark:text-text-dark-primary tracking-tight text-3xl font-bold leading-tight">12</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-4 sm:p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+<p class="text-text-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">Saved Jobs</p>
+<p class="text-text-primary dark:text-text-dark-primary tracking-tight text-3xl font-bold leading-tight">5</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-4 sm:p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+<p class="text-text-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">Job Alerts</p>
+<p class="text-text-primary dark:text-text-dark-primary tracking-tight text-3xl font-bold leading-tight">3</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-4 sm:p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+<p class="text-text-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">Profile Views</p>
+<div class="flex items-baseline gap-2">
+<p class="text-text-primary dark:text-text-dark-primary tracking-tight text-3xl font-bold leading-tight">28</p>
+<p class="text-amber-500 text-sm font-bold leading-normal">+5%</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommended Jobs -->
+<section class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<h2 class="text-text-primary dark:text-text-dark-primary text-[22px] font-bold leading-tight tracking-[-0.015em]">Jobs Recommended For You</h2>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Job Card 1 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 border border-border-light dark:border-border-dark shadow-sm flex flex-col gap-3 hover:shadow-lg hover:-translate-y-1 transition-all">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-12" data-alt="Company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0ogcV4N3ZERPbluz238nCiqND1YgypR8UGSsQnlta5P8cR6fwaevfgJNHB_zzhMFef3cQA58AiyeqL4RjvO24d--JpWDSlYzqC5EvqTt-hdHz_N4UBK6Z_2ykXWKzTZB2N83VSP8sWnipKn7oEXxGMRNO0fg6wAWhrH89Tn5Wx0Jpwhpsrs7Fe3DdXR1ddXQUs4lkcujLbXbS316IIijJP5kYz519IDabiuGphtc9-okjn4RrnOHh8Zci26tgWwPPqRPytyyVrRNL");'></div>
+<div>
+<h3 class="font-bold text-text-primary dark:text-text-dark-primary">Senior Vue.js Developer</h3>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">Vue Mastery</p>
+</div>
+</div>
+<div class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary rounded-full px-3 py-1 text-xs font-bold">95% Match</div>
+</div>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">Remote, USA</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Vue 3</span>
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Pinia</span>
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">TypeScript</span>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 border border-border-light dark:border-border-dark shadow-sm flex flex-col gap-3 hover:shadow-lg hover:-translate-y-1 transition-all">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-12" data-alt="Company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoC0lIE9odjMNkoT-YAiMAJ-seHNSfVni5eaWIJ-7wR-tjePUPs2YyI-CsWF9i9EN_YPU1IuD62s7ZfHydjIP2PWkou2EaObcC0fYOYwJPzgnhgzPd22qeG01CRSMg-y2Zcu_ATcMntmw-s0gJuAT7lQxI_WVXuu8BHpMtavF-CL1ZRYPKzLynvtZlS-Co4aQRzc-t8Qbl9To4-NiZ7Px9tT5SKCpSbzCh2SJPnS_zmC7LlW3yYPONMmqnCmUJ_5gyXdp0mAIIXpGu");'></div>
+<div>
+<h3 class="font-bold text-text-primary dark:text-text-dark-primary">Frontend Engineer (Nuxt)</h3>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">Nuxt Labs</p>
+</div>
+</div>
+<div class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary rounded-full px-3 py-1 text-xs font-bold">92% Match</div>
+</div>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">New York, NY</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Nuxt.js</span>
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Vue.js</span>
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Tailwind CSS</span>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 border border-border-light dark:border-border-dark shadow-sm flex flex-col gap-3 hover:shadow-lg hover:-translate-y-1 transition-all">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-12" data-alt="Company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCBzHGGAoLbV85CJZ9oraGUm1YzlNiwo4pT4uNIc8-WhAwlrPCy4mjWhwoi5eKzix5iTHGndVf5h8yKETl4k8JPYBMfCFDwaPxXFV56w70lFmRnE2_Aj61gtP5epRSvQgXaeIM2h-3W4OMRFVKUqSZNDwmzAk4tiH5vCqnrt-7O18hml8cvHy5qDd14Ez89gF3wwp7BJ1tWqaiXriKlGvCusiVCz0IXuoskOQxbqfKVHtcbpKbarJAKZxE9XcdAsaoDgDXWUISyBH4X");'></div>
+<div>
+<h3 class="font-bold text-text-primary dark:text-text-dark-primary">UI Developer</h3>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">Vite Inc.</p>
+</div>
+</div>
+<div class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary rounded-full px-3 py-1 text-xs font-bold">88% Match</div>
+</div>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">San Francisco, CA</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Vue.js</span>
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Vite</span>
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Storybook</span>
+</div>
+</div>
+<!-- Job Card 4 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 border border-border-light dark:border-border-dark shadow-sm flex flex-col gap-3 hover:shadow-lg hover:-translate-y-1 transition-all">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-12" data-alt="Company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDq-0wvF4Z6PoKdWEJCEIwcihFvA__Wg6eOEpxOZgn1WEDJAD0ok4CYbVYXfQP7NNoPXzVBV2WCGQE3lx3vxrsU_rzAUfyQX3TsATSLN7SnUpb6nu-onorp8_n_JHKjKIsVYGk8XH3ViEcSr4vsRz6lFh5IeAOMlV5Du1DAU8pqiQxl_U8kWD3qf462btW87FHb6auH05Zen8aYBGcpIz5ixbJ85JSFj_w9y4zlogTd-3A4sR-ZG00REzdvKoyVDh5z4eBglMa1PkcV");'></div>
+<div>
+<h3 class="font-bold text-text-primary dark:text-text-dark-primary">Full Stack Engineer (Vue)</h3>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">GitLab</p>
+</div>
+</div>
+<div class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary rounded-full px-3 py-1 text-xs font-bold">85% Match</div>
+</div>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">Remote, Worldwide</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Vue.js</span>
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">Ruby on Rails</span>
+<span class="bg-slate-100 dark:bg-slate-700 text-text-secondary dark:text-text-dark-secondary text-xs font-medium px-2.5 py-1 rounded-full">GraphQL</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Applications -->
+<section class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<h2 class="text-text-primary dark:text-text-dark-primary text-[22px] font-bold leading-tight tracking-[-0.015em]">Your Recent Applications</h2>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 border border-border-light dark:border-border-dark shadow-sm flex flex-col divide-y divide-border-light dark:divide-border-dark">
+<!-- List Item 1 -->
+<div class="py-3 flex items-center justify-between gap-4 first:pt-0 last:pb-0">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-10" data-alt="Company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDw5-xhYbiLRtJMoFN27Pry91nX43nC8JfPC-CoYSLq79LhZ71nBL22a5aXXNXtL6huUTCOUJiW6zcnJzuYntX2UPTfkG9GrgM4WoBsyS9mAagfbH5FZwPH2nPoFhKmvYuUw_mvj9sSFouwkSnubyljPZUMSJlHxFCZ6j4uQzBcvcIEa02CBX5WwfV0YYKOy3YTCjTZAQ3OF0g0LbOkIF8auyMOxd7YXP2IUKHWqBEsOM3VZTLetRxlge0cLVr5fPmNak_FxEu9wKR2");'></div>
+<div>
+<p class="font-semibold text-text-primary dark:text-text-dark-primary">Senior Vue.js Developer</p>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">at Vue Mastery</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">Viewed by Employer</span>
+<button class="text-text-secondary dark:text-text-dark-secondary hover:text-text-primary dark:hover:text-text-dark-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="py-3 flex items-center justify-between gap-4 first:pt-0 last:pb-0">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-10" data-alt="Company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7rBNogbUHN2U61R7H6nRxQgOlk1MXKC9nNCKrnTZxVLg5nu4usLt5TBn2CtTGUiN00diBlf3B_tQRoB_UlEYSCA2S0VwLCaTKdqCOweA-bX_rOAmlfuHsgSreHTH8gYO6XqKx4SzxLIIApgsYplE74LLXUuexlPkIM_10wKcM8ErxQvBzzv0CN7EM-rqG9DoTuMdlpDYqUFB2Bq5Wno48VQFozz2-0LfPtwDe34ZEb1ASORxQmgHQCMC5MtU-Sc1z0aPZB97VGcb7");'></div>
+<div>
+<p class="font-semibold text-text-primary dark:text-text-dark-primary">Frontend Developer</p>
+<p class="text-sm text-text-secondary dark:text-text-dark-secondary">at Microsoft</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300 text-xs font-medium px-2.5 py-1 rounded-full">Submitted</span>
+<button class="text-text-secondary dark:text-text-dark-secondary hover:text-text-primary dark:hover:text-text-dark-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Right Sidebar -->
+<aside class="flex flex-col gap-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-border-light dark:border-border-dark flex flex-col gap-4">
+<h3 class="font-bold text-lg text-text-primary dark:text-text-dark-primary">Quick Actions</h3>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 text-text-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-semibold text-sm">Update Profile</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 text-text-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="font-semibold text-sm">Upload Resume</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 text-text-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-semibold text-sm">Create Job Alert</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 text-text-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="font-semibold text-sm">Browse All Jobs</span>
+</a>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-border-light dark:border-border-dark flex flex-col gap-4">
+<h3 class="font-bold text-lg text-text-primary dark:text-text-dark-primary">Saved Jobs</h3>
+<div class="flex flex-col divide-y divide-border-light dark:divide-border-dark -mx-2">
+<!-- Saved Job Item 1 -->
+<div class="py-3 px-2 flex items-center justify-between gap-2 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-8" data-alt="Company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEhEa8JcAcKEZcOUEWab-zEnFhgeB8Unq3y80-16PvccPHXTEkFJsMLuGc4pBYQ9h8F_lOW9uKnT2UZxlf1BGLt5PSiAPUxKgGr-y9b8ajf-NKSnJ7cuT_v63tHxQ2YjoIt30kNWVJopjLQV466RyxVvtu9hR76zW8TcySD5gw7JYYGeXNGt9cDsYYjYUwkg8iTIM08sbHr8gEVx8jzHhEkTxle8E19y_i0kEvt2oXun3Cvw6znErQLvn-Led2LUJ3gCjosbESp2R8");'></div>
+<div>
+<p class="font-semibold text-sm text-text-primary dark:text-text-dark-primary">Frontend Engineer</p>
+<p class="text-xs text-text-secondary dark:text-text-dark-secondary">Nuxt Labs</p>
+</div>
+</div>
+<button class="text-text-secondary dark:text-text-dark-secondary hover:text-text-primary dark:hover:text-text-dark-primary transition-colors"><span class="material-symbols-outlined !text-xl">bookmark_remove</span></button>
+</div>
+<!-- Saved Job Item 2 -->
+<div class="py-3 px-2 flex items-center justify-between gap-2 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-md size-8" data-alt="Company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXeRRSdY2yp3lj7exjoGzETNqxd7V52AW0Bt3PIbH5lt9qu_ioJBDSRdZzeuChaLZChkbNmamjRR44ctK7mNU2X93P779cYhd36UR6CGbpI4zitnwSpEgI5KGQT_t4w9RJtbemw5zIht566Z62GtSDaveN6Sx6T39EPYZk7M9leqe82JSSoUjkCbypPl7r0p5AqEIxCUULDSLNEKgNoRJ8bzcs899PpZZGZdPoMqcioBclsF6-IUWQPlEfaI3R4u22ZBLWx2fEBcE3");'></div>
+<div>
+<p class="font-semibold text-sm text-text-primary dark:text-text-dark-primary">UI Developer</p>
+<p class="text-xs text-text-secondary dark:text-text-dark-secondary">Vite Inc.</p>
+</div>
+</div>
+<button class="text-text-secondary dark:text-text-dark-secondary hover:text-text-primary dark:hover:text-text-dark-primary transition-colors"><span class="material-symbols-outlined !text-xl">bookmark_remove</span></button>
+</div>
+</div>
+<a class="text-primary text-sm font-semibold hover:underline text-center" href="#">View All Saved Jobs</a>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</body></html>

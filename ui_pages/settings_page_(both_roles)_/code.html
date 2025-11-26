@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#4FC08D",
+              "background-light": "#F8F9FA",
+              "background-dark": "#101922",
+              "card-light": "#FFFFFF",
+              "card-dark": "#182431",
+              "text-light": "#212529",
+              "text-dark": "#E2E8F0",
+              "subtext-light": "#6C757D",
+              "subtext-dark": "#94A3B8",
+              "border-light": "#DEE2E6",
+              "border-dark": "#334155",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-6 md:px-10 py-3 bg-card-light dark:bg-card-dark">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_330"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">VueJobs</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end items-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal" href="#">Find Jobs</a>
+<a class="text-sm font-medium leading-normal" href="#">Companies</a>
+<a class="text-sm font-medium leading-normal" href="#">Post a Job</a>
+<a class="text-sm font-medium leading-normal" href="#">Blog</a>
+</div>
+<div class="flex gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-background-light dark:bg-background-dark text-subtext-light dark:text-subtext-dark hover:bg-zinc-200 dark:hover:bg-zinc-700 aspect-square">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-background-light dark:bg-background-dark text-subtext-light dark:text-subtext-dark hover:bg-zinc-200 dark:hover:bg-zinc-700 aspect-square">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2fwhm6G_vzuLetOGxCD_yo9WhY7QxZBIVNKGmh07f3sL6JTmxfd6m6Tb6wDwXv7doKL--OuwT_AWA5bw_BrRBQ--J6qoOvLhfkBHkVi30VdNk4STU5oNp268yzip18ifKkWskW3At8dkmaTQqIsgeYO2rwi79E3je7dLeAdYPCzMpvjoMtNMnX9xKTi_QNb94zfjRhpeapbCtzg009tH_72svKABqqJUCLw39_Jzma25IZm9o-Dq6xitg5duMyUwUWkpeSy5HrBEg");'></div>
+</div>
+<button class="md:hidden flex items-center justify-center rounded-lg h-10 aspect-square hover:bg-zinc-200 dark:hover:bg-zinc-700">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<div class="flex flex-wrap justify-between gap-3 mb-8">
+<h1 class="text-4xl font-black leading-tight tracking-[-0.033em]">Settings</h1>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Side Navigation -->
+<aside class="md:col-span-3">
+<div class="flex flex-col gap-4">
+<div class="flex gap-3 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAO19NDrFJ8lprQQQ6mV7ZVkaoJXR7eGw5MfOf2JHMvjPs-9LDHy3U-XZyn7z3ctMvF2U8lnJ_ilHqbJUs_TlHmMZ4ibJvCsaGWkXxunARPU8AxC_ezJOYdcqk1SevNCCm3mDg1eDO5YcmhBkYFhCg3qaiZXsLmBMvwKH9jx7kHJlrGMVV5xOrY7Vk6-lWayArnSs3O2sa4izf52wohn-mYGwQ7NtpBvgTRtXqPNs9S0O93EUnahdkGjKDWrL5tijqFVe4xT7LOsi-4");'></div>
+<div class="flex flex-col">
+<h2 class="text-base font-medium leading-normal">Cameron Williamson</h2>
+<p class="text-sm font-normal leading-normal text-subtext-light dark:text-subtext-dark">cameron.will@example.com</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium leading-normal bg-primary/10 text-primary dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined">account_circle</span> Profile
+                            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium leading-normal hover:bg-zinc-100 dark:hover:bg-zinc-800" href="#">
+<span class="material-symbols-outlined">notifications</span> Notifications
+                            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium leading-normal hover:bg-zinc-100 dark:hover:bg-zinc-800" href="#">
+<span class="material-symbols-outlined">security</span> Security
+                            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium leading-normal hover:bg-zinc-100 dark:hover:bg-zinc-800" href="#">
+<span class="material-symbols-outlined">receipt_long</span> Billing
+                            </a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="md:col-span-9 space-y-8">
+<!-- Profile Card -->
+<section class="bg-card-light dark:bg-card-dark p-6 rounded-lg border border-border-light dark:border-border-dark shadow-sm">
+<h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] pb-4 border-b border-border-light dark:border-border-dark">Profile</h2>
+<div class="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div>
+<p class="text-base">You are currently logged in as a <span class="font-semibold text-primary">Candidate</span>.</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark mt-1">Your public profile is visible to recruiters on VueJobs.</p>
+</div>
+<button class="flex-shrink-0 flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-primary text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-6 hover:bg-primary/90">Edit Public Profile</button>
+</div>
+</section>
+<!-- Security Card -->
+<section class="bg-card-light dark:bg-card-dark p-6 rounded-lg border border-border-light dark:border-border-dark shadow-sm">
+<h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] pb-4 border-b border-border-light dark:border-border-dark">Security</h2>
+<!-- Change Password -->
+<div class="pt-6">
+<h3 class="text-lg font-semibold">Change Password</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+<label class="flex flex-col flex-1">
+<p class="text-sm font-medium leading-normal pb-2">Current Password</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark h-12 placeholder:text-subtext-light dark:placeholder:text-subtext-dark p-3 text-base font-normal leading-normal" placeholder="Enter your current password" type="password" value=""/>
+</label>
+<div class="w-full"></div>
+<label class="flex flex-col flex-1">
+<p class="text-sm font-medium leading-normal pb-2">New Password</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark h-12 placeholder:text-subtext-light dark:placeholder:text-subtext-dark p-3 text-base font-normal leading-normal" placeholder="Enter new password" type="password" value=""/>
+</label>
+<label class="flex flex-col flex-1">
+<p class="text-sm font-medium leading-normal pb-2">Confirm New Password</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark h-12 placeholder:text-subtext-light dark:placeholder:text-subtext-dark p-3 text-base font-normal leading-normal" placeholder="Confirm new password" type="password" value=""/>
+</label>
+</div>
+<div class="mt-4">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-primary text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-6 hover:bg-primary/90">Update Password</button>
+</div>
+</div>
+<!-- 2FA -->
+<div class="pt-6 mt-6 border-t border-border-light dark:border-border-dark">
+<h3 class="text-lg font-semibold">Two-Factor Authentication (2FA)</h3>
+<div class="flex items-center justify-between mt-4">
+<div>
+<p>Protect your account with an extra layer of security.</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">Once enabled, you'll be asked for a code from your authenticator app.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 dark:peer-focus:ring-primary rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Active Sessions -->
+<div class="pt-6 mt-6 border-t border-border-light dark:border-border-dark">
+<h3 class="text-lg font-semibold">Active Sessions</h3>
+<p class="text-sm text-subtext-light dark:text-subtext-dark mt-1">This is a list of devices that have logged into your account.</p>
+<ul class="mt-4 space-y-4">
+<li class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-subtext-light dark:text-subtext-dark text-3xl">desktop_windows</span>
+<div>
+<p class="font-medium">Chrome on macOS</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">San Francisco, CA • <span class="text-primary font-semibold">Active Now</span></p>
+</div>
+</div>
+<button class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-red-500">Log out</button>
+</li>
+<li class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-subtext-light dark:text-subtext-dark text-3xl">phone_iphone</span>
+<div>
+<p class="font-medium">VueJobs iOS App</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">New York, NY • 2 days ago</p>
+</div>
+</div>
+<button class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-red-500">Log out</button>
+</li>
+</ul>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

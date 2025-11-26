@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#41B883",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "gray-light": "#F5F7FA",
+              "text-body": "#606266",
+              "text-heading": "#303133",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-body dark:text-gray-300">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-10 w-full border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="container mx-auto px-4">
+<div class="flex items-center justify-between whitespace-nowrap py-3">
+<div class="flex items-center gap-4 text-text-heading dark:text-white">
+<div class="size-8 text-[#41B883]">
+<svg fill="currentColor" viewbox="0 0 256 221" xmlns="http://www.w3.org/2000/svg"><path d="M204.8 0H256L128 220.8 0 0h97.92L128 51.2 157.44 0h47.36Z"></path><path d="M0 0l128 220.8L256 0h-51.2L128 132.48 50.56 0H0Z"></path></svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">VueJobs for Recruiters</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal text-text-heading dark:text-gray-300 hover:text-primary dark:hover:text-primary" href="#">Dashboard</a>
+<a class="text-sm font-medium leading-normal text-text-heading dark:text-gray-300 hover:text-primary dark:hover:text-primary" href="#">Jobs</a>
+<a class="text-sm font-medium leading-normal text-text-heading dark:text-gray-300 hover:text-primary dark:hover:text-primary" href="#">Candidates</a>
+<a class="text-sm font-medium leading-normal text-text-heading dark:text-gray-300 hover:text-primary dark:hover:text-primary" href="#">Company Profile</a>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Post a Job</span>
+</button>
+<button class="flex h-10 min-w-0 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800 dark:text-gray-300 px-2.5 hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWPPOeSdpbQQn4iOth2RrFHifau5iFe5x1XBYHIrotNjJGE_YkBoeqwZZhnttHVc2JCPCG2sspGseZeuNVQX7zuSyEMpdiFDx5Q4De4j4M_R902TFMCdfjoshYXJi2rZZK0eFdhMuRc_FS-Ys5UBdriSCNnsKs-bHJMNyDlKvte5BbeeC7BFnCI4VJ3yC-zzRaJEBMdvPjQ_rgjqj8ZJy8pNO9GbDuJKNAhOY6qxiWkHBvMgHei7aDs6DsHE5gYyBNKPmNNKSWL9ep");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="container mx-auto flex-grow px-4 py-8 md:py-12">
+<div class="flex flex-wrap gap-2 pb-4">
+<a class="text-text-body dark:text-gray-400 text-sm font-medium leading-normal" href="#">Create Job</a>
+<span class="text-text-body dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+<a class="text-text-body dark:text-gray-400 text-sm font-medium leading-normal" href="#">Preview</a>
+<span class="text-text-body dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+<span class="text-text-heading dark:text-white text-sm font-medium leading-normal">Checkout</span>
+</div>
+<div class="flex flex-wrap justify-between gap-3 pb-8"><p class="text-text-heading dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Checkout</p></div>
+<div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-12">
+<div class="lg:col-span-2 space-y-8">
+<div class="rounded-lg bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-700">
+<h2 class="text-text-heading dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 pt-5 border-b border-gray-200 dark:border-gray-700">Job Posting Summary</h2>
+<div class="p-6 grid grid-cols-[30%_1fr] gap-x-6">
+<div class="col-span-2 grid grid-cols-subgrid py-4">
+<p class="text-text-body text-sm font-normal leading-normal">Job Title</p>
+<p class="text-text-heading dark:text-white text-sm font-medium leading-normal">Senior Vue.js Developer</p>
+</div>
+<div class="col-span-2 grid grid-cols-subgrid border-t border-t-gray-200 dark:border-t-gray-700 py-4">
+<p class="text-text-body text-sm font-normal leading-normal">Company</p>
+<p class="text-text-heading dark:text-white text-sm font-medium leading-normal">Tech Solutions Inc.</p>
+</div>
+<div class="col-span-2 grid grid-cols-subgrid border-t border-t-gray-200 dark:border-t-gray-700 py-4">
+<p class="text-text-body text-sm font-normal leading-normal">Posting Type</p>
+<p class="text-text-heading dark:text-white text-sm font-medium leading-normal">Featured - 30 Days</p>
+</div>
+</div>
+</div>
+<div class="rounded-lg bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-700">
+<h2 class="text-text-heading dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 pt-5 border-b border-gray-200 dark:border-gray-700">Billing Information</h2>
+<form class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-text-body dark:text-gray-300 mb-2" for="full_name">Full Name</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary" id="full_name" name="full_name" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-body dark:text-gray-300 mb-2" for="email">Email Address</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary" id="email" name="email" placeholder="john.doe@example.com" type="email"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-medium text-text-body dark:text-gray-300 mb-2" for="company_name">Company Name (Optional)</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary" id="company_name" name="company_name" placeholder="Tech Solutions Inc." type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-body dark:text-gray-300 mb-2" for="country">Country</label>
+<select class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary" id="country" name="country">
+<option>United States</option>
+<option>Canada</option>
+<option>United Kingdom</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-body dark:text-gray-300 mb-2" for="postal_code">Postal Code</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary" id="postal_code" name="postal_code" placeholder="90210" type="text"/>
+</div>
+</form>
+</div>
+<div class="rounded-lg bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-700">
+<h2 class="text-text-heading dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 pt-5 border-b border-gray-200 dark:border-gray-700">Payment Method</h2>
+<div class="p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="relative">
+<input checked="" class="peer sr-only" id="stripe_payment" name="payment_method" type="radio" value="stripe"/>
+<label class="flex items-center justify-center p-4 text-sm font-medium border rounded-md cursor-pointer peer-checked:border-primary peer-checked:ring-2 peer-checked:ring-primary dark:border-gray-600 dark:peer-checked:border-primary" for="stripe_payment">Credit/Debit Card (Stripe)</label>
+</div>
+<div class="relative">
+<input class="peer sr-only" id="razorpay_payment" name="payment_method" type="radio" value="razorpay"/>
+<label class="flex items-center justify-center p-4 text-sm font-medium border rounded-md cursor-pointer peer-checked:border-primary peer-checked:ring-2 peer-checked:ring-primary dark:border-gray-600 dark:peer-checked:border-primary" for="razorpay_payment">Other Methods (Razorpay)</label>
+</div>
+</div>
+<div class="space-y-4">
+<div class="relative">
+<label class="block text-sm font-medium text-text-body dark:text-gray-300 mb-2" for="card_number">Card Number</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary pl-10" id="card_number" name="card_number" placeholder="•••• •••• •••• 4242" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-9 text-gray-400">credit_card</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-text-body dark:text-gray-300 mb-2" for="expiry">Expiry Date</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary" id="expiry" name="expiry" placeholder="MM / YY" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-body dark:text-gray-300 mb-2" for="cvc">CVC / CVV</label>
+<input class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary focus:border-primary" id="cvc" name="cvc" placeholder="123" type="text"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="lg:col-span-1 mt-8 lg:mt-0">
+<div class="sticky top-28 space-y-6">
+<div class="rounded-lg bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-700 p-6">
+<h3 class="text-lg font-bold text-text-heading dark:text-white mb-4">Order Summary</h3>
+<div class="space-y-3 text-sm">
+<div class="flex justify-between">
+<p class="text-text-body">Subtotal</p>
+<p class="font-medium text-text-heading dark:text-white">$249.00</p>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-text-body flex items-center gap-1.5">Estimated Tax
+                                        <span class="material-symbols-outlined text-base cursor-pointer text-gray-400" title="Tax is calculated based on your billing address.">help</span>
+</p>
+<p class="font-medium text-text-heading dark:text-white">$20.67</p>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+<div class="flex justify-between text-base font-bold">
+<p class="text-text-heading dark:text-white">Total</p>
+<p class="text-text-heading dark:text-white">$269.67</p>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<button class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-12 px-4 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Pay Now</span>
+</button>
+<div class="flex justify-center items-center gap-3 text-xs text-gray-500">
+<span class="material-symbols-outlined text-base">lock</span>
+<span>SSL Secure Connection</span>
+<div class="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+<span>Secure Payment</span>
+</div>
+<p class="text-center text-xs text-gray-500">
+                                By proceeding, you agree to our <a class="underline hover:text-primary" href="#">Terms of Service</a> and <a class="underline hover:text-primary" href="#">Privacy Policy</a>.
+                            </p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>

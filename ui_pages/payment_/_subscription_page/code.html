@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Billing &amp; Subscription</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#41B883",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "text-light": "#111827",
+              "text-dark": "#F3F4F6",
+              "card-light": "#ffffff",
+              "card-dark": "#182431",
+              "border-light": "#e5e7eb",
+              "border-dark": "#374151",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex flex-col w-64 bg-card-light dark:bg-card-dark border-r border-border-light dark:border-border-dark p-4 sticky top-0 h-screen justify-between">
+<div class="flex flex-col gap-8">
+<div class="flex gap-3 items-center px-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="VueJobs Logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB550VIE0Z3Xv6-tdCygj_CqmH8aKy9-RxD7tOfDnMeyRe2h9HBrkxyDnyNqnaepMI9KVz_WAfyF-dqEJ-nX5uRHfBjCMMeqCsjXHziywa82BsqCYAItkycpHqiofwi9VjzBLXWugJMBUXs30EQ4itrlDkN2cQgWhnB6tTDQAP6lA14K9zKI-ZIXUSAuIK4-0lwmFZOcQsyRoHGu7BKuHg1WjD13UWIlPhzSmID8qKC8uJITZm82jCQrt1peVfkpCFKN3nMU2KazErZ");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-light dark:text-text-dark text-base font-bold leading-normal">VueJobs</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Recruiter Dashboard</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">dashboard</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">work</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">My Jobs</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">group</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Candidates</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">credit_card</span>
+<p class="text-primary text-sm font-bold leading-normal">Billing</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">settings</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">logout</span>
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-6 sm:p-8 md:p-10">
+<div class="max-w-4xl mx-auto flex flex-col gap-8">
+<!-- PageHeading -->
+<header>
+<h1 class="text-text-light dark:text-text-dark text-4xl font-black leading-tight tracking-[-0.033em]">Billing &amp; Subscription</h1>
+</header>
+<!-- Current Plan Section -->
+<section>
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-5">Your Current Plan</h2>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark overflow-hidden">
+<div class="p-6 @container">
+<div class="flex flex-col items-stretch justify-start gap-4 @md:flex-row @md:items-start">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2">
+<p class="text-primary text-sm font-bold leading-normal">ACTIVE SUBSCRIPTION</p>
+<p class="text-text-light dark:text-text-dark text-2xl font-bold leading-tight tracking-[-0.015em]">Featured Plan</p>
+<div class="flex flex-col gap-1 mt-2 text-slate-600 dark:text-slate-300">
+<p class="text-base font-normal leading-normal">Next renewal on: Dec 20, 2024</p>
+<p class="text-base font-normal leading-normal">4 of 5 job posts remaining</p>
+</div>
+</div>
+<div class="flex flex-shrink-0 gap-3 flex-wrap justify-start @md:justify-end items-center pt-4 @md:pt-0">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-slate-600 dark:text-slate-300 text-sm font-bold leading-normal tracking-[0.015em] border border-border-light dark:border-border-dark hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="truncate">Cancel Subscription</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Upgrade Plan</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Payment Methods Section -->
+<section>
+<div class="flex justify-between items-center pb-3 pt-5">
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em]">Payment Methods</h2>
+<button class="flex items-center gap-2 min-w-[84px] cursor-pointer justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-base">add</span>
+<span class="truncate">Add Payment Method</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<img alt="Visa card logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ9Y7HRES8YQ2lAgavv1A8_1xj1J-7mad5RR5tyoKsNsWY_2jx3bSrZH3V3-xcthHgQP87QMdMBrbPOHBQnYeY-GLRCC40bzhwD1dvo8nk1wWFsBS4nrbo0Z7qEeEWToymFmK2CXr9F2avP_Yuk-jTCsEWOM7a7K1nZdEjqTu5x_nJ77GFRXDxXo5XNx_dh_E-GgP95GvPJfwjAfyJBUzRmp05KIpWuMdpZnVazbwIbf7Qwefxki-5zdUrJPJEd6qf9Fkbzvkq4tpX"/>
+<div>
+<p class="font-semibold text-text-light dark:text-text-dark">Visa **** 4242</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Expires 12/26</p>
+</div>
+</div>
+<span class="text-xs font-bold bg-primary/10 text-primary px-2 py-1 rounded-full">DEFAULT</span>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<img alt="Mastercard logo" class="h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7hvkkjPy9efRoUAu3aMTYAI0-x8xCMSaVNM7Q6d3fkz7Ud7BIn0bZxMPge9WrumGRV1fxQLChjw_h2ctECeXYJ2sUThVSvkrJ9nD3Mtz6KHGT2MjbIhHfm6DniGVyRy4s81hcjSO9dhexmfffQgYVyrrb-Jy_rBAnEZtr4Y0VvkN7e8qP29fvusgFfRvFX1bB2r0SYVuZbmPA_WA6gcTsoqOMLE7cLp2_ThHt-5MuwE5Lv-JU-28IiOo52cSHrI0vvziUKgAtyMnD"/>
+<div>
+<p class="font-semibold text-text-light dark:text-text-dark">Mastercard **** 8523</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Expires 08/25</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Billing History Section -->
+<section>
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-5">Billing History</h2>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="border-b border-border-light dark:border-border-dark bg-background-light dark:bg-card-dark/50">
+<tr>
+<th class="p-4 font-semibold text-slate-600 dark:text-slate-300">Date</th>
+<th class="p-4 font-semibold text-slate-600 dark:text-slate-300">Description</th>
+<th class="p-4 font-semibold text-slate-600 dark:text-slate-300">Amount</th>
+<th class="p-4 font-semibold text-slate-600 dark:text-slate-300 text-right">Invoice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-border-light dark:border-border-dark">
+<td class="p-4 text-slate-500 dark:text-slate-400">Dec 20, 2023</td>
+<td class="p-4 font-medium text-text-light dark:text-text-dark">Featured Plan - Monthly</td>
+<td class="p-4 font-medium text-text-light dark:text-text-dark">$199.00</td>
+<td class="p-4 text-right">
+<button class="flex items-center gap-1.5 ml-auto text-primary font-bold text-sm hover:underline">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Download</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-border-light dark:border-border-dark">
+<td class="p-4 text-slate-500 dark:text-slate-400">Nov 20, 2023</td>
+<td class="p-4 font-medium text-text-light dark:text-text-dark">Featured Plan - Monthly</td>
+<td class="p-4 font-medium text-text-light dark:text-text-dark">$199.00</td>
+<td class="p-4 text-right">
+<button class="flex items-center gap-1.5 ml-auto text-primary font-bold text-sm hover:underline">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Download</span>
+</button>
+</td>
+</tr>
+<tr>
+<td class="p-4 text-slate-500 dark:text-slate-400">Oct 20, 2023</td>
+<td class="p-4 font-medium text-text-light dark:text-text-dark">Featured Plan - Monthly</td>
+<td class="p-4 font-medium text-text-light dark:text-text-dark">$199.00</td>
+<td class="p-4 text-right">
+<button class="flex items-center gap-1.5 ml-auto text-primary font-bold text-sm hover:underline">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Pricing Plans Section -->
+<section>
+<h2 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-5">Choose Your Plan</h2>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Basic Plan -->
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6 flex flex-col">
+<h3 class="text-lg font-bold text-text-light dark:text-text-dark">Basic</h3>
+<p class="text-slate-500 dark:text-slate-400 mt-1">For single, urgent hires.</p>
+<p class="text-4xl font-black text-text-light dark:text-text-dark my-4">$99<span class="text-base font-medium text-slate-500 dark:text-slate-400">/job post</span></p>
+<button class="w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/10 text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/20 transition-colors">Select Plan</button>
+<ul class="space-y-3 mt-6 text-sm">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>1 job post</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>30-day listing</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>Standard listing</li>
+</ul>
+</div>
+<!-- Featured Plan -->
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-sm border-2 border-primary p-6 flex flex-col relative">
+<span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">CURRENT PLAN</span>
+<h3 class="text-lg font-bold text-text-light dark:text-text-dark">Featured</h3>
+<p class="text-slate-500 dark:text-slate-400 mt-1">For higher visibility.</p>
+<p class="text-4xl font-black text-text-light dark:text-text-dark my-4">$199<span class="text-base font-medium text-slate-500 dark:text-slate-400">/job post</span></p>
+<button class="w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">Your Plan</button>
+<ul class="space-y-3 mt-6 text-sm">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>5 job posts</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>60-day listing</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>Featured on homepage</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>Company branding</li>
+</ul>
+</div>
+<!-- Subscription Plan -->
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6 flex flex-col">
+<h3 class="text-lg font-bold text-text-light dark:text-text-dark">Subscription</h3>
+<p class="text-slate-500 dark:text-slate-400 mt-1">For continuous hiring.</p>
+<p class="text-4xl font-black text-text-light dark:text-text-dark my-4">$499<span class="text-base font-medium text-slate-500 dark:text-slate-400">/month</span></p>
+<button class="w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/10 text-primary text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/20 transition-colors">Select Plan</button>
+<ul class="space-y-3 mt-6 text-sm">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>Unlimited job posts</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>Always-on listings</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>Featured on homepage</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>Priority company branding</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span>Access to candidate pool</li>
+</ul>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Applications - VueJobs</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2bee8c",
+              "background-light": "#f6f8f7",
+              "background-dark": "#102219",
+              "vue-green": "#41B883",
+              "vue-text": "#2c3e50",
+              "vue-blue": "#3498db"
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-vue-text dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200/80 dark:border-gray-700/80 px-4 sm:px-6 lg:px-10 py-3 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-10">
+<div class="flex items-center gap-4 text-vue-text dark:text-white">
+<div class="size-6 text-vue-green">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_330)">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs><clippath id="clip0_6_330"><rect fill="white" height="48" width="48"></rect></clippath></defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">VueJobs</h2>
+</div>
+<div class="flex flex-1 justify-end items-center gap-6">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-vue-green dark:hover:text-primary transition-colors" href="#">Jobs</a>
+<a class="text-sm font-medium text-vue-green dark:text-primary" href="#">My Applications</a>
+<a class="text-sm font-medium hover:text-vue-green dark:hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<button class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-vue-green text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-vue-green/90 transition-colors">
+<span class="truncate">Post a Job</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6ZY9gHsNP-re95NGKvIGxi5eDTJMX4v4aqo94wddfqxA3iNwVKVe-SGP03XYAiwzwp-ldBplsVVm1XHqnpPcet0m7Dm7dY2y_aXZhnD23jSAM_5qaDSO11zfcG3RmB1O8iiH9I-_560CyEYPa98gMCM6no6LxJSiFaNGu9zr45RxGupwBtLXcUw5eIe8g5vKToQlmseT9qoDX3y8-KCDzaIQg_KeK79NoVbjvN9mJ7cW61JKbRe5-Jce_VeITDZdu0tiHXNvY5o1W");'></div>
+</div>
+</header>
+<main class="px-4 sm:px-6 lg:px-8 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-5xl flex-1 gap-6">
+<div class="flex flex-wrap items-center justify-between gap-4 py-4">
+<h1 class="text-vue-text dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">My Applications</h1>
+<div class="relative">
+<select class="appearance-none bg-background-light dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg py-2 pl-4 pr-10 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-vue-green/50 dark:focus:ring-primary/50">
+<option>Most Recent</option>
+<option>Oldest</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">expand_more</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 py-3 overflow-x-auto">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-vue-green text-white text-sm font-medium leading-normal">All</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-gray-200/60 dark:bg-gray-700/60 text-sm font-medium leading-normal hover:bg-gray-300/60 dark:hover:bg-gray-600/60 transition-colors">Applied</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-gray-200/60 dark:bg-gray-700/60 text-sm font-medium leading-normal hover:bg-gray-300/60 dark:hover:bg-gray-600/60 transition-colors">Reviewed</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-gray-200/60 dark:bg-gray-700/60 text-sm font-medium leading-normal hover:bg-gray-300/60 dark:hover:bg-gray-600/60 transition-colors">Shortlisted</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-gray-200/60 dark:bg-gray-700/60 text-sm font-medium leading-normal hover:bg-gray-300/60 dark:hover:bg-gray-600/60 transition-colors">Rejected</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full px-4 bg-gray-200/60 dark:bg-gray-700/60 text-sm font-medium leading-normal hover:bg-gray-300/60 dark:hover:bg-gray-600/60 transition-colors">Hired</button>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex flex-col items-start justify-start rounded-xl border border-gray-200/80 dark:border-gray-700/80 bg-white dark:bg-gray-800/50 p-4 sm:p-6 shadow-sm hover:shadow-lg transition-shadow duration-300">
+<div class="flex flex-col sm:flex-row w-full items-start gap-4">
+<div class="w-16 h-16 bg-center bg-no-repeat bg-contain rounded-lg shrink-0" data-alt="Tech Solutions Inc. company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBBbk5HlFesdtMNwb-G2uI2BzhN4A4ziFKXp10oa-L2A8cTE6-Gpa940IeK9gPuWkF6vZlIrmN486MHOEqBtct4BhqfOVRUP1DAspERdVjuPXgX5-TRDvJx8Pm3u-sJM9Tjk8V3WBwcfLNHwajeUBhPeaC6Vyl1-_B4BxjMRIWqsk8gEh7m7UaGghbLeLifn_BpHvg-cI0_OswFVmHOcwmJgwCFlF-_kGmzBok4DT33XkyGuNOnCCk5Q1HcSCL9lXpp5nJ8IfqjxzGW");'></div>
+<div class="flex w-full min-w-0 grow flex-col items-stretch justify-center gap-2">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<p class="text-xl font-bold leading-tight tracking-[-0.015em] text-vue-text dark:text-white">Senior Vue.js Developer</p>
+<div class="flex h-6 items-center justify-center gap-x-2 rounded-full bg-yellow-100 dark:bg-yellow-900/50 px-3 py-1">
+<p class="text-yellow-800 dark:text-yellow-300 text-xs font-semibold">Shortlisted</p>
+</div>
+</div>
+<p class="text-base font-medium text-gray-600 dark:text-gray-300">Tech Solutions Inc.</p>
+<p class="text-sm font-normal text-gray-500 dark:text-gray-400">Applied on Aug 15, 2023 | Last updated: 2 days ago</p>
+</div>
+</div>
+<p class="mt-4 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">Hello, I am writing to express my strong interest in the Senior Vue.js Developer position advertised on VueJobs. With over five years of professional experience...</p>
+<div class="flex flex-wrap items-center justify-start sm:justify-end gap-3 w-full mt-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-vue-blue text-white text-sm font-medium hover:bg-vue-blue/90 transition-colors">
+<span class="truncate">View Job</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-gray-200/80 dark:bg-gray-700/80 text-sm font-medium hover:bg-gray-300/80 dark:hover:bg-gray-600/80 transition-colors">
+<span class="truncate">View Application</span>
+</button>
+<button class="text-red-500 hover:text-red-600 dark:hover:text-red-400 text-sm font-medium transition-colors">Withdraw</button>
+</div>
+</div>
+<div class="flex flex-col items-start justify-start rounded-xl border border-gray-200/80 dark:border-gray-700/80 bg-white dark:bg-gray-800/50 p-4 sm:p-6 shadow-sm hover:shadow-lg transition-shadow duration-300">
+<div class="flex flex-col sm:flex-row w-full items-start gap-4">
+<div class="w-16 h-16 bg-center bg-no-repeat bg-contain rounded-lg shrink-0" data-alt="Digital Innovators Co. company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCm08d8qkQY3QtruvfSB4v6LotOH-dRG2oq57iWH2HGz4OkmZLfqrUWmfOXJ1XVCSKFo2qIicqMCPWqSDbWiagk-XzG31fYQIcMxmquPAIF3tdwnA5qjmx4pdSkxJMfjX4esfwP6ubfiMfI7iI-6wso9lail9enI1awtPYrcdRhYlM-cUK0yMxHAynzqMODVK58m6Ebpcr2alz2YDfbPZTxDGRhoSjwxj8I4UJ6TOyQ1GfWCOOZEpQDw1mBGoaDY4QmU20JM9fRd25B");'></div>
+<div class="flex w-full min-w-0 grow flex-col items-stretch justify-center gap-2">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<p class="text-xl font-bold leading-tight tracking-[-0.015em] text-vue-text dark:text-white">Frontend Engineer (Vue)</p>
+<div class="flex h-6 items-center justify-center gap-x-2 rounded-full bg-blue-100 dark:bg-blue-900/50 px-3 py-1">
+<p class="text-blue-800 dark:text-blue-300 text-xs font-semibold">Reviewed</p>
+</div>
+</div>
+<p class="text-base font-medium text-gray-600 dark:text-gray-300">Digital Innovators Co.</p>
+<p class="text-sm font-normal text-gray-500 dark:text-gray-400">Applied on Aug 12, 2023 | Last updated: 5 days ago</p>
+</div>
+</div>
+<p class="mt-4 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">I am excited to apply for the Frontend Engineer role. My background in building responsive and user-friendly web applications with Vue.js aligns perfectly with...</p>
+<div class="flex flex-wrap items-center justify-start sm:justify-end gap-3 w-full mt-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-vue-blue text-white text-sm font-medium hover:bg-vue-blue/90 transition-colors">
+<span class="truncate">View Job</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-gray-200/80 dark:bg-gray-700/80 text-sm font-medium hover:bg-gray-300/80 dark:hover:bg-gray-600/80 transition-colors">
+<span class="truncate">View Application</span>
+</button>
+<button class="text-red-500 hover:text-red-600 dark:hover:text-red-400 text-sm font-medium transition-colors">Withdraw</button>
+</div>
+</div>
+<!-- Empty State -->
+<!--
+                        <div class="flex flex-col items-center justify-center text-center gap-4 py-16 px-6 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl bg-background-light dark:bg-background-dark">
+                            <span class="material-symbols-outlined text-6xl text-gray-400 dark:text-gray-500">work_history</span>
+                            <h2 class="text-2xl font-bold text-vue-text dark:text-white mt-2">You haven't applied for any jobs yet.</h2>
+                            <p class="text-gray-600 dark:text-gray-400 max-w-sm">Start your search to find your next role. Your applications will appear here once you've applied.</p>
+                            <button class="flex mt-4 min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-vue-green text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-vue-green/90 transition-colors">
+                                <span class="truncate">Browse Jobs</span>
+                            </button>
+                        </div>
+                        -->
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

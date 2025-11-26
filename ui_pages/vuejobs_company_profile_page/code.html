@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Innovatech Solutions - VueJobs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#41B883",
+              "background-light": "#F8F9FA",
+              "background-dark": "#1a1a1a",
+              "surface-light": "#ffffff",
+              "surface-dark": "#2c2c2c",
+              "text-primary-light": "#212529",
+              "text-primary-dark": "#f8f9fa",
+              "text-secondary-light": "#6c757d",
+              "text-secondary-dark": "#adb5bd",
+              "border-light": "#E9ECEF",
+              "border-dark": "#343a40",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-center whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<nav class="flex items-center justify-between w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-text-primary-light dark:text-text-primary-dark">
+<svg class="h-8 w-8 text-[#41B883]" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M37.828 6.172a4 4 0 0 1 0 5.656L24 25.657 10.172 11.828a4 4 0 0 1 5.656-5.656L24 14.343l8.172-8.171a4 4 0 0 1 5.656 0z" fill="#34495E"></path><path d="M24 48c-5.96 0-11.41-2.922-14.88-7.794L24 25.657l14.88 14.549A23.91 23.91 0 0 1 24 48z" fill="#41B883"></path></svg>
+<h2 class="text-xl font-bold tracking-tight">VueJobs</h2>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">Find Jobs</a>
+<a class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">Companies</a>
+<a class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">Post a Job</a>
+<a class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">Blog</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="truncate">Sign Up</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCKDf0PUUPRye2moljLV9OPfjz24tATaHbUPswSzyXBqUtAh7EldfCFq4xnZojI7r386P5wiJ_jhLQszPTMfEmWwKECIlk4ErsklHFgIgJiOmH3DVo-bk8sv04QcWXI90KD8LMvvOuXxd4935EbZ02Vp3dFPZjc0rB4u0t_gfhARKdZ935oYKjIAON9Kf6Tadl4jR_Gs6qTmx6JOLSwMI5sK2SDmfEaVv9V_ce_dmZk6lJ4204eniDvrWWG0cizs0iiiipHkvGEM9hr");'></div>
+</div>
+</nav>
+</header>
+<!-- Main Content -->
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<!-- ProfileHeader -->
+<div class="flex flex-col gap-6 p-6 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-32" data-alt="Innovatech Solutions company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC2I9wrjPQ31YjATwGX7BRq9ejCOBl3uUJDCIsxOzR4nykk1JVIlVw1vQpVKfyxS2cK28uBJ1OfxsmKNzq58gq2PKXUg-VRRK2oNQ3nMdGVdTjlKjzOFGsFSMitxV8CPEYf2ehHvi9xa_zqHl5FlLudsowncwGXE49g0644sDLPw3UG05pF4QB1VXWrobw-QIvFAzJe-U0nWVhMTg0NMo4GiRoGpVI2Gsl3Z8nYfdpB5ptmcYR7EdKOIuebvE3VnZn-WRdZaV9ilVw3");'></div>
+</div>
+<div class="flex-grow flex flex-col gap-2">
+<p class="text-text-primary-light dark:text-text-primary-dark text-3xl font-bold tracking-tight">Innovatech Solutions</p>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-lg">Pioneering the future of Vue.js development.</p>
+<a class="flex items-center gap-1.5 text-primary text-base font-medium hover:underline" href="#">
+<span class="material-symbols-outlined !text-[18px]">link</span>
+                        innovatech.com
+                    </a>
+<div class="flex gap-3 pt-2 flex-wrap">
+<div class="flex h-8 items-center justify-center gap-x-2 rounded-full bg-primary/10 dark:bg-primary/20 px-3">
+<p class="text-primary text-sm font-medium">Technology</p>
+</div>
+<div class="flex h-8 items-center justify-center gap-x-2 rounded-full bg-primary/10 dark:bg-primary/20 px-3">
+<p class="text-primary text-sm font-medium">50-200 Employees</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:items-end gap-4 shrink-0">
+<div class="flex h-10 items-center justify-center gap-x-2 rounded-lg bg-[#fef3c7] dark:bg-yellow-900/40 px-4">
+<span class="material-symbols-outlined !text-yellow-500 dark:!text-yellow-400">workspace_premium</span>
+<p class="text-yellow-800 dark:text-yellow-300 text-sm font-semibold">Top Vue Employer</p>
+</div>
+<div class="flex w-full md:w-auto gap-3">
+<button class="flex flex-1 items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:opacity-90 transition-opacity">
+<span class="truncate">Follow Company</span>
+</button>
+<button class="flex flex-1 items-center justify-center rounded-lg h-10 px-4 bg-gray-100 dark:bg-gray-700 text-text-primary-light dark:text-text-primary-dark text-sm font-bold tracking-wide hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<span class="truncate">Share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Two-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+<!-- Left Sidebar -->
+<aside class="lg:col-span-1 flex flex-col gap-8">
+<div class="p-6 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<h2 class="text-text-primary-light dark:text-text-primary-dark text-xl font-bold tracking-tight">About Innovatech Solutions</h2>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-base leading-relaxed pt-3">Innovatech Solutions is a forward-thinking technology company dedicated to building exceptional user experiences with the Vue.js ecosystem. Our mission is to solve complex problems with clean, efficient, and scalable code. We foster a collaborative and inclusive culture where developers can thrive and grow their skills.</p>
+</div>
+<div class="p-6 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<h2 class="text-text-primary-light dark:text-text-primary-dark text-xl font-bold tracking-tight">Tech Stack</h2>
+<div class="flex gap-2 pt-4 flex-wrap">
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Vue.js</p>
+</div>
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Nuxt.js</p>
+</div>
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">TypeScript</p>
+</div>
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Vite</p>
+</div>
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Tailwind CSS</p>
+</div>
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Pinia</p>
+</div>
+</div>
+</div>
+<div class="p-6 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<h2 class="text-text-primary-light dark:text-text-primary-dark text-xl font-bold tracking-tight">Hiring Regions</h2>
+<div class="flex gap-2 pt-4 flex-wrap">
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">North America</p>
+</div>
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Europe (CET)</p>
+</div>
+<div class="flex h-8 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 px-3">
+<p class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">Remote</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<section class="lg:col-span-2 flex flex-col gap-6">
+<h2 class="text-text-primary-light dark:text-text-primary-dark text-2xl font-bold tracking-tight">Active Job Listings (5)</h2>
+<div class="grid grid-cols-1 @container md:grid-cols-2 gap-6">
+<!-- Job Card 1 -->
+<div class="flex flex-col gap-4 p-5 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:shadow-md hover:border-primary/50 dark:hover:border-primary/70 transition-all">
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark">Senior Vue.js Developer</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Remote, USA</p>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Full-time</span>
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Senior</span>
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Frontend</span>
+</div>
+<button class="flex mt-2 w-full @[320px]:w-auto items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:opacity-90 transition-opacity">
+<span class="truncate">View Job</span>
+</button>
+</div>
+<!-- Job Card 2 -->
+<div class="flex flex-col gap-4 p-5 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:shadow-md hover:border-primary/50 dark:hover:border-primary/70 transition-all">
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark">Nuxt.js Full-Stack Engineer</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Remote, Europe</p>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Full-time</span>
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Mid-level</span>
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Full-Stack</span>
+</div>
+<button class="flex mt-2 w-full @[320px]:w-auto items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:opacity-90 transition-opacity">
+<span class="truncate">View Job</span>
+</button>
+</div>
+<!-- Job Card 3 -->
+<div class="flex flex-col gap-4 p-5 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:shadow-md hover:border-primary/50 dark:hover:border-primary/70 transition-all">
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark">UI/UX Designer (Vue proficient)</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Remote, Global</p>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Contract</span>
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Design</span>
+</div>
+<button class="flex mt-2 w-full @[320px]:w-auto items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:opacity-90 transition-opacity">
+<span class="truncate">View Job</span>
+</button>
+</div>
+<!-- Job Card 4 -->
+<div class="flex flex-col gap-4 p-5 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:shadow-md hover:border-primary/50 dark:hover:border-primary/70 transition-all">
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark">Frontend Tech Lead (Vue.js)</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Hybrid, Berlin, Germany</p>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Full-time</span>
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Lead</span>
+</div>
+<button class="flex mt-2 w-full @[320px]:w-auto items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:opacity-90 transition-opacity">
+<span class="truncate">View Job</span>
+</button>
+</div>
+<!-- Job Card 5 -->
+<div class="flex flex-col gap-4 p-5 rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark hover:shadow-md hover:border-primary/50 dark:hover:border-primary/70 transition-all">
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark">Junior Vue Developer</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">On-site, Toronto, Canada</p>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Full-time</span>
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Junior</span>
+<span class="text-xs font-medium text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">Internship</span>
+</div>
+<button class="flex mt-2 w-full @[320px]:w-auto items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-wide hover:opacity-90 transition-opacity">
+<span class="truncate">View Job</span>
+</button>
+</div>
+<!-- Empty State Card -->
+<div class="md:col-span-2 p-10 flex flex-col items-center justify-center text-center gap-4 rounded-xl border-2 border-dashed border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<span class="material-symbols-outlined !text-4xl text-text-secondary-light dark:text-text-secondary-dark">work_off</span>
+<p class="font-bold text-text-primary-light dark:text-text-primary-dark">No Active Job Listings</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark max-w-xs">This company has no active job listings right now. Follow them to get notified about new roles.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

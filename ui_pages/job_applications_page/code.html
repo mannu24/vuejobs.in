@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Manage Applications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#41B883",
+              "background-light": "#f6f8f7",
+              "background-dark": "#102219",
+              "content-light": "#ffffff",
+              "content-dark": "#182c22",
+              "border-light": "#e7f3ed",
+              "border-dark": "#2a3f34",
+              "text-light-primary": "#0d1b14",
+              "text-dark-primary": "#e7f3ed",
+              "text-light-secondary": "#4c9a73",
+              "text-dark-secondary": "#a2d8bd",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .material-symbols-outlined.fill {
+           font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light-primary dark:text-text-dark-primary">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-6 py-3 bg-content-light dark:bg-content-dark sticky top-0 z-20">
+<div class="flex items-center gap-4">
+<svg class="size-6 text-primary" fill="currentColor" viewbox="0 0 256 198" xmlns="http://www.w3.org/2000/svg"><path d="M204.8 0H256L128 197.5L0 0h97.2L128 48.8L158.8 0h46z"></path><path d="M51.2 0L128 122.3L204.8 0h-46L128 48.8L97.2 0H51.2z"></path></svg>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">VueJobs</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-sm font-bold leading-normal text-primary" href="#">Jobs</a>
+<a class="text-sm font-medium leading-normal" href="#">Applications</a>
+<a class="text-sm font-medium leading-normal" href="#">Candidates</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-background-light dark:bg-background-dark text-text-light-secondary dark:text-text-dark-secondary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-background-light dark:bg-background-dark text-text-light-secondary dark:text-text-dark-secondary">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Recruiter's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBEkon9OkjRC7GjNVPLOhhqxMTtGiYgSVglvXjJAJ--pKB5A1aRG7FlnBNPacBdqHrn974En1NadN27QGmZsmebgSieo0w74z2_6gjGTw9OpXvaY5VQgUFDb1lgJ5rkLBGEG4ImKgdfOC1oFaDD8TwZgNZdWBAvsGrrfVx4JilsV45Attx9xEdwy5KlVYZf4mNa8sPuHiYxXyg2lYlEi8_kG2y6VVZGjXBc4IIT6AQiS6sS5Ndhc-epUBpZi_enxapEsTsTMZTsCyf5");'></div>
+</div>
+</header>
+<main class="flex-1 px-4 sm:px-6 lg:px-8 py-8">
+<div class="mx-auto max-w-7xl">
+<div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<p class="text-3xl font-black leading-tight tracking-[-0.033em] text-text-light-primary dark:text-text-dark-primary">Manage Applications</p>
+<p class="text-text-light-secondary dark:text-text-dark-secondary">Senior Vue.js Developer</p>
+</div>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-primary text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-4">
+<span class="material-symbols-outlined fill">add</span>
+<span class="truncate">Post a New Job</span>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-content-light dark:bg-content-dark rounded-xl border border-border-light dark:border-border-dark">
+<div class="flex flex-wrap gap-2">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 px-4">
+<p class="text-primary text-sm font-semibold leading-normal">All (128)</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-background-light dark:bg-background-dark px-4 hover:bg-primary/10">
+<p class="text-text-light-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">New (12)</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-background-light dark:bg-background-dark px-4 hover:bg-primary/10">
+<p class="text-text-light-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">Reviewed (34)</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-background-light dark:bg-background-dark px-4 hover:bg-primary/10">
+<p class="text-text-light-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">Shortlisted (8)</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-background-light dark:bg-background-dark px-4 hover:bg-primary/10">
+<p class="text-text-light-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">Hired (2)</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-background-light dark:bg-background-dark px-4 hover:bg-primary/10">
+<p class="text-text-light-secondary dark:text-text-dark-secondary text-sm font-medium leading-normal">Rejected (72)</p>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-light-secondary dark:text-text-dark-secondary">search</span>
+<input class="h-10 w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark pl-10 pr-4 text-sm focus:ring-primary focus:border-primary" placeholder="Search candidates..." type="text"/>
+</div>
+<button class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border-light dark:border-border-dark bg-content-light dark:bg-content-dark text-text-light-secondary dark:text-text-dark-secondary">
+<span class="material-symbols-outlined">tune</span>
+</button>
+<button class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border-light dark:border-border-dark bg-content-light dark:bg-content-dark text-text-light-secondary dark:text-text-dark-secondary">
+<span class="material-symbols-outlined">file_upload</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 flex flex-col gap-3">
+<div class="flex items-center justify-between p-4 bg-content-light dark:bg-content-dark rounded-xl border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<input class="h-5 w-5 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-background-dark" type="checkbox"/>
+<p class="text-sm font-medium">Select All</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center gap-2 rounded-lg h-9 px-3 text-sm font-semibold border border-border-light dark:border-border-dark hover:bg-primary/10">
+<span class="material-symbols-outlined text-base">swap_horiz</span>
+<span>Change Status</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-9 px-3 text-sm font-semibold border border-border-light dark:border-border-dark hover:bg-primary/10">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Export CSV</span>
+</button>
+</div>
+</div>
+<!-- Application Cards Start -->
+<div class="p-4 bg-content-light dark:bg-content-dark rounded-xl border-l-4 border-blue-400 border dark:border-border-dark">
+<div class="flex flex-wrap items-start justify-between gap-4">
+<div class="flex items-start gap-4">
+<input class="mt-2 h-5 w-5 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-background-dark" type="checkbox"/>
+<img class="h-12 w-12 rounded-full object-cover" data-alt="Candidate avatar for Eleanor Pena" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiF7BwlZ-JQ2XMAbu2A2ul5fCMKLUE3da_hn2LAkF22MEWroI8Yusi1y-5SDiyAJFxgUT9CrJBPyAJcbLT0zkvRCCtu2zbunWPNW16PKU9KfnvlDVkznfQ0L-8RnEJ_pDcahWJBhENYGaW_UqkyXjC-fo08NbsaiTXaTes98lXrdTzBrSXDpOoxmmP1y12z7gzvejQTjOxe8RPBhUAIQvnfXgq7f0fYJgCV8aYBWpUmHt-3Alk2qyV5R15lwAMHbcwTAhv-kYCte-D"/>
+<div>
+<p class="font-bold text-text-light-primary dark:text-text-dark-primary">Eleanor Pena</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Applied 3 days ago</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-md bg-blue-100 dark:bg-blue-900/50 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300">New</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">Vuex</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">Nuxt.js</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">TypeScript</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<p class="text-sm font-semibold text-primary">85%</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Match</p>
+</div>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-light-secondary dark:text-text-dark-secondary hover:bg-primary/10 hover:text-primary">
+<span class="material-symbols-outlined text-base">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-4 bg-content-light dark:bg-content-dark rounded-xl border border-border-light dark:border-border-dark">
+<div class="flex flex-wrap items-start justify-between gap-4">
+<div class="flex items-start gap-4">
+<input class="mt-2 h-5 w-5 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-background-dark" type="checkbox"/>
+<img class="h-12 w-12 rounded-full object-cover" data-alt="Candidate avatar for Cameron Williamson" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxTOuvWGHRUyMKpFwAvABpKuUQyZG9y6MZr_94UcU81m9Kd9xK_O2c_9UkzLzDLhFAL-rzzYxFwjSVkSeLOahCQkHYey4xHgcQUdR0nOXuFVH0ujHIGCptLiP9oaPrtQLoAaZZIWvfUQywxtfN_EXCz05p06MHMYjnRFSkuDG3UPDclqwiHgjlfZb9jWB1JqI8UVoYAMoJEyRwOWpvOyaLrXgg5FHMR05KfPUkJvvMaHDlBv3WBdfyogX1vBLMAF1FskMsoe9mDkiF"/>
+<div>
+<p class="font-bold text-text-light-primary dark:text-text-dark-primary">Cameron Williamson</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Applied 5 days ago</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-md bg-yellow-100 dark:bg-yellow-900/50 px-2 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-300">Shortlisted</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">Pinia</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">Vue Router</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">Vitest</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<p class="text-sm font-semibold text-primary">92%</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Match</p>
+</div>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-light-secondary dark:text-text-dark-secondary hover:bg-primary/10 hover:text-primary">
+<span class="material-symbols-outlined text-base">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-4 bg-content-light dark:bg-content-dark rounded-xl border border-border-light dark:border-border-dark">
+<div class="flex flex-wrap items-start justify-between gap-4">
+<div class="flex items-start gap-4">
+<input class="mt-2 h-5 w-5 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-background-dark" type="checkbox"/>
+<img class="h-12 w-12 rounded-full object-cover" data-alt="Candidate avatar for Jane Cooper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcdTvdtnIg8DgSnm6Od53vO3s0zk7dRDAMn5qFblw0W_CAladpRQ5uJmpDyDzmlF6Ig90gL7YCed0GXQMhUj2uKfGuZy1RN_djFdhw4-sZm-XXpRezesXnO5mWb1rXcq9hci-6I6li-A2JZCRtgKKwLBZ7Xgvn9WoQvusFQAJuAlCw7ucXQF0RglIqilJ53zA_ykUOdgDBd7v3CvG2-Kmlx6C-M-OswgHEsH6iERAp_FHaIS11xBzXTJGks2Kn1EpNM6cZChWwgsf3"/>
+<div>
+<p class="font-bold text-text-light-primary dark:text-text-dark-primary">Jane Cooper</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Applied 1 week ago</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-md bg-blue-100 dark:bg-blue-900/50 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300">Reviewed</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">Vue.js</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">JavaScript</span>
+<span class="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">CSS</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<p class="text-sm font-semibold text-primary">78%</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Match</p>
+</div>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-light-secondary dark:text-text-dark-secondary hover:bg-primary/10 hover:text-primary">
+<span class="material-symbols-outlined text-base">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Application Cards End -->
+</div>
+<aside class="hidden lg:block lg:col-span-1">
+<div class="sticky top-24">
+<div class="p-6 bg-content-light dark:bg-content-dark rounded-xl border border-border-light dark:border-border-dark">
+<div class="flex flex-col items-center text-center">
+<img class="h-24 w-24 rounded-full object-cover mb-4" data-alt="Candidate avatar for Eleanor Pena" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTcEjeXjKNJTNdPgAi9lBmRsAQ1SNnlGY0vPPqdo4JHXjkK9_MsjYJ0a7YcmxtXs59nhFDWKd_X9Lpe3zGBuGHT-L4Xx6WR7sTGdm9c-kgCayQTbwUJaxRGdy0gbDBCSB1Co8wlIYD8XB4ZfjjVCo9TZOJFEzBaG7Xbh5HsFQ9rZLMgwVGMPS50agPKMWwtUN0vPlrt_EZdKOGmKyDUoui2GvLZAnHLSxcn1Wfbt30QOH2B9ivTDLepCx7Unk4BwRi0-Sy8cGOkja2"/>
+<h3 class="text-xl font-bold">Eleanor Pena</h3>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Senior Frontend Developer at TechCorp</p>
+<div class="flex gap-4 mt-2 text-sm text-text-light-secondary dark:text-text-dark-secondary">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">mail</span>
+<span>e.pena@email.com</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">phone</span>
+<span>(555) 123-4567</span>
+</div>
+</div>
+<div class="mt-4 flex w-full gap-2">
+<button class="flex-1 flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-primary text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-4">
+<span class="material-symbols-outlined text-base">chat</span>
+<span class="truncate">Message</span>
+</button>
+<button class="flex-1 flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark text-text-light-primary dark:text-text-dark-primary gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-4">
+<span class="material-symbols-outlined text-base">download</span>
+<span class="truncate">Resume</span>
+</button>
+</div>
+</div>
+<div class="mt-6 border-t border-border-light dark:border-border-dark pt-6">
+<h4 class="font-semibold mb-2">Application Status</h4>
+<select class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-sm focus:ring-primary focus:border-primary">
+<option>New</option>
+<option>Reviewed</option>
+<option selected="">Shortlisted</option>
+<option>Hired</option>
+<option>Rejected</option>
+</select>
+</div>
+<div class="mt-4">
+<h4 class="font-semibold mb-2">Recruiter Notes</h4>
+<textarea class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-sm focus:ring-primary focus:border-primary" placeholder="Add internal notes about the candidate..." rows="4"></textarea>
+</div>
+<div class="mt-4">
+<h4 class="font-semibold mb-2">Application Timeline</h4>
+<ul class="space-y-3 text-sm">
+<li class="flex items-start gap-3">
+<div class="mt-1 h-3 w-3 rounded-full bg-yellow-400"></div>
+<div>
+<p class="font-medium">Status changed to <span class="font-bold">Shortlisted</span></p>
+<p class="text-xs text-text-light-secondary dark:text-text-dark-secondary">By you, 1 day ago</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="mt-1 h-3 w-3 rounded-full bg-blue-400"></div>
+<div>
+<p class="font-medium">Application Reviewed</p>
+<p class="text-xs text-text-light-secondary dark:text-text-dark-secondary">By you, 2 days ago</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="mt-1 h-3 w-3 rounded-full bg-gray-400"></div>
+<div>
+<p class="font-medium">Application Submitted</p>
+<p class="text-xs text-text-light-secondary dark:text-text-dark-secondary">3 days ago</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

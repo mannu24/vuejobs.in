@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Find Your Next Vue.js Job</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#41B883", // Vue Green
+            "secondary": "#34495E", // Dark Blue/Charcoal
+            "background-light": "#F7F9FA",
+            "background-dark": "#102219",
+            "text-light": "#555555",
+            "text-dark": "#E0E0E0",
+            "text-subtle-light": "#888888",
+            "text-subtle-dark": "#AABBC6",
+            "border-light": "#E0E0E0",
+            "border-dark": "#34495E",
+            "surface-light": "#FFFFFF",
+            "surface-dark": "#1A2E3A",
+            "featured": "#FFC107",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-light dark:bg-surface-dark/80 backdrop-blur-sm sticky top-0 z-40 w-full border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4">
+<div class="flex items-center justify-between whitespace-nowrap h-16">
+<div class="flex items-center gap-4 text-secondary dark:text-primary">
+<div class="size-8">
+<svg fill="currentColor" viewbox="0 0 256 221" xmlns="http://www.w3.org/2000/svg">
+<path d="M204.8 0H256L128 220.8 0 0h97.92L128 51.2 157.44 0h47.36Z"></path>
+<path d="M0 0l128 220.8L256 0h-51.2L128 132.48 50.56 0H0Z"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold">VueJobs</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center items-center gap-9">
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Find Jobs</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Post a Job</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Companies</a>
+<a class="text-sm font-medium hover:text-primary dark:hover:text-primary" href="#">Blog</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/20 dark:bg-primary/20 text-secondary dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/30">
+<span class="truncate">Login</span>
+</button>
+<button class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90">
+<span class="truncate">Sign Up</span>
+</button>
+<button class="md:hidden flex items-center justify-center size-10 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="layout-container flex h-full grow flex-col">
+<div class="container mx-auto px-4 py-8">
+<!-- Heading and Search Bar -->
+<div class="flex flex-col gap-6 mb-8">
+<div class="flex flex-wrap justify-between gap-3 text-center md:text-left">
+<div class="flex flex-col gap-2 w-full">
+<h1 class="text-secondary dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Find Your Next Vue.js Job</h1>
+<p class="text-text-subtle-light dark:text-text-subtle-dark text-lg font-normal leading-normal">Search for jobs from the best companies in the Vue.js ecosystem.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-2 p-2 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-subtle-light dark:text-text-subtle-dark flex items-center justify-center pl-4"><span class="material-symbols-outlined">work</span></div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-secondary dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-text-subtle-light dark:placeholder:text-text-subtle-dark px-2 text-base font-normal leading-normal" placeholder="Job title, skills..." value=""/>
+</div>
+</label>
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-subtle-light dark:text-text-subtle-dark flex items-center justify-center pl-4"><span class="material-symbols-outlined">business_center</span></div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-secondary dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-text-subtle-light dark:placeholder:text-text-subtle-dark px-2 text-base font-normal leading-normal" placeholder="Company" value=""/>
+</div>
+</label>
+<button class="flex w-full md:w-auto min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90">
+<span class="truncate">Search</span>
+</button>
+</div>
+</div>
+<!-- Filters and Job Listings Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+<!-- Left Sidebar: Filters -->
+<aside class="lg:col-span-1">
+<div class="sticky top-24">
+<div class="flex flex-col gap-6 bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-secondary dark:text-white">Advanced Filters</h3>
+<button class="text-sm text-primary hover:underline">Clear All</button>
+</div>
+<div class="flex flex-col gap-4 border-t border-border-light dark:border-border-dark pt-4">
+<h4 class="font-semibold text-secondary dark:text-white">Experience Level</h4>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-x-3"><input checked="" class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-surface-dark" type="checkbox"/><p>Entry-Level</p></label>
+<label class="flex items-center gap-x-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-surface-dark" type="checkbox"/><p>Junior</p></label>
+<label class="flex items-center gap-x-3"><input checked="" class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-surface-dark" type="checkbox"/><p>Mid-Level</p></label>
+<label class="flex items-center gap-x-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-surface-dark" type="checkbox"/><p>Senior</p></label>
+</div>
+</div>
+<div class="flex flex-col gap-4 border-t border-border-light dark:border-border-dark pt-4">
+<h4 class="font-semibold text-secondary dark:text-white">Location Type</h4>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-x-3"><input checked="" class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-surface-dark" type="checkbox"/><p>Remote</p></label>
+<label class="flex items-center gap-x-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-surface-dark" type="checkbox"/><p>On-site</p></label>
+<label class="flex items-center gap-x-3"><input class="h-5 w-5 rounded border-border-light dark:border-border-dark bg-transparent text-primary checked:bg-primary focus:ring-primary/50 dark:ring-offset-surface-dark" type="checkbox"/><p>Hybrid</p></label>
+</div>
+</div>
+<div class="flex flex-col gap-2 border-t border-border-light dark:border-border-dark pt-4">
+<h4 class="font-semibold text-secondary dark:text-white">Tech Stack</h4>
+<div class="flex items-center justify-between">
+<span>TypeScript Required</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-border-light peer-focus:outline-none rounded-full peer dark:bg-border-dark peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Content: Job Listings -->
+<main class="lg:col-span-3 flex flex-col gap-6">
+<!-- Toolbar -->
+<div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+<p class="font-medium text-secondary dark:text-white">Showing <span class="font-bold">25</span> of <span class="font-bold">150</span> jobs</p>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 min-w-[84px] cursor-pointer justify-center overflow-hidden rounded-lg h-10 px-4 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-secondary dark:text-white text-sm font-bold leading-normal hover:bg-background-light dark:hover:bg-background-dark">
+<span class="material-symbols-outlined text-base">bookmark_add</span>
+<span class="truncate">Save Search</span>
+</button>
+<div class="flex items-center bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark p-1">
+<button class="size-8 flex items-center justify-center rounded bg-primary text-white"><span class="material-symbols-outlined text-xl">grid_view</span></button>
+<button class="size-8 flex items-center justify-center rounded text-text-subtle-light dark:text-text-subtle-dark"><span class="material-symbols-outlined text-xl">view_list</span></button>
+</div>
+</div>
+</div>
+<!-- Job Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Featured Job Card -->
+<div class="group flex flex-col gap-4 bg-surface-light dark:bg-surface-dark p-6 rounded-xl border-2 border-featured shadow-lg hover:-translate-y-1 transition-transform duration-300">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-lg bg-background-light dark:bg-background-dark p-2 flex items-center justify-center border border-border-light dark:border-border-dark">
+<img class="object-contain h-full w-full" data-alt="GitLab company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlLfo5enLfGqD6g1NBDRmADbDDQ-soDTMnAWU7o4zGjdgkaPwh8p5YAaQWuvqlx3rn8lLoN0my1F75ucgZDKyjUtcB7Cr315OCPXK6zpf8AAs9m-nDydiCCEljDob84Pj9VFoDFkcxo72MWN-rTZdkcsizcW742gZnX0IBcKcqjOz-wnJQHqWnJzuYYEQrzjhmP2UDU7-r1e5D9CNGG1Nws5Cyy0_RCtAMOFTJNYvS-MOGr4A8QwowkRXUe3xRw1okG-QFJV62EZgI"/>
+</div>
+<div>
+<h3 class="text-lg font-bold text-secondary dark:text-white">Senior Vue.js Engineer</h3>
+<p class="text-sm">GitLab</p>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-featured/10 text-featured-dark dark:text-featured px-3 py-1 rounded-full text-xs font-bold border border-featured/30">
+<span class="material-symbols-outlined !text-sm">star</span>
+<span>Featured</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-sm text-text-subtle-light dark:text-text-subtle-dark">
+<span class="material-symbols-outlined !text-base">location_on</span>
+<span>Remote (Global)</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined !text-base">attach_money</span>
+<span>$120k - $160k</span>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Vue 3</span>
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-cyan-500/10 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-400">Nuxt 3</span>
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">TypeScript</span>
+</div>
+<p class="text-sm line-clamp-2">Join our world-class engineering team to build the future of DevOps. We are looking for an experienced Vue.js developer to contribute to our core product frontend...</p>
+<div class="flex items-center justify-between pt-4 border-t border-border-light dark:border-border-dark">
+<p class="text-xs text-text-subtle-light dark:text-text-subtle-dark">Posted 3 days ago</p>
+<button class="text-sm font-bold text-primary group-hover:underline">View Details</button>
+</div>
+</div>
+<!-- Standard Job Card 1 -->
+<div class="group flex flex-col gap-4 bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-lg bg-background-light dark:bg-background-dark p-2 flex items-center justify-center border border-border-light dark:border-border-dark">
+<img class="object-contain h-full w-full" data-alt="DigitalOcean company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDpeCOb9omk-NEY510xT3VA0hRt858Ks89Jg5RbR0gYd6QErOZW8cssZSc7Ct76if_1n_FDC09ZIXOx5ZIAoH7zDDCZ9Kb_NQ1Kp2WbqFQM4Iv747qsWtOVaWT7kq_AaxDIRhn3qfRyslRo9ksZQoyL_5WRVIcwc_w-MqNhqSJc33UuqktdpBGMoghiSeEd_F5dCPncqMWokBjSOqeLAoyzMmTYB_MoDPYZiaTMNzLr39QTXqPkF7CQn53OOKxHtkcrlX480wIe71m"/>
+</div>
+<div>
+<h3 class="text-lg font-bold text-secondary dark:text-white">Mid-Level Frontend Developer</h3>
+<p class="text-sm">DigitalOcean</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-sm text-text-subtle-light dark:text-text-subtle-dark">
+<span class="material-symbols-outlined !text-base">location_on</span>
+<span>New York, USA (Hybrid)</span>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Vue 3</span>
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">TypeScript</span>
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-gray-400/10 text-gray-600 dark:bg-gray-400/20 dark:text-gray-400">Pinia</span>
+</div>
+<p class="text-sm line-clamp-2">We are seeking a talented Frontend Developer to help build and maintain our cloud platform's user interface. You will work with a dedicated team of engineers...</p>
+<div class="flex items-center justify-between pt-4 border-t border-border-light dark:border-border-dark">
+<p class="text-xs text-text-subtle-light dark:text-text-subtle-dark">Posted 1 week ago</p>
+<button class="text-sm font-bold text-primary group-hover:underline">View Details</button>
+</div>
+</div>
+<!-- Standard Job Card 2 -->
+<div class="group flex flex-col gap-4 bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-lg bg-background-light dark:bg-background-dark p-2 flex items-center justify-center border border-border-light dark:border-border-dark">
+<img class="object-contain h-full w-full" data-alt="Stytch company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBRNO-NSSN2y0oo7mKvbAJwhveZXWrrJhSU-3sa7tT0qHyobMmLeFZSHRt8YHikhoIcyyFclJIgdJtHziD0MAiYTjQTBvMXQT7cQKsCaXV2PU2-KJcqUmKh64f9vnJt-8hDrLVYI8rZmW0zoc4YUlLyXS77CzbGIW61vd0sSMj5Xk71apZoAFo0G-Akz1sGRw4mwn6GmCflS46ry6NtEwpO1l2uX4DHLp12M_GliqwOyhYLINqYaRn-K51s-If_lIO5YfOZYfhgyaU"/>
+</div>
+<div>
+<h3 class="text-lg font-bold text-secondary dark:text-white">Junior Vue Developer</h3>
+<p class="text-sm">Stytch</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-sm text-text-subtle-light dark:text-text-subtle-dark">
+<span class="material-symbols-outlined !text-base">location_on</span>
+<span>Remote (USA)</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined !text-base">attach_money</span>
+<span>$80k - $100k</span>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Vue 2</span>
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-cyan-500/10 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-400">Nuxt 2</span>
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-gray-400/10 text-gray-600 dark:bg-gray-400/20 dark:text-gray-400">Vuex</span>
+</div>
+<p class="text-sm line-clamp-2">Exciting opportunity for a junior developer to join our fast-growing startup. You'll work on our marketing site and developer dashboard, built with Vue and Nuxt...</p>
+<div class="flex items-center justify-between pt-4 border-t border-border-light dark:border-border-dark">
+<p class="text-xs text-text-subtle-light dark:text-text-subtle-dark">Posted 2 days ago</p>
+<button class="text-sm font-bold text-primary group-hover:underline">View Details</button>
+</div>
+</div>
+<!-- Standard Job Card 3 -->
+<div class="group flex flex-col gap-4 bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-lg bg-background-light dark:bg-background-dark p-2 flex items-center justify-center border border-border-light dark:border-border-dark">
+<img class="object-contain h-full w-full" data-alt="Okta company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzY-70xhKHpE0l9jc84FQ6_yfkaY0JcCwPqc20wPTX-nDzTvQrBjYECHaGUiIG8-tXfu_PbMOOCuKZqOUqgsa4U1b_3WQiDa48jrkKlI-QiomHBMqiS6VhgIg0eCdbWaRQH4ZMKorkH_vCjiL1-B8uBUhP7goqwZXvMWf32ghlL08CmVkcEGVx0G--VckD5j97woKjhpvH9IvZoZJvCMPVGz1seECJ1_R0o7t5L9mVVFH0y5tC-WW0PwaOVN2pFUPG0yDF2WNU7GS4"/>
+</div>
+<div>
+<h3 class="text-lg font-bold text-secondary dark:text-white">Staff Software Engineer (Vue)</h3>
+<p class="text-sm">Okta</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-sm text-text-subtle-light dark:text-text-subtle-dark">
+<span class="material-symbols-outlined !text-base">location_on</span>
+<span>London, UK</span>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">Vue 3</span>
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-gray-400/10 text-gray-600 dark:bg-gray-400/20 dark:text-gray-400">Testing</span>
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-gray-400/10 text-gray-600 dark:bg-gray-400/20 dark:text-gray-400">Accessibility</span>
+</div>
+<p class="text-sm line-clamp-2">Lead frontend initiatives within our identity platform. This role requires deep expertise in Vue.js, modern JavaScript, and a passion for building secure and accessible user...</p>
+<div class="flex items-center justify-between pt-4 border-t border-border-light dark:border-border-dark">
+<p class="text-xs text-text-subtle-light dark:text-text-subtle-dark">Posted 2 weeks ago</p>
+<button class="text-sm font-bold text-primary group-hover:underline">View Details</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-center pt-8 mt-8 border-t border-border-light dark:border-border-dark">
+<nav class="flex items-center gap-2">
+<a class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 dark:hover:bg-primary/20 h-10 w-10" href="#">
+<span class="material-symbols-outlined">chevron_left</span>
+</a>
+<a class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-primary text-primary bg-primary/10 dark:bg-primary/20 h-10 w-10" href="#">1</a>
+<a class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 dark:hover:bg-primary/20 h-10 w-10" href="#">2</a>
+<a class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 dark:hover:bg-primary/20 h-10 w-10" href="#">3</a>
+<span class="inline-flex items-center justify-center h-10 w-10">...</span>
+<a class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 dark:hover:bg-primary/20 h-10 w-10" href="#">8</a>
+<a class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 dark:hover:bg-primary/20 h-10 w-10" href="#">
+<span class="material-symbols-outlined">chevron_right</span>
+</a>
+</nav>
+</div>
+</main>
+</div>
+</div>
+</main>
+</div>
+</body></html>

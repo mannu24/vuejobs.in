@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#41B883",
+              "background-light": "#f2f5f7",
+              "background-dark": "#102219",
+              "text-light": "#2c3e50",
+              "text-dark": "#f2f5f7",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center p-4">
+<div class="w-full max-w-5xl">
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+<!-- Login Card -->
+<div class="flex w-full flex-col items-center justify-center rounded-xl bg-white dark:bg-gray-800 p-8 shadow-sm">
+<div class="w-full max-w-sm">
+<div class="text-center">
+<h2 class="text-3xl font-bold tracking-tight text-text-light dark:text-text-dark">VueJobs</h2>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">The #1 Job Board for Vue.js Developers</p>
+<h1 class="mt-8 text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Login to your Account</h1>
+</div>
+<div class="mt-8 space-y-6">
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-text-light dark:text-gray-300" for="login-email">Email</label>
+<div class="mt-1">
+<input autocomplete="email" class="form-input block w-full rounded-lg border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 p-3 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" id="login-email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-light dark:text-gray-300" for="login-password">Password</label>
+<div class="mt-1">
+<input autocomplete="current-password" class="form-input block w-full rounded-lg border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 p-3 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" id="login-password" name="password" placeholder="Enter your password" required="" type="password"/>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<input class="form-checkbox h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block text-sm text-gray-900 dark:text-gray-300" for="remember-me">Remember me</label>
+</div>
+<div class="text-sm">
+<a class="font-medium text-primary hover:text-primary/80" href="#">Forgot password?</a>
+</div>
+</div>
+<div>
+<button class="flex w-full justify-center rounded-lg border border-transparent bg-primary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800" type="submit">Login</button>
+</div>
+</div>
+<div class="mt-6">
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="bg-white dark:bg-gray-800 px-2 text-gray-500 dark:text-gray-400">Or continue with</span>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-3">
+<div>
+<a class="inline-flex w-full justify-center rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2 text-sm font-medium text-gray-500 dark:text-gray-300 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600" href="#">
+<span class="sr-only">Sign in with Google</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10c2.424 0 4.646-.863 6.402-2.285l-2.45-1.787a6.969 6.969 0 01-3.952 1.157c-3.804 0-6.9-3.096-6.9-6.9s3.096-6.9 6.9-6.9c2.14 0 4.026.98 5.23 2.527L13.1 7.1H10v2.8h5.957a6.945 6.945 0 01-.257 1.487l2.585 1.889A9.957 9.957 0 0020 10c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+<div>
+<a class="inline-flex w-full justify-center rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2 text-sm font-medium text-gray-500 dark:text-gray-300 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600" href="#">
+<span class="sr-only">Sign in with GitHub</span>
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.218.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 5.424a9.564 9.564 0 012.505.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.942.359.31.678.922.678 1.858 0 1.338-.012 2.419-.012 2.747 0 .267.18.577.688.48A10.003 10.003 0 0020 10c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<p class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+                            Don't have an account?
+                            <a class="font-medium text-primary hover:text-primary/80" href="#">Sign up</a>
+</p>
+</div>
+</div>
+<!-- Register Card -->
+<div class="flex w-full flex-col items-center justify-center rounded-xl bg-white dark:bg-gray-800 p-8 shadow-sm">
+<div class="w-full max-w-sm">
+<div class="text-center">
+<h2 class="text-3xl font-bold tracking-tight text-text-light dark:text-text-dark">VueJobs</h2>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Find your next opportunity or candidate</p>
+<h1 class="mt-8 text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Create an Account</h1>
+</div>
+<div class="mt-8 space-y-6">
+<div>
+<label class="text-sm font-medium text-text-light dark:text-gray-300">I am a...</label>
+<fieldset class="mt-2">
+<legend class="sr-only">Role selection</legend>
+<div class="grid grid-cols-2 gap-3">
+<label class="relative flex cursor-pointer rounded-lg border bg-white dark:bg-gray-700 p-4 shadow-sm focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:bg-gray-50 dark:hover:bg-gray-600 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary dark:border-gray-600 dark:has-[:checked]:border-primary" for="role-developer">
+<input checked="" class="sr-only" id="role-developer" name="role" type="radio" value="developer"/>
+<span class="flex flex-1"><span class="flex flex-col"><span class="block text-sm font-medium text-gray-900 dark:text-white">Developer</span></span></span>
+<span aria-hidden="true" class="material-symbols-outlined text-primary invisible h-5 w-5 group-has-[:checked]:visible">check_circle</span>
+</label>
+<label class="relative flex cursor-pointer rounded-lg border bg-white dark:bg-gray-700 p-4 shadow-sm focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:bg-gray-50 dark:hover:bg-gray-600 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary dark:border-gray-600 dark:has-[:checked]:border-primary" for="role-employer">
+<input class="sr-only" id="role-employer" name="role" type="radio" value="employer"/>
+<span class="flex flex-1"><span class="flex flex-col"><span class="block text-sm font-medium text-gray-900 dark:text-white">Employer</span></span></span>
+<span aria-hidden="true" class="material-symbols-outlined text-primary invisible h-5 w-5 group-has-[:checked]:visible">check_circle</span>
+</label>
+</div>
+</fieldset>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-text-light dark:text-gray-300" for="register-name">Full Name</label>
+<div class="mt-1">
+<input autocomplete="name" class="form-input block w-full rounded-lg border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 p-3 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" id="register-name" name="name" placeholder="John Doe" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-light dark:text-gray-300" for="register-email">Email</label>
+<div class="mt-1">
+<input autocomplete="email" class="form-input block w-full rounded-lg border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 p-3 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" id="register-email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-light dark:text-gray-300" for="register-password">Password</label>
+<div class="mt-1">
+<input autocomplete="new-password" class="form-input block w-full rounded-lg border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 p-3 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" id="register-password" name="password" placeholder="Create a password" required="" type="password"/>
+</div>
+</div>
+</div>
+<div class="flex items-start">
+<div class="flex h-5 items-center">
+<input class="form-checkbox h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700" id="terms" name="terms" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<label class="text-gray-600 dark:text-gray-400" for="terms">I agree to the <a class="font-medium text-primary hover:text-primary/80" href="#">Terms &amp; Conditions</a></label>
+</div>
+</div>
+<div>
+<button class="flex w-full justify-center rounded-lg border border-transparent bg-primary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800" type="submit">Create Account</button>
+</div>
+</div>
+<p class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+                           Already have an account?
+                            <a class="font-medium text-primary hover:text-primary/80" href="#">Login</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

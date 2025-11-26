@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Create New Job Posting</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#42b883",
+                        "secondary": "#34495e",
+                        "background-light": "#f5f7fa",
+                        "background-dark": "#1a1a1a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2c3e50",
+                        "text-light": "#2c3e50",
+                        "text-dark": "#f5f7fa",
+                        "subtle-text-light": "#606266",
+                        "subtle-text-dark": "#dcdfe6",
+                        "border-light": "#dcdfe6",
+                        "border-dark": "#4a4a4a",
+                        "error": "#f56c6c",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9BacaZix8MRc8DJh1i90-x5JMrAeWE_Sx_D5Sp-91EqeZG14P2WIl13bxmoPWDw_RnUp4_5x0uRIwp5-A0rgMJ79ptqrPuW4Z8nueMuvmNIik4hdOlTOX3A9MEKz90O18uPc82NL1pxnh2-QlbbA_GnkeZNWeJabbfKTX6a2V8zcGn8YTqWC163zU9JYUZXnQEt0Jnc6fIyRN_H0yFyeoDW5pLNMxCv9yXqKLbXiSZY6VbvO9f2ggnynjHF_lZOHMlpkYzXcF4161);
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem
+    }
+.dark select {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9BacaZix8MRc8DJh1i90-x5JMrAeWE_Sx_D5Sp-91EqeZG14P2WIl13bxmoPWDw_RnUp4_5x0uRIwp5-A0rgMJ79ptqrPuW4Z8nueMuvmNIik4hdOlTOX3A9MEKz90O18uPc82NL1pxnh2-QlbbA_GnkeZNWeJabbfKTX6a2V8zcGn8YTqWC163zU9JYUZXnQEt0Jnc6fIyRN_H0yFyeoDW5pLNMxCv9yXqKLbXiSZY6VbvO9f2ggnynjHF_lZOHMlpkYzXcF4161)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex w-full flex-col">
+<header class="sticky top-0 z-20 w-full border-b border-border-light dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="container mx-auto px-4 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<p class="text-xl font-bold leading-tight tracking-[-0.01em]">Create a New Job Posting</p>
+<button class="flex h-9 min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg bg-secondary/10 px-3 text-sm font-medium text-secondary hover:bg-secondary/20 dark:bg-secondary/20 dark:text-text-dark dark:hover:bg-secondary/30">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+<span class="truncate">Back to Dashboard</span>
+</button>
+</div>
+</div>
+</header>
+<main class="container mx-auto flex-1 px-4 lg:px-8 py-8">
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Basic Information Section -->
+<details class="flex flex-col rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark group" open="">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-4">
+<h2 class="text-lg font-semibold text-text-light dark:text-text-dark">Basic Information</h2>
+<span class="material-symbols-outlined text-subtle-text-light dark:text-subtle-text-dark transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="border-t border-border-light dark:border-border-dark p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col col-span-1 md:col-span-2">
+<p class="text-sm font-medium leading-normal pb-2">Job Title</p>
+<input class="form-input flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="e.g. Senior Vue.js Developer" value="Senior Frontend Engineer (Vue.js)"/>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Company</p>
+<select class="form-select flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal">
+<option>VueForce Inc.</option>
+<option>NuxtWave Solutions</option>
+<option>PiniaTech</option>
+</select>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Department / Team</p>
+<input class="form-input flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="e.g. Frontend, Product" value="Product Engineering"/>
+</label>
+</div>
+</details>
+<!-- Job Details Section -->
+<div class="flex flex-col rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="flex items-center justify-between gap-4 p-4">
+<h2 class="text-lg font-semibold text-text-light dark:text-text-dark">Job Details</h2>
+</div>
+<div class="border-t border-border-light dark:border-border-dark p-4 flex flex-col gap-6">
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Job Description</p>
+<textarea class="form-textarea flex w-full resize-y overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 min-h-36 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="Describe the role, responsibilities, and why your company is a great place to work."></textarea>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Key Responsibilities</p>
+<textarea class="form-textarea flex w-full resize-y overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 min-h-32 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="List the primary duties and tasks for this role."></textarea>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Benefits</p>
+<textarea class="form-textarea flex w-full resize-y overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 min-h-24 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="List the perks and benefits offered. e.g., Health insurance, 401(k), paid time off."></textarea>
+</label>
+</div>
+</div>
+<!-- Requirements Section -->
+<details class="flex flex-col rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark group" open="">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-4">
+<h2 class="text-lg font-semibold text-text-light dark:text-text-dark">Requirements</h2>
+<span class="material-symbols-outlined text-subtle-text-light dark:text-subtle-text-dark transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="border-t border-border-light dark:border-border-dark p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Experience Level</p>
+<select class="form-select flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal">
+<option>Junior</option>
+<option>Mid-level</option>
+<option selected="">Senior</option>
+<option>Lead</option>
+</select>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Location Type</p>
+<select class="form-select flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal">
+<option>On-site</option>
+<option>Hybrid</option>
+<option selected="">Remote</option>
+</select>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Location</p>
+<input class="form-input flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="e.g. San Francisco, CA" value="Remote (Worldwide)"/>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Timezone Preference</p>
+<input class="form-input flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="e.g. PST, CET" value="CET ± 2 hours"/>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Contract Type</p>
+<select class="form-select flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal">
+<option selected="">Full-time</option>
+<option>Part-time</option>
+<option>Contract</option>
+<option>Internship</option>
+</select>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Vue/Nuxt Version</p>
+<select class="form-select flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal">
+<option>Any</option>
+<option selected="">Vue 3 / Nuxt 3</option>
+<option>Vue 2 / Nuxt 2</option>
+</select>
+</label>
+<div class="col-span-1 md:col-span-2">
+<p class="text-sm font-medium leading-normal pb-2">Skills &amp; Technologies</p>
+<div class="flex flex-wrap gap-2 items-center p-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark min-h-11">
+<span class="flex items-center gap-1.5 bg-primary/20 text-text-light dark:text-text-dark text-sm font-medium px-2.5 py-1 rounded-full">Vue.js <button class="material-symbols-outlined !text-base">close</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 text-text-light dark:text-text-dark text-sm font-medium px-2.5 py-1 rounded-full">Nuxt.js <button class="material-symbols-outlined !text-base">close</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 text-text-light dark:text-text-dark text-sm font-medium px-2.5 py-1 rounded-full">TypeScript <button class="material-symbols-outlined !text-base">close</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 text-text-light dark:text-text-dark text-sm font-medium px-2.5 py-1 rounded-full">Pinia <button class="material-symbols-outlined !text-base">close</button></span>
+<span class="flex items-center gap-1.5 bg-primary/20 text-text-light dark:text-text-dark text-sm font-medium px-2.5 py-1 rounded-full">Tailwind CSS <button class="material-symbols-outlined !text-base">close</button></span>
+<input class="bg-transparent focus:outline-none flex-1 min-w-[100px]" placeholder="Add a skill..." type="text"/>
+</div>
+</div>
+</div>
+</details>
+<!-- Compensation Section -->
+<details class="flex flex-col rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark group" open="">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-4">
+<h2 class="text-lg font-semibold text-text-light dark:text-text-dark">Compensation</h2>
+<span class="material-symbols-outlined text-subtle-text-light dark:text-subtle-text-dark transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="border-t border-border-light dark:border-border-dark p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<label class="flex flex-col lg:col-span-1">
+<p class="text-sm font-medium leading-normal pb-2">Salary Min</p>
+<input class="form-input flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="e.g. 90,000" value="120,000"/>
+</label>
+<label class="flex flex-col lg:col-span-1">
+<p class="text-sm font-medium leading-normal pb-2">Salary Max</p>
+<input class="form-input flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" placeholder="e.g. 120,000" value="160,000"/>
+</label>
+<label class="flex flex-col lg:col-span-1">
+<p class="text-sm font-medium leading-normal pb-2">Currency</p>
+<select class="form-select flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal">
+<option selected="">USD</option>
+<option>EUR</option>
+<option>GBP</option>
+</select>
+</label>
+<label class="flex flex-col lg:col-span-1">
+<p class="text-sm font-medium leading-normal pb-2">Interval</p>
+<select class="form-select flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal">
+<option selected="">Per Year</option>
+<option>Per Month</option>
+<option>Per Hour</option>
+</select>
+</label>
+</div>
+</details>
+</div>
+<!-- Live Preview Panel -->
+<div class="lg:col-span-1">
+<div class="sticky top-24 flex flex-col gap-4">
+<h3 class="text-lg font-semibold">Live Preview</h3>
+<div class="rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark p-6 shadow-sm">
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-4">
+<img class="h-14 w-14 rounded-lg object-cover" data-alt="Company logo for VueForce Inc." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm5mvEusvBiRKJYGtVQz-OGblfCTMEVJFu3IjpjARijKh6XuPq5sfCNs1PcQf-ghdVU7FvsMnya8MVNZF-dsgR-9iNvFhfiACyD2B5hsy3pPgiQv3RAt_fRbiC_b5EbkX0wwIcRk5Nrz6YyB2QAalrcITkXgsmBLi35jweJw3oW4QF5BaKb9DBGsuCZJQrB7pY3Btz8IgZ-7w1ivHFBI9UQkfWHTskx_G_YrbZteb21aF6YD3J-D3JHlNqkn1F6WXA41VHmLVgDR2R"/>
+<div>
+<h4 class="text-lg font-bold text-text-light dark:text-text-dark">Senior Frontend Engineer (Vue.js)</h4>
+<p class="text-sm text-subtle-text-light dark:text-subtle-text-dark">VueForce Inc.</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary"><span class="material-symbols-outlined !text-sm">location_on</span> Remote (Worldwide)</span>
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary"><span class="material-symbols-outlined !text-sm">work</span> Full-time</span>
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary"><span class="material-symbols-outlined !text-sm">payments</span> $120k - $160k</span>
+</div>
+<div class="border-t border-border-light dark:border-border-dark pt-4">
+<h5 class="font-semibold mb-2">Skills</h5>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-subtle-text-light dark:text-subtle-text-dark px-2 py-1 rounded">Vue.js</span>
+<span class="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-subtle-text-light dark:text-subtle-text-dark px-2 py-1 rounded">Nuxt.js</span>
+<span class="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-subtle-text-light dark:text-subtle-text-dark px-2 py-1 rounded">TypeScript</span>
+<span class="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-subtle-text-light dark:text-subtle-text-dark px-2 py-1 rounded">Pinia</span>
+<span class="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-subtle-text-light dark:text-subtle-text-dark px-2 py-1 rounded">Tailwind CSS</span>
+</div>
+</div>
+<button class="w-full h-10 mt-2 flex items-center justify-center rounded-lg bg-primary text-white font-bold text-sm">Apply Now</button>
+</div>
+</div>
+<div class="rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark p-4 flex flex-col gap-4">
+<h3 class="text-base font-semibold">Publishing</h3>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Job Post Status</p>
+<select class="form-select flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal">
+<option selected="">Draft</option>
+<option>Published</option>
+</select>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium leading-normal pb-2">Set Expiry Date</p>
+<input class="form-input flex w-full resize-none overflow-hidden rounded-lg bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:border-primary focus:ring-2 focus:ring-primary/20 h-11 p-3 text-base font-normal leading-normal placeholder:text-subtle-text-light placeholder:dark:text-subtle-text-dark" type="date"/>
+</label>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="sticky bottom-0 z-20 mt-auto w-full border-t border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="container mx-auto px-4 lg:px-8">
+<div class="flex h-20 items-center justify-between">
+<p class="text-sm text-subtle-text-light dark:text-subtle-text-dark">
+<span class="hidden sm:inline">Autosaved a few seconds ago.</span>
+</p>
+<div class="flex items-center gap-3">
+<button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-secondary/10 px-4 text-sm font-bold text-secondary hover:bg-secondary/20 dark:bg-secondary/20 dark:text-text-dark dark:hover:bg-secondary/30">Save as Draft</button>
+<button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-4 text-sm font-bold text-white shadow-sm hover:bg-primary/90">Publish Job</button>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

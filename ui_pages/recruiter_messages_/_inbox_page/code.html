@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Recruiter Messages</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#41B883",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "text-light": "#18181B",
+              "text-dark": "#E4E4E7",
+              "muted-light": "#606266",
+              "muted-dark": "#A1A1AA",
+              "border-light": "#E4E7ED",
+              "border-dark": "#3F3F46",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1a2734"
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex h-screen min-h-screen w-full flex-col overflow-hidden">
+<div class="flex h-full flex-1">
+<!-- Side Navigation Bar -->
+<aside class="flex h-full w-64 flex-col justify-between border-r border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark p-4">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-10" data-alt="VueJobs logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVPyEY_lCrdrl325HG2y-24R0VEVDQfxDFcmsxBRjs4QvtwxMFIZ9qJacTB3vylIFPQbkzvkB1J7A3zReREAgl-imq5DT5zRxmQVe72K6htN3ZgxsYMsBNr_L7sqqrFp5MoTcpuIQLE44uZ36c1zULGKf8-bSHj65Uca_SQPYh1axbaP5DCJVAVgERtsbl6H4XytLKIey717mUGIPH3ngCZeRX-ZE7gxClwdu1VWitEC68bcaJ_g-JmSsQcr2ZemngkHQHNzw1u3eX'); background-color: transparent;"></div>
+<div class="flex flex-col">
+<h1 class="text-text-light dark:text-text-dark text-base font-bold leading-normal">VueJobs</h1>
+<p class="text-muted-light dark:text-muted-dark text-sm font-normal leading-normal">Recruiter Portal</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-2xl">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-2xl">work</span>
+<p class="text-sm font-medium leading-normal">Jobs</p>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-2xl">group</span>
+<p class="text-sm font-medium leading-normal">Candidates</p>
+</a>
+<a class="flex items-center gap-3 rounded-md bg-primary/10 px-3 py-2 text-primary dark:text-primary" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">chat</span>
+<p class="text-sm font-bold leading-normal">Messages</p>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Post a Job</span>
+</button>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-2xl">help_center</span>
+<p class="text-sm font-medium leading-normal">Help Center</p>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined text-2xl">logout</span>
+<p class="text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Left Panel: Conversation List -->
+<aside class="flex h-full w-[360px] flex-col border-r border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
+<div class="flex flex-col gap-4 p-4 border-b border-border-light dark:border-border-dark">
+<h2 class="text-3xl font-black leading-tight tracking-[-0.033em]">Messages</h2>
+<div class="relative">
+<label class="flex flex-col min-w-40 h-11 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-md h-full">
+<div class="text-muted-light dark:text-muted-dark flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-muted-light dark:placeholder:text-muted-dark px-2 text-sm font-normal leading-normal" placeholder="Search conversations..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<p class="text-muted-light dark:text-muted-dark text-sm font-medium">Show only unread</p>
+<label class="relative flex h-6 w-10 cursor-pointer items-center rounded-full bg-slate-200 dark:bg-slate-700 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary transition-all duration-300">
+<div class="size-5 rounded-full bg-white transition-transform"></div>
+<input class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Active Conversation Item -->
+<div class="flex cursor-pointer gap-3 border-l-4 border-primary bg-primary/10 px-4 py-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Avatar of Elena Rodriguez" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCAs8wkxpjvJQFvD2gfBMtBiwwon9beRnbXezhtBEZRt1LSvgUx6V56a5Fk4BAkeppPGXTPhe3oU8NI2cRohCA-AWA4n-0_AdzuedjWLmF39PP4iLlwptQGOKI0XS6D_IZINHv_IKQNzvRw7AiiM6CkwEFQnze_iC_oe-KEKYEajZZCPk33do02w_7QOEBOtDboLwyUxRwrm_zDjtvXslayCmdgB6S7dQnAE2XMrEVAnf4T50JcyHoTU4Cy4OplME3pLd_TYgZjILK0');"></div>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-0.5 overflow-hidden">
+<div class="flex items-center justify-between">
+<p class="text-text-light dark:text-text-dark text-sm font-bold leading-normal truncate">Elena Rodriguez</p>
+<p class="text-muted-light dark:text-muted-dark text-xs font-medium">10:42 AM</p>
+</div>
+<p class="text-muted-light dark:text-muted-dark text-xs font-medium leading-normal truncate">Senior Vue.js Developer</p>
+<div class="flex items-center justify-between">
+<p class="text-muted-light dark:text-muted-dark text-sm font-normal leading-normal truncate">That sounds great! I'm available to...</p>
+<div class="size-2.5 shrink-0 rounded-full bg-primary"></div>
+</div>
+</div>
+</div>
+<!-- Unread Conversation Item -->
+<div class="flex cursor-pointer gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 border-l-4 border-transparent">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Avatar of Ben Carter" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzp2HngeyXRfQX1_60UGxv9_c-2cZ4aiNXjY5q6iIPx8IxEMpe-toSIIISnSo_sCe3tALWZ89q2MguNMwcAAd-MsIspfH-I2EI5Tz9R009GeFSbV7XyjC7iHEtUlJXOTH7AwzLsh4IdBeOV84H9tFjZzF2kvEHSlFNxTL6-zYk1gJcpUgcp6yTsKRZPpEXpjPqvkIuBNsCkN2zWyequ4EXG1Cq8bGdJ1l_zUitkpDm5GQ8EYIlmK09wWjKxTERuhHAlWOqtGd1o0OW');"></div>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-0.5 overflow-hidden">
+<div class="flex items-center justify-between">
+<p class="text-text-light dark:text-text-dark text-sm font-bold leading-normal truncate">Ben Carter</p>
+<p class="text-muted-light dark:text-muted-dark text-xs font-medium">9:15 AM</p>
+</div>
+<p class="text-muted-light dark:text-muted-dark text-xs font-medium leading-normal truncate">Mid-Level Frontend Developer</p>
+<div class="flex items-center justify-between">
+<p class="text-muted-light dark:text-muted-dark text-sm font-normal leading-normal truncate">Perfect, I've just submitted my application.</p>
+<div class="size-2.5 shrink-0 rounded-full bg-primary"></div>
+</div>
+</div>
+</div>
+<!-- Read Conversation Item -->
+<div class="flex cursor-pointer gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 border-l-4 border-transparent">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Avatar of Olivia Chen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMTfaYyyvdA0HSy7ySCgYkZ7bCLQHI5dhUI-JXeboSzQS0197LZJQbG0QHeqSwhGJJHXztlE21zokj3hiphs8pm1azOxOJYXmb1ERt3dOS3JDZKXCqBN3H1be3y6cAM1DMftFoF7r_sxVFuTCp2A2N_i38c4WBtbnirQIApu4AxxKpBagn2WLttJqqX82Ko3HD3iaArMaTX3MsMEHxHZ95oKeZq9Kj8CO97RR_k02B0v4T0_3l_iQr9GW01cbGTqw2vITVDOs3mM8x');"></div>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-0.5 overflow-hidden">
+<div class="flex items-center justify-between">
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal truncate">Olivia Chen</p>
+<p class="text-muted-light dark:text-muted-dark text-xs font-medium">Yesterday</p>
+</div>
+<p class="text-muted-light dark:text-muted-dark text-xs font-medium leading-normal truncate">UI/UX Designer with Vue Experience</p>
+<p class="text-muted-light dark:text-muted-dark text-sm font-normal leading-normal truncate">You: Sounds good, I'll review it and get...</p>
+</div>
+</div>
+<!-- Read Conversation Item -->
+<div class="flex cursor-pointer gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 border-l-4 border-transparent">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="Avatar of Marcus Thompson" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZSH031YsxwEy0Q_0RhXtpzoggnLRokkJSu8JRsq6_7UdUtVNLXhdPdqRDKw8h2JZ-2qjB4u2PsX-4tfsczaN4SxvvICmt7_-j3WAPVFdShP9vnwr2lZjADoWB3minC5Tmg9Shouqo_NpF-0DNU0qMG9kJbOLmZdDP4IX6vQzhD8CtQGONs8_V6x6OjBqnXSxrIm9ZVJ7mNKoLyjnCmdNQ0pHdRhIKTqApJ0xyJshaKxBJFuo9h01RjrhqJNls1QyZod7_erV94X5o');"></div>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-0.5 overflow-hidden">
+<div class="flex items-center justify-between">
+<p class="text-text-light dark:text-text-dark text-sm font-medium leading-normal truncate">Marcus Thompson</p>
+<p class="text-muted-light dark:text-muted-dark text-xs font-medium">2d ago</p>
+</div>
+<p class="text-muted-light dark:text-muted-dark text-xs font-medium leading-normal truncate">Full-Stack Vue Developer</p>
+<p class="text-muted-light dark:text-muted-dark text-sm font-normal leading-normal truncate">You: Hi Marcus, thanks for reaching out.</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Panel: Chat View -->
+<main class="flex flex-1 flex-col h-full bg-background-light dark:bg-background-dark">
+<!-- Chat Header -->
+<header class="flex items-center justify-between border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Avatar of Elena Rodriguez" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApT2RYeHpBKikptOcbH5k7o9bMBVZh9iXMtxrBLFjI_Rx6ypuYTWldl9CNYUwYw6halXej4JF8bX3i2AZIPy2SdBHvJBB87pYos4x_H3CuJYfVWSBucyMiuiixqKV1kdyNu_GH1T-5DNZkoAQka5AuW2OiaS_a9WuYJ_q1-cE5KjCYfqK0m2bGoHDU7G9-frYsW0SDjzs2sMwIV8SzNPESh0WaGqLdgLo7oiOvuZ2bCDedafihOrRsEZP9xcnyj9gfjTrhvDOABLhB');"></div>
+<div class="flex flex-col">
+<h3 class="text-base font-bold text-text-light dark:text-text-dark">Elena Rodriguez</h3>
+<a class="text-sm text-primary hover:underline" href="#">View Full Profile</a>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center rounded-md p-2 text-muted-light dark:text-muted-dark hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-2xl">archive</span>
+</button>
+<button class="flex items-center justify-center rounded-md p-2 text-muted-light dark:text-muted-dark hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-2xl">more_horiz</span>
+</button>
+</div>
+</header>
+<!-- Message Thread -->
+<div class="flex-1 overflow-y-auto p-6">
+<div class="flex flex-col gap-4">
+<!-- Candidate Message -->
+<div class="flex items-start gap-3 max-w-lg">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0" data-alt="Avatar of Elena Rodriguez" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtXHia9SpG7Cb2OTbFQ8svWM3B29gNOyuPogFpRWJqd70y4UEqnAQaY2QaJGdHae7BBmwGNOGEFJbvcSV2l5J4PuKkCZfAmV3m2iFVLsiOAIa-u1nTfDfWEIb5mLNuZ7E0jxbGLbhqZp7rCGUuuKeTYt598QrMrm9asRB8UKT-2B4jHyq-5CRvMhYAL2u8IXaspQ1I_uJ4d8XR23bTblgp0OQw0r2_WyffTYPZbIjv2Bgzrv_I9bPOPtVDZOvhpwruap_Ma3axKIYI');"></div>
+<div class="flex flex-col gap-1">
+<div class="rounded-lg rounded-tl-none bg-surface-light dark:bg-surface-dark p-3">
+<p class="text-sm leading-relaxed">Hi! I saw your posting for the Senior Vue.js Developer role and I'm very interested. My portfolio is attached to my profile. Let me know if you have any questions.</p>
+</div>
+<span class="text-xs text-muted-light dark:text-muted-dark">10:30 AM</span>
+</div>
+</div>
+<!-- Recruiter Message -->
+<div class="flex items-start gap-3 self-end max-w-lg flex-row-reverse">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0" data-alt="Recruiter Avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkOxSIqGih52HbCPyfxrkZyySkUG1SiI-KDyEKWe5UyLdym1BSTA8djkZyhmg_qnKjxJ634m_ysUmYtHS8TjAgaWF_7MKfyny2c6nT4RsdDXPuH0vmPzpQ5evQ4Qy9N_55zuEWwsDIqPgU1igsJYGJnm74w2GaZahsyOzQCIUs0LmpBi55hkFnpAXokR52sLbJpQslruvyjmDHr0vJS8O5DYKPNmLaRQkQUAmHDNN38W4GQLEWZA8QAGtFVAkNOs61gunjHfdTEAyf');"></div>
+<div class="flex flex-col gap-1 items-end">
+<div class="rounded-lg rounded-br-none bg-primary text-white p-3">
+<p class="text-sm leading-relaxed">Hi Elena, thanks for reaching out. Your profile looks impressive. I'd love to schedule a brief call to discuss your experience. Are you free sometime tomorrow afternoon?</p>
+</div>
+<span class="text-xs text-muted-light dark:text-muted-dark">10:40 AM</span>
+</div>
+</div>
+<!-- Candidate Message -->
+<div class="flex items-start gap-3 max-w-lg">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 shrink-0" data-alt="Avatar of Elena Rodriguez" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTUhf6pM22sgcUpTaZil_Ya6XZwM_duyXtzTkBPB2nsBCjSYdvGdRLtCGAZr4M7qN37AaXKjOaKmHdvj5zngTviq7PCqJHnmUz7cyUD2jahg_iDAStVGY3eMhuJtsZAwM3kYYJogDiQtsykXjSVPZz6_W-UFWjd5S65dQZu0CcfTWQmPm_V01qAYF3m2dyaxGSfmxJKlFHNJc-3onqz_xrspEffLRAki20Rx2eiNOoFjczc1q9hO-D-8DOkmgpmqotrhVQg6RX2Cdo');"></div>
+<div class="flex flex-col gap-1">
+<div class="rounded-lg rounded-tl-none bg-surface-light dark:bg-surface-dark p-3">
+<p class="text-sm leading-relaxed">That sounds great! I'm available to chat anytime after 2 PM EST tomorrow. Looking forward to it.</p>
+</div>
+<span class="text-xs text-muted-light dark:text-muted-dark">10:42 AM</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Message Input -->
+<footer class="bg-surface-light dark:bg-surface-dark p-4 border-t border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4 rounded-lg border border-border-light dark:border-border-dark p-1">
+<textarea class="form-textarea flex-1 resize-none bg-transparent border-none focus:ring-0 text-sm placeholder:text-muted-light dark:placeholder:text-muted-dark" placeholder="Type your message here..." rows="1"></textarea>
+<button class="flex items-center justify-center rounded-md p-2 text-muted-light dark:text-muted-dark hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-2xl">attach_file</span>
+</button>
+<button class="flex h-10 w-24 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span>Send</span>
+</button>
+</div>
+</footer>
+</main>
+</div>
+</div>
+</body></html>

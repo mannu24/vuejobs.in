@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - The #1 Job Board for Vue.js Developers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#4FC08D",
+              "secondary": "#35495E",
+              "background-light": "#F8F9FA",
+              "background-dark": "#10221a",
+              "text-light": "#212529",
+              "text-dark": "#E9ECEF",
+              "border-light": "#E9ECEF",
+              "border-dark": "#2a3b34"
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.5rem", 
+                "lg": "0.75rem", 
+                "xl": "1rem", 
+                "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-6xl flex-1 px-4 md:px-8">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark px-6 py-4 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm z-50">
+<div class="flex items-center gap-4 text-secondary dark:text-primary">
+<div class="size-8">
+<svg fill="currentColor" viewbox="0 0 256 198" xmlns="http://www.w3.org/2000/svg"><path d="M204.8 0H256L128 220.8 0 0h97.92L128 51.2 157.44 0h47.36Z"></path><path d="M0 0l128 220.8L256 0h-51.2L128 132.48 50.56 0H0Z"></path></svg>
+</div>
+<h2 class="text-secondary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">VueJobs</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-secondary dark:text-text-dark text-sm font-medium leading-normal hover:text-primary" href="#">Jobs</a>
+<a class="text-secondary dark:text-text-dark text-sm font-medium leading-normal hover:text-primary" href="#">For Employers</a>
+<a class="text-secondary dark:text-text-dark text-sm font-medium leading-normal hover:text-primary" href="#">Blog</a>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="truncate">Post a Job</span>
+</button>
+</div>
+<div class="md:hidden">
+<button class="p-2">
+<span class="material-symbols-outlined text-secondary dark:text-text-dark">menu</span>
+</button>
+</div>
+</header>
+<!-- HeroSection -->
+<main class="w-full">
+<div class="flex flex-col gap-6 px-4 py-16 text-center">
+<div class="flex flex-col gap-4 items-center">
+<h1 class="text-secondary dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-6xl">Find Your Next Vue.js Job</h1>
+<h2 class="text-text-light dark:text-text-dark/80 text-base font-normal leading-normal md:text-xl max-w-3xl">The premier destination for Vue.js developers and employers to connect and build the future of the web.</h2>
+</div>
+<div class="flex-wrap gap-4 flex justify-center mt-4">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="truncate">Find Jobs</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary/20 dark:bg-primary/30 text-secondary dark:text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
+<span class="truncate">Post a Job</span>
+</button>
+</div>
+</div>
+<!-- Stats -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4">
+<div class="flex flex-col gap-2 rounded-lg p-6 border border-border-light dark:border-border-dark bg-white dark:bg-secondary/10">
+<p class="text-text-light dark:text-text-dark/90 text-base font-medium leading-normal">Active Vue Jobs</p>
+<p class="text-secondary dark:text-white tracking-light text-3xl font-bold leading-tight">1,234</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-6 border border-border-light dark:border-border-dark bg-white dark:bg-secondary/10">
+<p class="text-text-light dark:text-text-dark/90 text-base font-medium leading-normal">Developers</p>
+<p class="text-secondary dark:text-white tracking-light text-3xl font-bold leading-tight">8,500+</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-6 border border-border-light dark:border-border-dark bg-white dark:bg-secondary/10">
+<p class="text-text-light dark:text-text-dark/90 text-base font-medium leading-normal">Companies Hiring</p>
+<p class="text-secondary dark:text-white tracking-light text-3xl font-bold leading-tight">450+</p>
+</div>
+</div>
+<!-- Featured Jobs Section -->
+<div class="mt-16">
+<h2 class="text-secondary dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured Jobs</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+<!-- Job Card 1 -->
+<div class="flex flex-col gap-4 p-5 border border-border-light dark:border-border-dark rounded-lg bg-white dark:bg-secondary/10 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center gap-4">
+<img class="size-14 rounded-md object-cover" data-alt="Company logo for Tech Solutions Inc." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2wreTlffQrcHJAa8tFSFFtSujCLgICHLafMStkxIeatyG4gJ7UYqkp6YbST6nuflwa7h8khhiC4XN6rfEmffHt--gVFZlIJmL_-t8a5M1Pwr-n6vo8flj3AbD6OJJSRS7LtL02aZCNjT-inVWXGFQzvey2-mdiow39W-LJx4mbjO9hB2B3LNDvz8uFB0TNXWV8UleQIPUovAuTCeBOdPtWb5CqMi-3ZHyk--8ah4lqu1nL9et29CxXt7_FduryXuvEzPH5j9YqYQj"/>
+<div>
+<h3 class="text-secondary dark:text-white text-lg font-bold">Senior Vue.js Engineer</h3>
+<p class="text-text-light/80 dark:text-text-dark/70 text-sm">Tech Solutions Inc.</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-semibold px-2.5 py-1 bg-primary/20 text-primary-darker dark:text-primary rounded-full">Remote</span>
+<span class="text-xs font-semibold px-2.5 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full">$120k - $150k</span>
+<span class="text-xs font-semibold px-2.5 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full">Vue 3</span>
+</div>
+<button class="w-full mt-2 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">Apply Now</button>
+</div>
+<!-- Job Card 2 -->
+<div class="flex flex-col gap-4 p-5 border border-border-light dark:border-border-dark rounded-lg bg-white dark:bg-secondary/10 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center gap-4">
+<img class="size-14 rounded-md object-cover" data-alt="Company logo for Creative Agency Co." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANjXRnbonx-EmHOCHWhbJ4sXXcpjwOj6tLSGjnMI8WKSl69cSce92q-H29l2XvdxCF4NQi4yAWZLMsc9_lFptcjVOysNqcebb33KS5HeegbUqg-u_vVCJRjgfamU8oUsVaNyJTXHmgeEkPjRMQNKmahZHPWclV7QuOM8d0si7ekVyMGa02ff3JdJ_xoxvocblk3ZPgpKLmsqZBJ4dLLTVFYa8sy0EuhRcdDR9yMI_dp2ivxh28jCxKIUpNs4iR-wC9SEfXV4_d2KLe"/>
+<div>
+<h3 class="text-secondary dark:text-white text-lg font-bold">Frontend Developer (Vue)</h3>
+<p class="text-text-light/80 dark:text-text-dark/70 text-sm">Creative Agency Co.</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-semibold px-2.5 py-1 bg-primary/20 text-primary-darker dark:text-primary rounded-full">New York, NY</span>
+<span class="text-xs font-semibold px-2.5 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full">$90k - $110k</span>
+<span class="text-xs font-semibold px-2.5 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full">Vue 3</span>
+</div>
+<button class="w-full mt-2 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">Apply Now</button>
+</div>
+<!-- Job Card 3 -->
+<div class="flex flex-col gap-4 p-5 border border-border-light dark:border-border-dark rounded-lg bg-white dark:bg-secondary/10 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+<div class="flex items-center gap-4">
+<img class="size-14 rounded-md object-cover" data-alt="Company logo for Innovate Startups." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfVKE6X9ue7J2RadQexBN1J56QFpsGAsgqIaiObWEflmxBMmniPvNgj-X2lGjwXjDFYsU-U9NQdedj05PVlYwMS6LSGWqD3SiMTuC5sV8VXd_Jo8TJPv6-EyLZyElCtHO-kEuEKlw_ZFngTUCkh6MnKs7jgms4M-i3ff-3jYB4Idf29fe5MyfSaES71E4QNecq6pcsEzP3yu-k3jsSMv1U_7Vq165cBkzAGGYRaZ5OoQjJyrqqykFsiT1uzL48JbgEp5frlbqMqpP3"/>
+<div>
+<h3 class="text-secondary dark:text-white text-lg font-bold">Full-Stack Vue Developer</h3>
+<p class="text-text-light/80 dark:text-text-dark/70 text-sm">Innovate Startups</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-semibold px-2.5 py-1 bg-primary/20 text-primary-darker dark:text-primary rounded-full">Remote (US)</span>
+<span class="text-xs font-semibold px-2.5 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full">$110k - $140k</span>
+<span class="text-xs font-semibold px-2.5 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full">Vue 2 &amp; 3</span>
+</div>
+<button class="w-full mt-2 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">Apply Now</button>
+</div>
+</div>
+</div>
+<!-- How It Works Section -->
+<div class="mt-20 py-16 bg-white dark:bg-secondary/10 rounded-lg">
+<div class="px-4 text-center">
+<h2 class="text-secondary dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em]">How It Works</h2>
+<p class="text-text-light dark:text-text-dark/80 mt-2 max-w-2xl mx-auto">A simple process for job seekers and employers to connect within the Vue.js community.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 p-4 pt-12 max-w-5xl mx-auto">
+<!-- For Job Seekers -->
+<div class="text-center md:text-left">
+<h3 class="text-secondary dark:text-white text-2xl font-bold mb-6">For Job Seekers</h3>
+<div class="flex flex-col gap-6">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center"><span class="material-symbols-outlined text-primary">person_search</span></div>
+<div>
+<h4 class="font-bold text-secondary dark:text-white">Create Your Profile</h4>
+<p class="text-text-light/90 dark:text-text-dark/80 text-sm">Showcase your skills and experience to top Vue.js companies.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center"><span class="material-symbols-outlined text-primary">work</span></div>
+<div>
+<h4 class="font-bold text-secondary dark:text-white">Browse &amp; Find Jobs</h4>
+<p class="text-text-light/90 dark:text-text-dark/80 text-sm">Search and filter through hundreds of curated Vue.js opportunities.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center"><span class="material-symbols-outlined text-primary">send</span></div>
+<div>
+<h4 class="font-bold text-secondary dark:text-white">Apply Directly</h4>
+<p class="text-text-light/90 dark:text-text-dark/80 text-sm">Apply to your dream job with just a few clicks.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- For Employers -->
+<div class="text-center md:text-left">
+<h3 class="text-secondary dark:text-white text-2xl font-bold mb-6">For Employers</h3>
+<div class="flex flex-col gap-6">
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-secondary/20 dark:bg-secondary/40 flex items-center justify-center"><span class="material-symbols-outlined text-secondary dark:text-white">edit_document</span></div>
+<div>
+<h4 class="font-bold text-secondary dark:text-white">Post a Job</h4>
+<p class="text-text-light/90 dark:text-text-dark/80 text-sm">Create a detailed job posting in minutes to attract talent.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-secondary/20 dark:bg-secondary/40 flex items-center justify-center"><span class="material-symbols-outlined text-secondary dark:text-white">groups</span></div>
+<div>
+<h4 class="font-bold text-secondary dark:text-white">Reach Vue Talent</h4>
+<p class="text-text-light/90 dark:text-text-dark/80 text-sm">Your job is seen by thousands of passionate Vue.js developers.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-secondary/20 dark:bg-secondary/40 flex items-center justify-center"><span class="material-symbols-outlined text-secondary dark:text-white">handshake</span></div>
+<div>
+<h4 class="font-bold text-secondary dark:text-white">Hire Your Next Developer</h4>
+<p class="text-text-light/90 dark:text-text-dark/80 text-sm">Connect with qualified candidates and build your team.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust Banner/Logo Wall -->
+<div class="mt-20 py-16">
+<div class="px-4 text-center">
+<h2 class="text-secondary dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em]">Trusted by Leading Vue.js Companies</h2>
+<div class="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-6 items-center opacity-60 dark:opacity-40">
+<img class="grayscale" data-alt="Company logo 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXCkzkJkVcGIcaMKLbcVDJEW7lwZLLiswXkaIaJtLQRbZeB0QyX1piG1X864_ou0DIkI90AZ80pF1eM2FPbeEjGitnen623sQR4skVL30Jm_o1h0cQthVtHuaY1u4Gb3uJqWe1wc-wpfr3HHpQqWs7dKb7hYossurSKCbbCf93glm86TX-Hu8eHNNyCxZld_MXI0xFMUyceHf_m9S-f_J476n7u8EQ7CCvY7FfjqM9OiXBupvWjGVuUfHBV6ODn7albbx1HM0dHsUL"/>
+<img class="grayscale" data-alt="Company logo 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdidLDejk0XOqpJRq3RGftYKqMKhNc0kFBg3QP7NUeu0amdKcnN4TbQG7TtiJifOYIOeWnBE_37nvDa_HdOcRzmcn5wkXwP8WDszJpklTVifKWDwvZ0J1KnW2rk6_THQ7uCc_k9wt4PJnrHvw7GkihILlUKz1aKyLp63mvbVLLlob1JQhPL0ElyLEzZ2DdtiF0A_5VkQa6dZNJSTdQWfC6DLPa23RG5FowERuk8J5u6I7e6XD8DWEJR-_DUDr-7YmICSLlrAOvAOKQ"/>
+<img class="grayscale" data-alt="Company logo 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACXMLCA7RJ5LVO3oHR_FIuk40xFfdD-TYbrMp2WL2e3HRm2KrgylwwUcv1NiD7mIA1q2qNlZfpntnupGCcVjWYobPqOIkaiDonQpLTpKxJR3pbFXIyckAzJKJSVWvbD8L_PucfIayTiUia9qh9VjDPUtZJl_fGNwaieNL637Y2mYnXConECZypxFQJtzQSrxU0rj1yLWuZc8opsL1o5t1vpii0C58jqkJaDpmqg2-dL8iY-ZrZT1HCdb8jsoYt5NSXyPOGvGXOPf07"/>
+<img class="grayscale" data-alt="Company logo 4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATN05VI7AvTHcujJjLvgN8eREkX1z0yXgnVaR6f7kT0IKJIikf0ebQL9Cns2yFDAVHszsC3q03UxVSeuxtvCvcctiAoPpldq3I8cYoLvuADO3QY4cms_MPe-tw6cUbGzq2Y4k1cJ5sseh1cgchvf30vUGExcHCTquVdTn-UwvkYiHFVK6PgcTIFchJVzNOjKR95FTVxDMctTASrp-aailUxPkZe_FLXPB4kIR1-FonSxZZI9M9AJ9HKH5GcEJBkE9thuVXq9CRARJh"/>
+<img class="grayscale" data-alt="Company logo 5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAnN4NsVxz75UGlIli98qSGK9i7qX2-_EsVyjiKI0MqDYkeJpvJy9orMAejNLJu5TEiYpdTtPw-9qXw4hhRDs3F_N3usd9h91-iGR37R1Q3RedfQ9ScYQ5TGtJAu_iefASqV8dbaxeEGl99lcmS9hD9punaH9M35dGAb4YNHINT0k2VZfBdgyQRJcPJL5mnJ0So9HxqU_2h1OXrgicS7f37uedRkQdAGMNE9yEwE_ig756zPt1zbftMi7ml4up7eF0HlTPY-KFxpVL"/>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-border-light dark:border-border-dark py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
+<div class="md:col-span-1">
+<div class="flex items-center gap-2 mb-4">
+<div class="size-7 text-secondary dark:text-primary">
+<svg fill="currentColor" viewbox="0 0 256 198" xmlns="http://www.w3.org/2000/svg"><path d="M204.8 0H256L128 220.8 0 0h97.92L128 51.2 157.44 0h47.36Z"></path><path d="M0 0l128 220.8L256 0h-51.2L128 132.48 50.56 0H0Z"></path></svg>
+</div>
+<h2 class="text-secondary dark:text-white text-lg font-bold">VueJobs</h2>
+</div>
+<p class="text-sm text-text-light/80 dark:text-text-dark/70">The best place to find and post jobs for Vue.js developers.</p>
+</div>
+<div class="md:col-span-3">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+<div>
+<h4 class="font-bold text-secondary dark:text-white mb-3">Links</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-text-light/80 dark:text-text-dark/70 hover:text-primary" href="#">About Us</a></li>
+<li><a class="text-sm text-text-light/80 dark:text-text-dark/70 hover:text-primary" href="#">Pricing</a></li>
+<li><a class="text-sm text-text-light/80 dark:text-text-dark/70 hover:text-primary" href="#">Contact</a></li>
+<li><a class="text-sm text-text-light/80 dark:text-text-dark/70 hover:text-primary" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-secondary dark:text-white mb-3">Legal</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-text-light/80 dark:text-text-dark/70 hover:text-primary" href="#">Terms of Service</a></li>
+<li><a class="text-sm text-text-light/80 dark:text-text-dark/70 hover:text-primary" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="col-span-2 lg:col-span-2">
+<h4 class="font-bold text-secondary dark:text-white mb-3">Subscribe to weekly job alerts</h4>
+<form class="flex flex-col sm:flex-row gap-2">
+<input class="w-full rounded-md border-border-light dark:border-border-dark bg-white dark:bg-secondary/20 focus:ring-primary focus:border-primary" placeholder="Your email address" type="email"/>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity" type="submit">Subscribe</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10 pt-6 border-t border-border-light dark:border-border-dark flex flex-col sm:flex-row justify-between items-center px-4">
+<p class="text-sm text-text-light/70 dark:text-text-dark/60">© 2024 VueJobs. All rights reserved.</p>
+<div class="flex gap-4 mt-4 sm:mt-0">
+<a class="text-text-light/70 dark:text-text-dark/60 hover:text-primary" href="#"><img class="size-6" data-alt="Twitter social media icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA374nxjh5vh1cZXFwyo51ZuR-juuRMtaNIVkKWzVQSSNO3axOHUEwkEOvdFvJ2W8y0TZTqbn4wTsUhaXlrp6gE2JhKPB8va2naqINUflfrMMg8GWYD0I2I_s5C-Szz8Q1Qf7Cs0SrB7d7qyy9CyHThzfGyHxPyRu8DjoJ1jyPRNw-m2AgSoubFIp1IyWpBjjsCm0bP4mb8FSC-g8nVGkwG-cejKYvSSVMphjPVs_bqxxaht_fXdsPAsd0fvO0hZAEGqFrd25Eoxwn3"/></a>
+<a class="text-text-light/70 dark:text-text-dark/60 hover:text-primary" href="#"><img class="size-6" data-alt="GitHub social media icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9ZgWY4s7rWkRi68aC_uMbXLuyQpGjln2Ohrzf4Hpc6O_GmYJ7M3Kw2LFXeMzS-ingDJgQ1wdGvqW-BZ-IOT4xo1t0iiGzy4qcgGecv0JKvGp3y_qRQWYFwuT7zpAK2I2F9n5usnKKn9sSg7KdPWbAE0NGwII9bE9QYJKPiU3AA0c8lpUv_t5R32LFr7_rZ99AZRDDuwUdXgM_jfnNpZciO-N3dSNtl-pn3XH7vWUNVn-3PUj10IbXUEh69ZGH38D0XFYpJa7jf9ET"/></a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body></html>

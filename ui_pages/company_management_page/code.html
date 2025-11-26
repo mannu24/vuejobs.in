@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VueJobs - Manage Companies</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#41B883",
+              "background-light": "#F5F7FA",
+              "background-dark": "#1a2a3a", /* Adjusted for better contrast with Vue green */
+              "text-light": "#2C3E50",
+              "text-dark": "#F5F7FA",
+              "accent": "#3490DC",
+              "destructive": "#E3342F"
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex flex-col w-64 bg-white dark:bg-[#1f364d] border-r border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-2 h-16 px-6 border-b border-slate-200 dark:border-slate-700">
+<svg class="h-8 w-8 text-primary" fill="none" viewbox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><path d="M78.833 20L102 64L78.833 108H32.167L7.99998 64L32.167 20H78.833Z" fill="#41B883"></path><path d="M50.167 20L26 64L50.167 108H96.833L121 64L96.833 20H50.167Z" fill="#35495E"></path></svg>
+<h1 class="text-xl font-bold">VueJobs</h1>
+</div>
+<div class="flex flex-col justify-between flex-1 p-4">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 px-3 py-2">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">work</span>
+<p class="text-sm font-medium">Jobs</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT bg-primary/20 text-primary dark:bg-primary/30">
+<span class="material-symbols-outlined">apartment</span>
+<p class="text-sm font-medium">Companies</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">group</span>
+<p class="text-sm font-medium">Candidates</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-3 py-2">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">help</span>
+<p class="text-sm font-medium">Help</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">logout</span>
+<p class="text-sm font-medium">Logout</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-x-hidden">
+<div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+<div class="flex flex-col">
+<p class="text-3xl font-bold tracking-tight">Manage Your Companies</p>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Create, edit, and view your company profiles.</p>
+</div>
+<button class="flex items-center justify-center gap-2 rounded-DEFAULT h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="truncate">Create New Company</span>
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Left Column: Form -->
+<div class="lg:col-span-2 bg-white dark:bg-[#1f364d] rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
+<!-- Form Header -->
+<h2 class="text-xl font-bold p-6 border-b border-slate-200 dark:border-slate-700">Create New Company</h2>
+<!-- Form Fields -->
+<div class="p-6 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col">
+<p class="text-sm font-medium pb-2">Company Name</p>
+<input class="form-input w-full rounded-DEFAULT border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="e.g., Vue Solutions" type="text"/>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium pb-2">Company Slug</p>
+<input class="form-input w-full rounded-DEFAULT border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="e.g., vue-solutions" type="text"/>
+</label>
+</div>
+<label class="flex flex-col">
+<p class="text-sm font-medium pb-2">Headline</p>
+<input class="form-input w-full rounded-DEFAULT border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="The best place to work with Vue.js" type="text"/>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium pb-2">Website URL</p>
+<input class="form-input w-full rounded-DEFAULT border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="https://vuesolutions.com" type="url"/>
+</label>
+<!-- Logo Upload -->
+<div>
+<p class="text-sm font-medium pb-2">Company Logo</p>
+<div class="flex items-center gap-6">
+<div class="bg-slate-100 dark:bg-slate-800 bg-center bg-no-repeat aspect-square bg-cover rounded-full size-20 border-2 border-slate-200 dark:border-slate-700" data-alt="Company logo preview" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCol4SmtLfunBt26rND2V9-mOC4fF5p1_QeOG3bon_3N6uxDR_bQu22hh5mej3mVZhzQ8RYdB1hBX3rUIECqQxj6vnAt0dlLycpvPhtX6xgveEVFopBmueWV3AwuRJEQoiT2Sh7i2chln2wEFKFQXERKGDFl-UMBwtMHeBKYh4V0tP8r7VxEtQ6feKObPL_ZwN4k4VB0GGSoskuepdVZ6U8dRgY2DIJ8F6HGjvu5wEQSTSJAJznVMo7sNZ2Zm6HZgNT6A3vMcuFGAKL");'></div>
+<div class="flex-1">
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-20 border-2 border-slate-300 dark:border-slate-600 border-dashed rounded-lg cursor-pointer bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700" for="dropzone-file">
+<div class="flex flex-col items-center justify-center pt-5 pb-6 px-4">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400">upload_file</span>
+<p class="text-xs text-slate-500 dark:text-slate-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+</div>
+<input class="hidden" id="dropzone-file" type="file"/>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col">
+<p class="text-sm font-medium pb-2">Company Size</p>
+<select class="form-select w-full rounded-DEFAULT border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary">
+<option>1-10 employees</option>
+<option>11-50 employees</option>
+<option>51-200 employees</option>
+</select>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium pb-2">Industry</p>
+<select class="form-select w-full rounded-DEFAULT border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary">
+<option>SaaS</option>
+<option>Fintech</option>
+<option>E-commerce</option>
+</select>
+</label>
+</div>
+<label class="flex flex-col">
+<p class="text-sm font-medium pb-2">About Your Company</p>
+<textarea class="form-textarea w-full rounded-DEFAULT border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary" placeholder="Describe your company culture, mission, and what makes it a great place to work..." rows="5"></textarea>
+</label>
+<label class="flex flex-col">
+<p class="text-sm font-medium pb-2">Tech Stack</p>
+<div class="flex flex-wrap items-center gap-2 p-2 min-h-11 rounded-DEFAULT border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800">
+<span class="inline-flex items-center gap-1 bg-primary/20 dark:bg-primary/30 text-primary dark:text-white text-xs font-medium px-2 py-1 rounded-full">Vue.js<button><span class="material-symbols-outlined text-xs">close</span></button></span>
+<span class="inline-flex items-center gap-1 bg-primary/20 dark:bg-primary/30 text-primary dark:text-white text-xs font-medium px-2 py-1 rounded-full">Nuxt<button><span class="material-symbols-outlined text-xs">close</span></button></span>
+<input class="flex-1 min-w-24 bg-transparent outline-none border-none focus:ring-0 text-sm" placeholder="Add a technology..."/>
+</div>
+</label>
+<!-- Toggle -->
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium">Make Profile Public?</p>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 rounded-full peer peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Form Actions -->
+<div class="flex justify-end gap-3 p-6 border-t border-slate-200 dark:border-slate-700">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-DEFAULT h-10 px-4 bg-slate-200 dark:bg-slate-700 text-sm font-bold hover:bg-slate-300 dark:hover:bg-slate-600">
+<span class="truncate">Cancel</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-DEFAULT h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90">
+<span class="truncate">Save Changes</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Preview & List -->
+<div class="space-y-8">
+<!-- Live Preview Card -->
+<div>
+<h3 class="text-lg font-bold mb-4 px-1">Public Profile Preview</h3>
+<div class="bg-white dark:bg-[#1f364d] rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-6 flex flex-col items-center text-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-24 mb-4 border-4 border-white dark:border-slate-600 shadow-md" data-alt="Live preview of company logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArTCCJKF_gI8BVIqZB9yEc5ugeIvN9o0fj18YWaHsMifp1-LQuEc2dpKf-tE-frxltmE7CFkz3sFZg98Ly25W8pe_02309_bG2xadonJt2Hql4YkFbtF4INi28bLRAAT8CXILlsqOde4T6U1JWSz14bfZ5zeNApVOh48D7wbyO2q7uAE-8urrJnUPRihnQmMkT1KN-Zxl7WrsgaROcMI1QElwYvTQ8ibMqNKIEEv0hu0CaX7rVm_oHlTL-eUtlxHa4XokbwmUbARf5");'></div>
+<h4 class="text-xl font-bold">Vue Solutions</h4>
+<p class="text-slate-500 dark:text-slate-400 mt-1 text-sm">The best place to work with Vue.js</p>
+<div class="flex flex-wrap justify-center gap-2 mt-4">
+<span class="inline-flex items-center bg-slate-100 dark:bg-slate-700 text-xs font-medium px-2 py-1 rounded-full">SaaS</span>
+<span class="inline-flex items-center bg-slate-100 dark:bg-slate-700 text-xs font-medium px-2 py-1 rounded-full">11-50 employees</span>
+</div>
+<button class="w-full mt-6 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-DEFAULT h-9 px-4 bg-primary/20 dark:bg-primary/30 text-primary text-sm font-bold hover:bg-primary/30 dark:hover:bg-primary/40">
+<span class="truncate">View Public Profile</span>
+</button>
+</div>
+</div>
+<!-- Company List -->
+<div>
+<h3 class="text-lg font-bold mb-4 px-1">Your Companies</h3>
+<div class="bg-white dark:bg-[#1f364d] rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+<table class="w-full text-left text-sm">
+<tbody>
+<tr class="border-b border-slate-200 dark:border-slate-700">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Innovate Inc. logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjrGEcr7nIDfHu4bDzXK2oMjl5gkrTLiJfKS8C2KzB5GA9b6wqPNDgSmDZvOf9RRg2epg71bbpqJUCPZXzferaSnGZw18m80n-UM_9KwiXzJmE5c2rqNCfWWAEp4vivPJHVLHp4go3Nm8L_cEV6CXQi47wN5bqI6vhYJI5aaqKkw5YENrWkSs9JK5YPR7gVdU-D2LcOHePtkeZE8O3EJ-UOI_qv_tfj7uMjijkZGITEdXwxnFXpfuxQM4bjRk2J_AswzbJh6xsV5hh");'></div>
+<div>
+<p class="font-medium">Innovate Inc.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">5 Active Jobs</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700"><span class="material-symbols-outlined text-base">more_vert</span></button>
+</td>
+</tr>
+<tr class="border-b border-slate-200 dark:border-slate-700">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Vue Solutions logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAISkGO2h_OPBA1mY8WaW8itGofYJTKPRGAK4V2tGMBD7Jmna9id0PtGRvD370XibtxX2OtBjHCQ5DeMI-P7sn4NJO9p40M86n5zy3Ke0xc0kVK4xw3g1LQQ6WNiihnJ8R-8ZlF67tM9IdVm2itjdFQyj9T8TENmAK5eQi0imHGp0VgvjhUEgFvkFW7pfuSlOkLSdhcGKgbLRjMJIU-iQQ8D3npMnSLSfVhyC_5NZVPbz9pFwxF4NWSRLV0ze00PwjpT2f-XAtZjHyG");'></div>
+<div>
+<p class="font-medium">Vue Solutions</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">2 Active Jobs</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700"><span class="material-symbols-outlined text-base">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
