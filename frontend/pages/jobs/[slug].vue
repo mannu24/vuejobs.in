@@ -44,8 +44,18 @@
 
         <!-- Actions -->
         <div class="mt-6 flex flex-wrap gap-3">
+          <!-- Direct Apply: recruiter-posted job accepting applications on VueJobs -->
+          <button
+            v-if="job.is_direct_apply && auth.isLoggedIn && auth.isDeveloper"
+            class="bg-vue text-white px-6 py-2.5 rounded-lg font-medium hover:bg-vue/90 transition"
+            @click="showApplyModal = true"
+          >
+            Apply Now
+          </button>
+
+          <!-- External Apply: scraped job or recruiter chose external link -->
           <a
-            v-if="job.apply_url"
+            v-else-if="job.apply_url"
             :href="job.apply_url"
             target="_blank"
             rel="noopener"
@@ -53,20 +63,20 @@
           >
             Apply Externally &rarr;
           </a>
-          <button
-            v-else-if="auth.isLoggedIn && auth.isDeveloper"
-            class="bg-vue text-white px-6 py-2.5 rounded-lg font-medium hover:bg-vue/90 transition"
-            @click="showApplyModal = true"
-          >
-            Apply Now
-          </button>
+
+          <!-- Guest: prompt login for direct-apply jobs -->
           <NuxtLink
-            v-else-if="!auth.isLoggedIn"
+            v-else-if="job.is_direct_apply && !auth.isLoggedIn"
             to="/login"
             class="bg-vue text-white px-6 py-2.5 rounded-lg font-medium hover:bg-vue/90 transition"
           >
             Login to Apply
           </NuxtLink>
+
+          <!-- Source badge -->
+          <span v-if="job.source === 'scraped'" class="self-center text-xs text-gray-400">
+            Sourced from external job board
+          </span>
         </div>
       </div>
 
@@ -135,6 +145,20 @@ const { data, pending } = await useAsyncData(`job-${route.params.slug}`, () =>
 )
 
 const job = computed(() => data.value?.data)
+
+// Dynamic SEO meta + JobPosting JSON-LD
+watch(job, (j) => {
+  if (!j) return
+  const jsonLd = useJobJsonLd(j)
+  useSeo({
+    title: `${j.title} at ${j.company?.name || 'Company'} — VueJobs`,
+    description: j.description?.substring(0, 160) || `Apply for ${j.title} at ${j.company?.name}. Vue.js job on VueJobs.`,
+    url: `/jobs/${j.slug}`,
+    image: j.company?.logo_url,
+    type: 'article',
+    jsonLd: jsonLd || undefined,
+  })
+}, { immediate: true })
 
 const showApplyModal = ref(false)
 const applying = ref(false)

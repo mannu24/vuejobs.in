@@ -14,10 +14,10 @@
         </button>
         <button
           class="flex-1 py-3 rounded-lg text-sm font-medium border-2 transition"
-          :class="form.role === 'employer' ? 'border-vue bg-vue/5 text-vue' : 'border-gray-200 text-gray-500'"
-          @click="form.role = 'employer'"
+          :class="form.role === 'recruiter' ? 'border-vue bg-vue/5 text-vue' : 'border-gray-200 text-gray-500'"
+          @click="form.role = 'recruiter'"
         >
-          I'm an Employer
+          I'm a Recruiter
         </button>
       </div>
 
@@ -75,6 +75,12 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'guest' })
 
+useSeo({
+  title: 'Sign Up — Create Your VueJobs Account',
+  description: 'Join VueJobs as a Vue.js developer or employer. Create your profile, browse jobs, and connect with the Vue ecosystem.',
+  url: '/register',
+})
+
 const auth = useAuthStore()
 const { apiFetch } = useApi()
 
@@ -109,6 +115,8 @@ async function handleRegister() {
 async function handleGoogleSignup() {
   try {
     const res = await apiFetch<{ url: string }>('/auth/google/redirect')
+    // Save the selected role so the callback page can send it to the backend
+    localStorage.setItem('google_signup_role', form.role)
     window.location.href = res.url
   } catch {
     error.value = 'Failed to initiate Google signup'

@@ -4,8 +4,8 @@
       <div class="flex justify-between items-center h-16">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2">
-          <span class="text-vue font-bold text-2xl">Vue</span>
-          <span class="text-vue-dark font-bold text-2xl">Jobs</span>
+          <img src="/logo-small.png" alt="VueJobs" class="md:hidden" style="width:40px;height:40px;">
+          <img src="/logo.png" alt="VueJobs" class="hidden md:block" style="width:130px;height:40px;">
         </NuxtLink>
 
         <!-- Nav -->
@@ -18,6 +18,9 @@
           </NuxtLink>
           <NuxtLink v-if="auth.isEmployer" to="/dashboard/jobs/create" class="text-gray-600 hover:text-vue transition">
             Post a Job
+          </NuxtLink>
+          <NuxtLink v-if="auth.isEmployer" to="/dashboard/companies" class="text-gray-600 hover:text-vue transition">
+            Companies
           </NuxtLink>
         </nav>
 

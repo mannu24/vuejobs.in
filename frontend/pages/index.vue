@@ -76,11 +76,63 @@
         </div>
       </div>
     </section>
+
+    <!-- SEO Content — crawlable text for search engines -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">The Vue.js Job Board for Developers & Employers</h2>
+        <div class="prose prose-sm max-w-none text-gray-600 space-y-4">
+          <p>
+            VueJobs is the dedicated job platform built exclusively for the Vue.js ecosystem. Whether you're a
+            Vue.js developer looking for your next role or an employer searching for specialized frontend talent,
+            VueJobs connects you with the right opportunities.
+          </p>
+          <p>
+            Our platform focuses on roles that require Vue.js, Nuxt.js, Pinia, Vuex, TypeScript, and related
+            technologies. Filter jobs by experience level, location type (remote, hybrid, on-site), contract type,
+            Vue version, and more. Every listing is tailored to the Vue ecosystem.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-8">For Vue.js Developers</h3>
+          <p>
+            Find Vue.js developer jobs, Nuxt.js developer positions, and full-stack roles using Laravel + Vue
+            or Node + Vue. Create your developer profile, upload your resume, set up job alerts, and apply
+            with one click. From junior Vue developer roles to senior frontend architect positions, VueJobs
+            has opportunities at every level.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-8">For Employers & Recruiters</h3>
+          <p>
+            Post Vue.js job listings and reach a targeted audience of Vue developers. Add your company profile,
+            manage applications, and find the right candidates for your team. Whether you're a startup using
+            Nuxt.js or an enterprise migrating to Vue 3, VueJobs helps you hire specialized frontend talent.
+          </p>
+
+          <h3 class="text-lg font-semibold text-gray-800 mt-8">Popular Vue.js Job Categories</h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 list-none pl-0">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-vue rounded-full" /> Vue.js Developer Jobs</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-vue rounded-full" /> Nuxt.js Developer Jobs</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-vue rounded-full" /> Remote Vue.js Jobs</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-vue rounded-full" /> Senior Frontend Engineer (Vue)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-vue rounded-full" /> Full Stack Developer (Laravel + Vue)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-vue rounded-full" /> Vue.js + TypeScript Jobs</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-vue rounded-full" /> Contract & Freelance Vue Work</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-vue rounded-full" /> Vue.js Internships</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
 const { apiFetch } = useApi()
+
+useSeo({
+  title: 'VueJobs — Vue.js & Nuxt.js Job Board | Find Vue Developer Jobs',
+  description: 'VueJobs is India\'s dedicated job board for Vue.js, Nuxt.js and the Vue ecosystem. Browse remote and on-site Vue developer jobs, post openings, and hire top Vue talent.',
+  url: '/',
+})
 
 const { data, pending } = await useAsyncData('home-jobs', () =>
   apiFetch<{ data: any[] }>('/jobs?per_page=6')

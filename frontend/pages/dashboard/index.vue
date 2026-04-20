@@ -3,7 +3,7 @@
     <h1 class="text-2xl font-bold text-gray-900 mb-2">
       Welcome back, {{ auth.user?.name }}
     </h1>
-    <p class="text-gray-500 mb-8">{{ auth.isEmployer ? 'Employer Dashboard' : 'Developer Dashboard' }}</p>
+    <p class="text-gray-500 mb-8">{{ auth.isEmployer ? 'Recruiter Dashboard' : 'Developer Dashboard' }}</p>
 
     <!-- Employer Dashboard -->
     <template v-if="auth.isEmployer">

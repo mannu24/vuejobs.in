@@ -26,7 +26,8 @@ export const useAuthStore = defineStore('auth', () => {
   const { apiFetch } = useApi()
 
   const isLoggedIn = computed(() => !!token.value && !!user.value)
-  const isEmployer = computed(() => user.value?.role === 'employer')
+  const isEmployer = computed(() => user.value?.role === 'employer' || user.value?.role === 'recruiter')
+  const isRecruiter = computed(() => user.value?.role === 'recruiter')
   const isDeveloper = computed(() => user.value?.role === 'developer')
 
   async function fetchUser() {
@@ -57,10 +58,13 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = res.user.data
   }
 
-  async function loginWithGoogle(code: string) {
-    const res = await apiFetch<{ token: string; user: { data: User } }>('/auth/google/callback', {
+  async function loginWithGoogle(code: string, role?: string) {
+    const body: Record<string, string> = { code }
+    if (role) body.role = role
+
+    const res = await apiFetch<{ token: string; user: { data: User }; is_new: boolean }>('/auth/google/callback', {
       method: 'POST',
-      body: { code },
+      body,
     })
     token.value = res.token
     user.value = res.user.data
@@ -80,6 +84,7 @@ export const useAuthStore = defineStore('auth', () => {
     token,
     isLoggedIn,
     isEmployer,
+    isRecruiter,
     isDeveloper,
     fetchUser,
     login,

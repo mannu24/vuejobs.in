@@ -112,6 +112,12 @@
 <script setup lang="ts">
 const { apiFetch } = useApi()
 
+useSeo({
+  title: 'Vue.js Jobs — Browse Vue, Nuxt & Frontend Developer Openings | VueJobs',
+  description: 'Search and filter Vue.js, Nuxt.js and frontend developer jobs. Find remote, hybrid and on-site positions filtered by experience, contract type, Vue version and more.',
+  url: '/jobs',
+})
+
 const filters = reactive({
   search: '',
   location_type: '',

@@ -49,6 +49,12 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'guest' })
 
+useSeo({
+  title: 'Login — VueJobs',
+  description: 'Log in to your VueJobs account to browse Vue.js jobs, manage applications, and post openings.',
+  url: '/login',
+})
+
 const auth = useAuthStore()
 const { apiFetch } = useApi()
 const form = reactive({ email: '', password: '' })
@@ -71,6 +77,7 @@ async function handleLogin() {
 async function handleGoogleLogin() {
   try {
     const res = await apiFetch<{ url: string }>('/auth/google/redirect')
+    localStorage.removeItem('google_signup_role')
     window.location.href = res.url
   } catch {
     error.value = 'Failed to initiate Google login'

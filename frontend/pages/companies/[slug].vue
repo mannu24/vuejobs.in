@@ -50,4 +50,22 @@ const { data, pending } = await useAsyncData(`company-${route.params.slug}`, () 
 )
 
 const company = computed(() => data.value?.data)
+
+watch(company, (c) => {
+  if (!c) return
+  useSeo({
+    title: `${c.name} — Company Profile & Vue.js Jobs | VueJobs`,
+    description: c.about?.substring(0, 160) || `View ${c.name}'s profile and open Vue.js positions on VueJobs.`,
+    url: `/companies/${c.slug}`,
+    image: c.logo_url,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: c.name,
+      url: c.website || undefined,
+      logo: c.logo_url || undefined,
+      description: c.about || undefined,
+    },
+  })
+}, { immediate: true })
 </script>

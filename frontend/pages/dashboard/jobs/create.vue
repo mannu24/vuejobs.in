@@ -140,7 +140,7 @@
         </div>
       </div>
 
-      <!-- Description -->
+      <!-- Description & Application Method -->
       <div class="bg-white rounded-xl border border-gray-200 p-6">
         <h2 class="font-semibold text-gray-900 mb-4">Description</h2>
         <div class="space-y-4">
@@ -148,10 +148,35 @@
             <label class="block text-sm font-medium text-gray-700 mb-1">Job Description</label>
             <textarea v-model="form.description" rows="8" required class="w-full rounded-lg border-gray-300 text-sm" placeholder="Describe the role, responsibilities, and requirements..." />
           </div>
+
+          <!-- Application Method -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">External Apply URL (optional)</label>
-            <input v-model="form.apply_url" type="url" class="w-full rounded-lg border-gray-300 text-sm" placeholder="https://company.com/careers/apply">
-            <p class="text-xs text-gray-400 mt-1">Leave empty to accept applications on VueJobs</p>
+            <label class="block text-sm font-medium text-gray-700 mb-3">How should candidates apply?</label>
+            <div class="flex gap-3">
+              <button
+                type="button"
+                class="flex-1 py-3 px-4 rounded-lg text-sm font-medium border-2 transition text-left"
+                :class="applyMethod === 'direct' ? 'border-vue bg-vue/5 text-vue' : 'border-gray-200 text-gray-500'"
+                @click="applyMethod = 'direct'"
+              >
+                <span class="block font-semibold">Direct Apply</span>
+                <span class="block text-xs mt-0.5 opacity-75">Receive applications on VueJobs</span>
+              </button>
+              <button
+                type="button"
+                class="flex-1 py-3 px-4 rounded-lg text-sm font-medium border-2 transition text-left"
+                :class="applyMethod === 'external' ? 'border-vue bg-vue/5 text-vue' : 'border-gray-200 text-gray-500'"
+                @click="applyMethod = 'external'"
+              >
+                <span class="block font-semibold">External Link</span>
+                <span class="block text-xs mt-0.5 opacity-75">Redirect to your careers page</span>
+              </button>
+            </div>
+          </div>
+
+          <div v-if="applyMethod === 'external'">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Apply URL</label>
+            <input v-model="form.apply_url" type="url" required class="w-full rounded-lg border-gray-300 text-sm" placeholder="https://company.com/careers/apply">
           </div>
         </div>
       </div>
@@ -189,6 +214,7 @@ const loadingCompanies = ref(true)
 const submitting = ref(false)
 const error = ref('')
 const skillsInput = ref('')
+const applyMethod = ref<'direct' | 'external'>('direct')
 
 const form = reactive({
   company_id: '',
@@ -225,7 +251,8 @@ function buildPayload(status: string) {
     ...form,
     status,
     skills: skillsInput.value ? skillsInput.value.split(',').map((s: string) => s.trim()).filter(Boolean) : [],
-    apply_url: form.apply_url || undefined,
+    apply_url: applyMethod.value === 'external' ? form.apply_url : undefined,
+    source: 'manual',
   }
 }
 

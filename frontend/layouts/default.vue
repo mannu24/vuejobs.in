@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 font-sans">
+  <div class="min-h-screen bg-gray-50 font-display">
     <AppHeader />
     <main>
       <slot />

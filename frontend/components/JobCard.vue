@@ -39,6 +39,9 @@
       <span v-if="job.requires_typescript" class="inline-flex items-center px-2 py-1 rounded-md bg-blue-50 text-xs text-blue-700">
         TypeScript
       </span>
+      <span v-if="job.is_direct_apply" class="inline-flex items-center px-2 py-1 rounded-md bg-green-50 text-xs text-green-700">
+        Direct Apply
+      </span>
     </div>
 
     <div class="mt-4 flex items-center justify-between text-sm">

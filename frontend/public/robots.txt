@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /auth/
+
+# Dynamic sitemap served by the Laravel API
+Sitemap: https://api.vuejobs.in/api/sitemap.xml

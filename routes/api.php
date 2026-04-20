@@ -63,3 +63,6 @@ Route::middleware('auth:api')->group(function (): void {
 Route::get('jobs', [JobController::class, 'publicIndex']);
 Route::get('jobs/{job:slug}', [JobController::class, 'showPublic']);
 Route::get('companies/{company:slug}', [CompanyController::class, 'showPublic']);
+
+// Sitemap
+Route::get('sitemap.xml', [\App\Http\Controllers\Api\SitemapController::class, 'index']);
