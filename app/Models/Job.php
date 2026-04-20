@@ -42,6 +42,9 @@ class Job extends Model
         'skills',
         'benefits',
         'description',
+        'apply_url',
+        'source',
+        'source_url',
     ];
 
     protected $casts = [

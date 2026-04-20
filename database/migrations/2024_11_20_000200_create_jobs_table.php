@@ -35,6 +35,9 @@ return new class extends Migration
             $table->json('skills')->nullable();
             $table->json('benefits')->nullable();
             $table->longText('description');
+            $table->string('apply_url')->nullable();
+            $table->string('source')->default('manual'); // manual, scraped
+            $table->string('source_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

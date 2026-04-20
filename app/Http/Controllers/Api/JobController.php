@@ -187,6 +187,32 @@ class JobController extends Controller
         return new JobResource($job->load('company'));
     }
 
+    public function saveJob(Request $request, Job $job): JsonResponse
+    {
+        $request->user()->savedJobs()->syncWithoutDetaching([$job->id]);
+
+        return response()->json(['message' => 'Job saved']);
+    }
+
+    public function unsaveJob(Request $request, Job $job): JsonResponse
+    {
+        $request->user()->savedJobs()->detach($job->id);
+
+        return response()->json(['message' => 'Job unsaved']);
+    }
+
+    public function savedJobs(Request $request)
+    {
+        $jobs = $request->user()
+            ->savedJobs()
+            ->published()
+            ->with('company')
+            ->latest('job_saves.created_at')
+            ->paginate(12);
+
+        return JobResource::collection($jobs);
+    }
+
     protected function ensureCompanyOwner(int $companyId, int $userId): void
     {
         $company = Company::query()

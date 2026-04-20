@@ -57,3 +57,19 @@
   - Add resume parsing/upload storage (S3) and background processing.
   - Implement admin policies + form requests for subscription/billing flows.
 
+---
+
+## Frontend Implementation (Nuxt 3)
+
+- **Location**: `frontend/` directory
+- **Stack**: Nuxt 3, Vue 3 Composition API, Pinia, Tailwind CSS, Google Fonts (Inter)
+- **Auth**: Cookie-based token storage, Passport Bearer tokens, Google OAuth flow
+- **Pages**:
+  - Public: Homepage, Job listings with filters, Job detail, Company profile, Login, Register, Google OAuth callback
+  - Developer dashboard: Overview, Applications, Saved jobs, Job alerts, Profile edit
+  - Employer dashboard: Overview, My jobs, Create job, Companies, Create company
+- **How to Run Frontend**:
+  - `cd frontend && npm install && npm run dev` (runs on http://localhost:3000)
+  - Set `NUXT_PUBLIC_API_BASE=http://localhost:8000/api` in `frontend/.env`
+
+

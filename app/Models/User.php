@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google_id',
         'role',
         'headline',
         'about',
@@ -100,5 +101,10 @@ class User extends Authenticatable
     public function receivedMessages()
     {
         return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function savedJobs()
+    {
+        return $this->belongsToMany(Job::class, 'job_saves')->withTimestamps();
     }
 }

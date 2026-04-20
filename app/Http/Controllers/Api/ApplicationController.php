@@ -24,6 +24,17 @@ class ApplicationController extends Controller
         return JobApplicationResource::collection($applications);
     }
 
+    public function myApplications(Request $request)
+    {
+        $applications = JobApplication::query()
+            ->where('user_id', $request->user()->id)
+            ->with(['job.company'])
+            ->latest()
+            ->paginate(15);
+
+        return JobApplicationResource::collection($applications);
+    }
+
     public function store(JobApplicationRequest $request, Job $job): JsonResponse
     {
         abort_unless($job->status === 'published', 422, 'Job is not accepting applications');

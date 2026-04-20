@@ -35,6 +35,9 @@ class JobRequest extends FormRequest
             'benefits' => ['nullable', 'array'],
             'benefits.*' => ['string', 'max:100'],
             'description' => ['required', 'string'],
+            'apply_url' => ['nullable', 'url'],
+            'source' => ['nullable', 'string', 'in:manual,scraped'],
+            'source_url' => ['nullable', 'url'],
             'status' => ['nullable', 'string', 'in:draft,published,archived'],
             'expires_at' => ['nullable', 'date'],
         ];
