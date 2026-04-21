@@ -2,8 +2,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-04-20',
   devtools: { enabled: true },
 
-  // SPA mode — generates static files deployable to any shared hosting
-  ssr: false,
+  // SSR enabled so `nuxi generate` can pre-render blog pages as static HTML.
+  // All non-blog routes are set to SPA mode via routeRules below.
+  ssr: true,
 
   modules: [
     '@nuxtjs/tailwindcss',
@@ -80,5 +81,13 @@ export default defineNuxtConfig({
   // Output to .output/public — upload this folder to Hostinger
   nitro: {
     preset: 'static',
+  },
+
+  // Blog pages: pre-rendered at build time (SSG) for SEO.
+  // Everything else: SPA (client-side only, same as before).
+  routeRules: {
+    '/blog': { prerender: true },
+    '/blog/**': { prerender: true },
+    '/**': { ssr: false },
   },
 })

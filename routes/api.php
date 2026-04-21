@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApplicationController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\JobAlertController;
 use App\Http\Controllers\Api\JobController;
@@ -57,12 +58,23 @@ Route::middleware('auth:api')->group(function (): void {
     // Messages
     Route::get('messages', [MessageController::class, 'index']);
     Route::post('messages', [MessageController::class, 'store']);
+
+    // Blogs (admin/author)
+    Route::get('my-blogs', [BlogController::class, 'index']);
+    Route::post('blogs', [BlogController::class, 'store']);
+    Route::get('my-blogs/{blog}', [BlogController::class, 'show']);
+    Route::put('blogs/{blog}', [BlogController::class, 'update']);
+    Route::delete('blogs/{blog}', [BlogController::class, 'destroy']);
 });
 
 // Public
 Route::get('jobs', [JobController::class, 'publicIndex']);
 Route::get('jobs/{job:slug}', [JobController::class, 'showPublic']);
 Route::get('companies/{company:slug}', [CompanyController::class, 'showPublic']);
+
+// Blogs (public)
+Route::get('blogs', [BlogController::class, 'publicIndex']);
+Route::get('blogs/{blog:slug}', [BlogController::class, 'showPublic'])->name('blogs.showPublic');
 
 // Sitemap
 Route::get('sitemap.xml', [\App\Http\Controllers\Api\SitemapController::class, 'index']);

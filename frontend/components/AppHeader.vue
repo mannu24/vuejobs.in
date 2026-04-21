@@ -13,6 +13,9 @@
           <NuxtLink to="/jobs" class="text-gray-600 hover:text-vue transition">
             Find Jobs
           </NuxtLink>
+          <NuxtLink to="/blog" class="text-gray-600 hover:text-vue transition">
+            Blog
+          </NuxtLink>
           <NuxtLink v-if="auth.isEmployer" to="/recruiter" class="text-gray-600 hover:text-vue transition">
             Recruiter Panel
           </NuxtLink>
