@@ -1,0 +1,126 @@
+# VueJobs Platform – Blogs & Job Scraping System
+
+## 1. Overview
+
+This document defines the architecture and workflow for:
+
+* Blog system (SEO-focused content engine)
+* Job scraping and publishing system (daily automation)
+
+Goal:
+
+* Generate organic traffic via blogs
+* Populate job listings daily
+* Monetize via ads and recruiters
+
+---
+
+# 2. Blog System Architecture
+
+## 2.1 Tech Stack
+
+* Backend: Laravel (API / CMS)
+* Frontend: Nuxt (SSG)
+
+---
+
+## 2.2 Data Flow
+
+1. Admin creates blog in Laravel
+2. Blog stored in database
+3. API exposes blog data
+4. Nuxt fetches blog slugs during build
+5. Static pages generated for each blog
+
+---
+
+## 2.3 Database Schema (Blogs)
+
+Table: blogs
+
+* id
+* title
+* slug (unique)
+* content (HTML/Markdown)
+* meta_title
+* meta_description
+* tags
+* status (draft/published)
+* published_at
+* created_at
+* updated_at
+
+---
+
+## 2.4 API Endpoints
+
+GET /api/blogs
+
+* Returns all published blog slugs
+
+GET /api/blog/{slug}
+
+* Returns full blog data
+
+---
+
+## 2.5 Nuxt Implementation
+
+Dynamic route:
+/pages/blog/[slug].vue
+
+Responsibilities:
+
+* Fetch blog using slug
+* Render content
+* Inject SEO meta tags
+
+---
+
+## 2.6 Static Generation (SSG)
+
+During build:
+
+* Fetch all blog slugs
+* Generate static HTML pages
+
+Command:
+
+* nuxi generate
+
+---
+
+## 2.7 SEO Strategy
+
+Each blog must include:
+
+* SEO title
+* Meta description
+* H1, H2 headings
+* Internal links to job pages
+
+---
+
+## 2.8 Internal Linking
+
+From blogs:
+
+* Link to job listings
+
+From jobs:
+
+* Link to relevant blogs
+
+Purpose:
+
+* Improve SEO ranking
+* Increase session duration
+
+---
+
+## 2.9 Publishing Flow
+
+1. Admin writes blog
+2. Marks as published
+3. Trigger redeploy (CI/CD)
+4. New blog becomes live

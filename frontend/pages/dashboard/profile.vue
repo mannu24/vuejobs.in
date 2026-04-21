@@ -67,9 +67,10 @@
 
       <button
         type="submit"
-        class="bg-vue text-white px-6 py-2.5 rounded-lg font-medium hover:bg-vue/90 transition"
+        class="inline-flex items-center gap-2 bg-vue text-white px-6 py-2.5 rounded-lg font-medium hover:bg-vue/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
         :disabled="submitting"
       >
+        <span v-if="submitting" class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
         {{ submitting ? 'Saving...' : 'Save Profile' }}
       </button>
     </form>

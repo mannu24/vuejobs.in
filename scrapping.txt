@@ -1,0 +1,258 @@
+# VueJobs – Production-Ready Job Scraping System
+
+## 1. Objective
+
+Design a robust, low-resource, production-ready job scraping system that:
+
+* Runs manually via command
+* Works safely on shared hosting
+* Avoids duplicates
+* Handles failures gracefully
+* Does not impact live website performance
+
+---
+
+# 2. Execution Strategy
+
+Command:
+php artisan jobs:scrape
+
+* Manually triggered (no scheduler)
+* Runs during low traffic (midnight recommended)
+
+---
+
+# 3. System Flow
+
+1. Start command
+2. Load sources
+3. Fetch jobs (API / scraping)
+4. Normalize data
+5. Validate
+6. Deduplicate
+7. Batch insert/update
+8. Log results
+9. Exit safely
+
+---
+
+# 4. Database Design
+
+Table: jobs
+
+* id
+* external_id (nullable, indexed)
+* title
+* company_name
+* location
+* salary (nullable)
+* experience (nullable)
+* job_type
+* description
+* apply_url
+* source
+* hash (unique)
+* is_verified (default false)
+* expires_at (nullable, indexed)
+* created_at
+* updated_at
+
+Indexes:
+
+* hash (UNIQUE)
+* external_id
+* expires_at
+
+---
+
+# 5. Deduplication Strategy
+
+Primary:
+
+* hash = md5(title + company_name + location)
+
+Logic:
+
+* If hash exists → skip
+
+Fallback:
+
+* external_id if available
+
+---
+
+# 6. Data Validation Rules
+
+Reject job if:
+
+* title is empty
+* company_name missing
+* apply_url invalid
+
+Sanitize:
+
+* Remove scripts
+* Strip unwanted HTML
+* Trim whitespace
+
+---
+
+# 7. Resource Control (Critical)
+
+For shared hosting:
+
+* Max jobs per run: 100
+* Batch size: 20
+* Delay between batches: 1–2 seconds
+* Delay between requests: 1–2 seconds
+
+---
+
+# 8. Batch Processing
+
+Flow:
+
+* Split jobs into chunks of 20
+* Process each chunk
+* Sleep after each chunk
+
+Purpose:
+
+* Avoid CPU spikes
+* Prevent DB overload
+
+---
+
+# 9. Error Handling
+
+## Global Try-Catch
+
+* Wrap entire process
+* Log fatal errors
+
+## Per Job Try-Catch
+
+* If one job fails → skip
+* Continue execution
+
+---
+
+# 10. Logging System
+
+Log file:
+
+* storage/logs/scraper.log
+
+Log entries:
+
+* Start time
+* Source name
+* Total fetched
+* Total saved
+* Total skipped
+* Errors
+* End time
+
+---
+
+# 11. Timeout & Memory Safety
+
+Set:
+
+* set_time_limit(0)
+* memory_limit = 256M
+
+Fail-safe:
+
+* Stop process if memory exceeds safe usage
+
+---
+
+# 12. Safe Scraping Rules
+
+* Do NOT use parallel requests
+* Use delays between requests
+* Prefer APIs over HTML scraping
+* Avoid heavy DOM parsing
+
+---
+
+# 13. Failure Scenarios
+
+## Case 1: Source API fails
+
+* Log error
+* Skip source
+
+## Case 2: Network timeout
+
+* Retry once
+* If still fails → skip
+
+## Case 3: DB insert fails
+
+* Log error
+* Skip job
+
+## Case 4: Duplicate jobs flood
+
+* Hash prevents insertion
+
+## Case 5: Script crash midway
+
+* Logs help identify last processed item
+
+---
+
+# 14. Cleanup Strategy
+
+Manual command:
+php artisan jobs:cleanup
+
+Logic:
+
+* Remove jobs older than X days
+* Or mark as expired
+
+---
+
+# 15. Performance Safety
+
+* Use DB indexes
+* Avoid loading all jobs in memory
+* Process incrementally
+
+---
+
+# 16. Security
+
+* Sanitize all input
+* Prevent XSS in descriptions
+* Validate URLs before saving
+
+---
+
+# 17. Execution Checklist (Daily)
+
+1. Run command
+2. Check logs
+3. Verify DB entries
+4. Confirm frontend reflects updates
+
+---
+
+# 18. Future Upgrade Path
+
+* Add queues for background jobs
+* Move to VPS when scaling
+* Introduce scheduler later
+
+---
+
+# 19. Final Notes
+
+* Keep scraping lightweight
+* Focus on quality over quantity
+* Stability > speed
+
+System is production-safe if all rules are followed

@@ -13,21 +13,15 @@
           <NuxtLink to="/jobs" class="text-gray-600 hover:text-vue transition">
             Find Jobs
           </NuxtLink>
-          <NuxtLink v-if="auth.isEmployer" to="/dashboard/jobs" class="text-gray-600 hover:text-vue transition">
-            My Jobs
-          </NuxtLink>
-          <NuxtLink v-if="auth.isEmployer" to="/dashboard/jobs/create" class="text-gray-600 hover:text-vue transition">
-            Post a Job
-          </NuxtLink>
-          <NuxtLink v-if="auth.isEmployer" to="/dashboard/companies" class="text-gray-600 hover:text-vue transition">
-            Companies
+          <NuxtLink v-if="auth.isEmployer" to="/recruiter" class="text-gray-600 hover:text-vue transition">
+            Recruiter Panel
           </NuxtLink>
         </nav>
 
         <!-- Auth -->
         <div class="flex items-center gap-4">
           <template v-if="auth.isLoggedIn">
-            <NuxtLink to="/dashboard" class="text-gray-600 hover:text-vue transition text-sm">
+            <NuxtLink :to="auth.isEmployer ? '/recruiter' : '/dashboard'" class="text-gray-600 hover:text-vue transition text-sm">
               Dashboard
             </NuxtLink>
             <button

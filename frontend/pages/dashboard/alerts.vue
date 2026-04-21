@@ -4,11 +4,7 @@
       <h1 class="text-2xl font-bold text-gray-900">Job Alerts</h1>
     </div>
 
-    <div v-if="loading" class="space-y-4">
-      <div v-for="i in 2" :key="i" class="bg-white rounded-xl p-6 border border-gray-200 animate-pulse">
-        <div class="h-4 bg-gray-200 rounded w-1/2" />
-      </div>
-    </div>
+    <AppSpinner v-if="loading" />
 
     <div v-else-if="alerts.length" class="space-y-4">
       <div v-for="alert in alerts" :key="alert.id" class="bg-white rounded-xl border border-gray-200 p-6 flex items-center justify-between">
@@ -16,7 +12,11 @@
           <p class="text-sm text-gray-700">{{ JSON.stringify(alert.filters) }}</p>
           <p class="text-xs text-gray-400 mt-1">{{ alert.frequency }} &middot; Created {{ alert.created_at }}</p>
         </div>
-        <button class="text-red-500 text-sm hover:underline" @click="deleteAlert(alert.id)">Delete</button>
+        <button
+          class="text-red-500 text-sm hover:underline disabled:opacity-50"
+          :disabled="deletingId === alert.id"
+          @click="deleteAlert(alert.id)"
+        >{{ deletingId === alert.id ? 'Deleting...' : 'Delete' }}</button>
       </div>
     </div>
 
@@ -32,6 +32,7 @@ definePageMeta({ middleware: 'auth' })
 const { apiFetch } = useApi()
 const alerts = ref<any[]>([])
 const loading = ref(true)
+const deletingId = ref<number | false>(false)
 
 async function fetchAlerts() {
   try {
@@ -43,8 +44,9 @@ async function fetchAlerts() {
 }
 
 async function deleteAlert(id: number) {
-  await apiFetch(`/job-alerts/${id}`, { method: 'DELETE' })
-  fetchAlerts()
+  deletingId.value = id
+  try { await apiFetch(`/job-alerts/${id}`, { method: 'DELETE' }); await fetchAlerts() }
+  catch {} finally { deletingId.value = false }
 }
 
 onMounted(fetchAlerts)

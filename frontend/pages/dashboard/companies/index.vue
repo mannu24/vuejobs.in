@@ -16,9 +16,9 @@
     <div v-else-if="companies.length" class="space-y-4">
       <div v-for="company in companies" :key="company.id" class="bg-white rounded-xl border border-gray-200 p-6 flex items-center justify-between">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 font-bold shrink-0 overflow-hidden">
+          <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 overflow-hidden">
             <img v-if="company.logo_url" :src="company.logo_url" :alt="company.name" class="w-full h-full object-cover">
-            <span v-else>{{ company.name?.charAt(0) }}</span>
+            <svg v-else class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
           </div>
           <div>
             <h3 class="font-semibold text-gray-900">{{ company.name }}</h3>

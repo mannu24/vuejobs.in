@@ -10,9 +10,9 @@
       <!-- Header -->
       <div class="bg-white rounded-xl border border-gray-200 p-6 mb-6">
         <div class="flex items-start gap-4">
-          <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 font-bold text-lg shrink-0 overflow-hidden">
+          <div class="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center shrink-0 overflow-hidden">
             <img v-if="job.company?.logo_url" :src="job.company.logo_url" :alt="job.company.name" class="w-full h-full object-cover">
-            <span v-else>{{ job.company?.name?.charAt(0) }}</span>
+            <svg v-else class="w-7 h-7 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
           </div>
           <div>
             <div v-if="job.featured_until" class="text-xs text-vue font-medium mb-1">Featured</div>
@@ -108,7 +108,18 @@
       <div v-if="showApplyModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" @click.self="showApplyModal = false">
         <div class="bg-white rounded-xl p-6 w-full max-w-md">
           <h3 class="text-lg font-semibold text-gray-900 mb-4">Apply to {{ job.title }}</h3>
-          <form @submit.prevent="submitApplication">
+
+          <!-- Success state -->
+          <div v-if="applySuccess" class="text-center py-4">
+            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <p class="text-sm text-gray-700 mb-4">Application submitted successfully.</p>
+            <button class="text-sm text-vue hover:underline" @click="showApplyModal = false">Close</button>
+          </div>
+
+          <!-- Form -->
+          <form v-else @submit.prevent="submitApplication">
             <div class="mb-4">
               <label class="block text-sm font-medium text-gray-700 mb-1">Cover Letter (optional)</label>
               <textarea v-model="applicationForm.cover_letter" rows="4" class="w-full rounded-lg border-gray-300 text-sm" placeholder="Why are you a great fit?" />
@@ -119,10 +130,15 @@
             </div>
             <div v-if="applyError" class="text-red-500 text-sm mb-3">{{ applyError }}</div>
             <div class="flex gap-3">
-              <button type="submit" class="bg-vue text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-vue/90 transition" :disabled="applying">
+              <button
+                type="submit"
+                class="inline-flex items-center gap-2 bg-vue text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-vue/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                :disabled="applying"
+              >
+                <span v-if="applying" class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 {{ applying ? 'Submitting...' : 'Submit Application' }}
               </button>
-              <button type="button" class="text-gray-500 text-sm" @click="showApplyModal = false">Cancel</button>
+              <button type="button" class="text-gray-500 text-sm" :disabled="applying" @click="showApplyModal = false">Cancel</button>
             </div>
           </form>
         </div>
@@ -163,6 +179,7 @@ watch(job, (j) => {
 const showApplyModal = ref(false)
 const applying = ref(false)
 const applyError = ref('')
+const applySuccess = ref(false)
 const applicationForm = reactive({ cover_letter: '', resume_url: '' })
 
 async function submitApplication() {
@@ -173,8 +190,7 @@ async function submitApplication() {
       method: 'POST',
       body: applicationForm,
     })
-    showApplyModal.value = false
-    alert('Application submitted successfully!')
+    applySuccess.value = true
   } catch (e: any) {
     applyError.value = e?.data?.message || 'Failed to submit application'
   } finally {
