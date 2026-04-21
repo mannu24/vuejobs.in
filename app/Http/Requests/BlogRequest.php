@@ -15,6 +15,7 @@ class BlogRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
+            'hero_image' => ['nullable', 'url', 'max:500'],
             'content' => ['required', 'string'],
             'meta_title' => ['nullable', 'string', 'max:255'],
             'meta_description' => ['nullable', 'string', 'max:500'],

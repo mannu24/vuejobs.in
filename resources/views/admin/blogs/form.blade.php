@@ -9,7 +9,7 @@
     </a>
 </div>
 
-<form method="POST" action="{{ $blog ? route('admin.blogs.update', $blog) : route('admin.blogs.store') }}">
+<form method="POST" action="{{ $blog ? route('admin.blogs.update', $blog) : route('admin.blogs.store') }}" enctype="multipart/form-data">
     @csrf
     @if($blog) @method('PUT') @endif
 
@@ -101,6 +101,31 @@
                         </button>
                         <a href="{{ route('admin.blogs.index') }}" class="btn btn-outline-secondary">Cancel</a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white">
+                    <h6 class="mb-0 fw-medium">Hero Image</h6>
+                </div>
+                <div class="card-body">
+                    @if($blog?->hero_image)
+                        <div class="mb-3 position-relative">
+                            <img src="{{ $blog->hero_image }}" alt="Hero preview" class="img-fluid rounded" style="max-height:160px;object-fit:cover;width:100%;">
+                            <div class="form-check mt-2">
+                                <input type="checkbox" name="remove_hero_image" value="1" class="form-check-input" id="removeImage">
+                                <label class="form-check-label small text-danger" for="removeImage">Remove image</label>
+                            </div>
+                        </div>
+                    @endif
+                    <input
+                        id="hero_image" name="hero_image" type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        class="form-control @error('hero_image') is-invalid @enderror"
+                    >
+                    @error('hero_image') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <small class="text-muted">JPG, PNG or WebP. Max 2MB.</small>
                 </div>
             </div>
 

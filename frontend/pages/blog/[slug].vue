@@ -10,21 +10,31 @@
       <!-- Back link -->
       <NuxtLink to="/blog" class="text-sm text-vue hover:underline mb-6 inline-block">&larr; All posts</NuxtLink>
 
-      <article class="bg-white rounded-xl border border-gray-200 p-6 sm:p-8">
-        <!-- Tags -->
-        <div v-if="blog.tags?.length" class="flex flex-wrap gap-1.5 mb-4">
-          <span v-for="tag in blog.tags" :key="tag" class="px-2 py-0.5 rounded-full bg-vue/10 text-xs text-vue font-medium">{{ tag }}</span>
+      <article class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <!-- Hero image -->
+        <img
+          v-if="blog.hero_image"
+          :src="blog.hero_image"
+          :alt="blog.title"
+          class="w-full h-64 sm:h-80 object-cover"
+        >
+
+        <div class="p-6 sm:p-8">
+          <!-- Tags -->
+          <div v-if="blog.tags?.length" class="flex flex-wrap gap-1.5 mb-4">
+            <span v-for="tag in blog.tags" :key="tag" class="px-2 py-0.5 rounded-full bg-vue/10 text-xs text-vue font-medium">{{ tag }}</span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">{{ blog.title }}</h1>
+
+          <div class="flex items-center gap-3 text-sm text-gray-400 mb-8">
+            <span v-if="blog.author">By {{ blog.author.name }}</span>
+            <span v-if="blog.published_at">{{ formatDate(blog.published_at) }}</span>
+          </div>
+
+          <!-- Content -->
+          <div class="prose prose-sm sm:prose max-w-none text-gray-700" v-html="blog.content" />
         </div>
-
-        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">{{ blog.title }}</h1>
-
-        <div class="flex items-center gap-3 text-sm text-gray-400 mb-8">
-          <span v-if="blog.author">By {{ blog.author.name }}</span>
-          <span v-if="blog.published_at">{{ formatDate(blog.published_at) }}</span>
-        </div>
-
-        <!-- Content -->
-        <div class="prose prose-sm sm:prose max-w-none text-gray-700" v-html="blog.content" />
       </article>
 
       <!-- Internal link to jobs -->
@@ -59,12 +69,14 @@ watch(blog, (b) => {
     title: b.meta_title || `${b.title} — VueJobs Blog`,
     description: b.meta_description || b.title,
     url: `/blog/${b.slug}`,
+    image: b.hero_image || undefined,
     type: 'article',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
       headline: b.title,
       description: b.meta_description || b.title,
+      image: b.hero_image || undefined,
       datePublished: b.published_at,
       dateModified: b.updated_at,
       author: b.author ? { '@type': 'Person', name: b.author.name } : undefined,

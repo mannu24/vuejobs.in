@@ -38,17 +38,25 @@
         v-for="blog in blogs"
         :key="blog.id"
         :to="`/blog/${blog.slug}`"
-        class="bg-white rounded-xl border border-gray-200 p-5 hover:border-vue/50 hover:shadow-sm transition flex flex-col"
+        class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-vue/50 hover:shadow-sm transition flex flex-col"
       >
-        <div v-if="blog.tags?.length" class="flex flex-wrap gap-1.5 mb-3">
-          <span v-for="tag in blog.tags" :key="tag" class="px-2 py-0.5 rounded-full bg-vue/10 text-xs text-vue font-medium">{{ tag }}</span>
-        </div>
-        <h2 class="text-base font-semibold text-gray-900 mb-2 line-clamp-2">{{ blog.title }}</h2>
-        <p v-if="blog.meta_description" class="text-gray-500 text-sm mb-4 line-clamp-3 flex-1">{{ blog.meta_description }}</p>
-        <div class="flex items-center gap-2 text-xs text-gray-400 mt-auto pt-3 border-t border-gray-100">
-          <span v-if="blog.author">{{ blog.author.name }}</span>
-          <span v-if="blog.author && blog.published_at">&middot;</span>
-          <span v-if="blog.published_at">{{ formatDate(blog.published_at) }}</span>
+        <img
+          v-if="blog.hero_image"
+          :src="blog.hero_image"
+          :alt="blog.title"
+          class="w-full h-44 object-cover"
+        >
+        <div class="p-5 flex flex-col flex-1">
+          <div v-if="blog.tags?.length" class="flex flex-wrap gap-1.5 mb-3">
+            <span v-for="tag in blog.tags" :key="tag" class="px-2 py-0.5 rounded-full bg-vue/10 text-xs text-vue font-medium">{{ tag }}</span>
+          </div>
+          <h2 class="text-base font-semibold text-gray-900 mb-2 line-clamp-2">{{ blog.title }}</h2>
+          <p v-if="blog.meta_description" class="text-gray-500 text-sm mb-4 line-clamp-3 flex-1">{{ blog.meta_description }}</p>
+          <div class="flex items-center gap-2 text-xs text-gray-400 mt-auto pt-3 border-t border-gray-100">
+            <span v-if="blog.author">{{ blog.author.name }}</span>
+            <span v-if="blog.author && blog.published_at">&middot;</span>
+            <span v-if="blog.published_at">{{ formatDate(blog.published_at) }}</span>
+          </div>
         </div>
       </NuxtLink>
     </div>

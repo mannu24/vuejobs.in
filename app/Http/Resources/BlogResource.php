@@ -13,6 +13,7 @@ class BlogResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
+            'hero_image' => $this->hero_image ? url($this->hero_image) : null,
             'content' => $this->content,
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,

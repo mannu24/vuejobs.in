@@ -2,9 +2,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-04-20',
   devtools: { enabled: true },
 
-  // SSR enabled so `nuxi generate` can pre-render blog pages as static HTML.
-  // All non-blog routes are set to SPA mode via routeRules below.
-  ssr: true,
+  // SPA mode for the whole app. Blog pages are selectively pre-rendered
+  // via routeRules below — prerender works independently of this flag.
+  ssr: false,
 
   modules: [
     '@nuxtjs/tailwindcss',
@@ -84,10 +84,9 @@ export default defineNuxtConfig({
   },
 
   // Blog pages: pre-rendered at build time (SSG) for SEO.
-  // Everything else: SPA (client-side only, same as before).
+  // Everything else: SPA (client-side only).
   routeRules: {
     '/blog': { prerender: true },
     '/blog/**': { prerender: true },
-    '/**': { ssr: false },
   },
 })
