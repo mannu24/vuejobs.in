@@ -93,6 +93,12 @@
                class="nav-link {{ request()->routeIs('admin.blogs.create') ? 'active' : '' }}">
                 <i class="bi bi-plus-circle"></i> New Blog
             </a>
+
+            <div class="sidebar-section">Jobs</div>
+            <a href="{{ route('admin.jobs.import') }}"
+               class="nav-link {{ request()->routeIs('admin.jobs.import*') ? 'active' : '' }}">
+                <i class="bi bi-file-earmark-spreadsheet"></i> Import Jobs
+            </a>
         </nav>
 
         <!-- User at bottom -->

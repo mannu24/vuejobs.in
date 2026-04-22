@@ -17,6 +17,8 @@ class Job extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'external_id',
+        'hash',
         'company_id',
         'creator_id',
         'title',
@@ -45,10 +47,13 @@ class Job extends Model
         'apply_url',
         'source',
         'source_url',
+        'is_verified',
+        'company_name',
     ];
 
     protected $casts = [
         'requires_typescript' => 'boolean',
+        'is_verified' => 'boolean',
         'skills' => 'array',
         'benefits' => 'array',
         'published_at' => 'datetime',

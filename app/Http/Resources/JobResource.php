@@ -42,6 +42,7 @@ class JobResource extends JsonResource
             'source_url' => $this->source_url,
             'is_direct_apply' => $this->source === 'manual' && empty($this->apply_url),
             'company' => new CompanyResource($this->whenLoaded('company')),
+            'company_name' => $this->when(! $this->relationLoaded('company') || ! $this->company, $this->company_name),
             'creator' => new UserResource($this->whenLoaded('creator')),
             'applications_count' => $this->whenCounted('applications'),
             'created_at' => $this->created_at,
