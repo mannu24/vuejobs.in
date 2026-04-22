@@ -128,8 +128,8 @@
       </div>
     </section>
 
-    <!-- How it works -->
-    <section class="py-16 bg-gray-50">
+    <!-- How it works (guests only) -->
+    <section v-if="!auth.isLoggedIn" class="py-16 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl font-bold text-gray-900 text-center mb-12">How It Works</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -177,8 +177,8 @@
       </div>
     </section>
 
-    <!-- For Developers / For Employers -->
-    <section class="bg-white py-16">
+    <!-- For Developers / For Employers (guests only) -->
+    <section v-if="!auth.isLoggedIn" class="bg-white py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="bg-gray-50 rounded-2xl p-8">
@@ -233,8 +233,8 @@
       </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section class="bg-vue py-16">
+    <!-- CTA Banner (guests only) -->
+    <section v-if="!auth.isLoggedIn" class="bg-vue py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to find your next Vue.js opportunity?</h2>
         <p class="text-white/80 mb-8">Join the community of Vue developers and employers on VueJobs.</p>
@@ -283,6 +283,7 @@
 
 <script setup lang="ts">
 const { apiFetch } = useApi()
+const auth = useAuthStore()
 
 useSeo({
   title: 'VueJobs — Vue.js & Nuxt.js Job Board | Find Vue Developer Jobs',

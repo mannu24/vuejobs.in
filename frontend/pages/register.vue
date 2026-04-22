@@ -102,7 +102,7 @@ async function handleRegister() {
   error.value = ''
   try {
     await auth.register(form)
-    navigateTo('/dashboard')
+    navigateTo(auth.isEmployer ? '/recruiter' : '/dashboard')
   } catch (e: any) {
     const errors = e?.data?.errors
     if (errors) {

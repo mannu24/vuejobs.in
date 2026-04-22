@@ -40,7 +40,7 @@ onMounted(async () => {
 
   try {
     await auth.loginWithGoogle(code, role)
-    navigateTo('/dashboard')
+    navigateTo(auth.isEmployer ? '/recruiter' : '/dashboard')
   } catch (e: any) {
     error.value = e?.data?.message || 'Google authentication failed. Please try again.'
   }

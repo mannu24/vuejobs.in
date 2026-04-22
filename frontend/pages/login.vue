@@ -69,7 +69,7 @@ async function handleLogin() {
   error.value = ''
   try {
     await auth.login(form.email, form.password)
-    navigateTo('/dashboard')
+    navigateTo(auth.isEmployer ? '/recruiter' : '/dashboard')
   } catch (e: any) {
     error.value = e?.data?.message || 'Invalid credentials'
   } finally {

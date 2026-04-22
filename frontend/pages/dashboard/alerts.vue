@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({ middleware: 'auth' })
+definePageMeta({ layout: 'dashboard', middleware: 'auth' })
 
 const { apiFetch } = useApi()
 const alerts = ref<any[]>([])
