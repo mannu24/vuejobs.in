@@ -99,6 +99,20 @@
                class="nav-link {{ request()->routeIs('admin.jobs.import*') ? 'active' : '' }}">
                 <i class="bi bi-file-earmark-spreadsheet"></i> Import Jobs
             </a>
+
+            <div class="sidebar-section">System</div>
+            <a href="{{ route('admin.run.migrate') }}" class="nav-link"
+               onclick="return confirm('Run database migrations?')">
+                <i class="bi bi-database-gear"></i> Run Migrate
+            </a>
+            <a href="{{ route('admin.run.storage-link') }}" class="nav-link"
+               onclick="return confirm('Create storage symlink?')">
+                <i class="bi bi-link-45deg"></i> Storage Link
+            </a>
+            <a href="{{ route('admin.run.optimize-clear') }}" class="nav-link"
+               onclick="return confirm('Clear all caches?')">
+                <i class="bi bi-arrow-repeat"></i> Clear Cache
+            </a>
         </nav>
 
         <!-- User at bottom -->
