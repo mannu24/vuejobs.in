@@ -1,9 +1,42 @@
 <template>
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div v-if="pending" class="animate-pulse space-y-4">
-      <div class="h-8 bg-gray-200 rounded w-2/3" />
-      <div class="h-4 bg-gray-200 rounded w-1/3" />
-      <div class="h-40 bg-gray-200 rounded" />
+    <div v-if="pending" class="space-y-6 animate-pulse">
+      <!-- Header skeleton -->
+      <div class="bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start gap-4">
+          <div class="w-16 h-16 rounded-xl bg-gray-200 shrink-0" />
+          <div class="flex-1">
+            <div class="h-7 bg-gray-200 rounded w-2/3 mb-2" />
+            <div class="h-4 bg-gray-200 rounded w-1/3" />
+          </div>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <div class="h-7 bg-gray-200 rounded-full w-20" />
+          <div class="h-7 bg-gray-200 rounded-full w-24" />
+          <div class="h-7 bg-gray-200 rounded-full w-16" />
+        </div>
+        <div class="mt-4 h-6 bg-gray-200 rounded w-32" />
+        <div class="mt-6 h-10 bg-gray-200 rounded-lg w-36" />
+      </div>
+      <!-- Skills skeleton -->
+      <div class="bg-white rounded-xl border border-gray-200 p-6">
+        <div class="h-5 bg-gray-200 rounded w-16 mb-3" />
+        <div class="flex flex-wrap gap-2">
+          <div v-for="i in 5" :key="i" class="h-7 bg-gray-200 rounded-full w-20" />
+        </div>
+      </div>
+      <!-- Description skeleton -->
+      <div class="bg-white rounded-xl border border-gray-200 p-6">
+        <div class="h-5 bg-gray-200 rounded w-32 mb-4" />
+        <div class="space-y-2">
+          <div class="h-3 bg-gray-200 rounded w-full" />
+          <div class="h-3 bg-gray-200 rounded w-full" />
+          <div class="h-3 bg-gray-200 rounded w-5/6" />
+          <div class="h-3 bg-gray-200 rounded w-4/6" />
+          <div class="h-3 bg-gray-200 rounded w-full" />
+          <div class="h-3 bg-gray-200 rounded w-3/4" />
+        </div>
+      </div>
     </div>
 
     <template v-else-if="job">

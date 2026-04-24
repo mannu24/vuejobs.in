@@ -21,7 +21,7 @@
 
     <!-- Jobs table -->
     <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
-      <AppSpinner v-if="loading" />
+      <SkeletonTable v-if="loading" :rows="5" />
       <table v-else-if="filteredJobs.length" class="w-full">
         <thead class="bg-gray-50 border-b border-gray-200">
           <tr>

@@ -96,7 +96,7 @@ async function handleSubmit() {
   try {
     await apiFetch('/me', { method: 'PUT', body: form })
     success.value = true
-    await auth.fetchUser()
+    await auth.fetchUser(true)
   } catch (e: any) {
     error.value = e?.data?.message || 'Failed to update profile'
   } finally {

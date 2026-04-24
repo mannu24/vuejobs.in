@@ -2,7 +2,7 @@
   <div>
     <h1 class="text-xl font-bold text-gray-900 mb-6">All Applications</h1>
 
-    <AppSpinner v-if="loading" />
+    <SkeletonTable v-if="loading" :rows="5" />
 
     <div v-else-if="allApps.length" class="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <table class="w-full">

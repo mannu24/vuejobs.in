@@ -8,24 +8,44 @@ export const useSeo = (opts: {
   image?: string
   type?: string
   jsonLd?: Record<string, any>
+  article?: {
+    publishedTime?: string
+    modifiedTime?: string
+    author?: string
+    tags?: string[]
+  }
 }) => {
   const config = useRuntimeConfig()
   const fullUrl = opts.url ? `${config.public.siteUrl}${opts.url}` : config.public.siteUrl
   const image = opts.image || `${config.public.siteUrl}/og-image.png`
 
+  const meta: any[] = [
+    { name: 'description', content: opts.description },
+    { property: 'og:title', content: opts.title },
+    { property: 'og:description', content: opts.description },
+    { property: 'og:url', content: fullUrl },
+    { property: 'og:image', content: image },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '600' },
+    { property: 'og:type', content: opts.type || 'website' },
+    { name: 'twitter:title', content: opts.title },
+    { name: 'twitter:description', content: opts.description },
+    { name: 'twitter:image', content: image },
+  ]
+
+  // Article-specific OG tags
+  if (opts.article) {
+    if (opts.article.publishedTime) meta.push({ property: 'article:published_time', content: opts.article.publishedTime })
+    if (opts.article.modifiedTime) meta.push({ property: 'article:modified_time', content: opts.article.modifiedTime })
+    if (opts.article.author) meta.push({ property: 'article:author', content: opts.article.author })
+    if (opts.article.tags) {
+      opts.article.tags.forEach(tag => meta.push({ property: 'article:tag', content: tag }))
+    }
+  }
+
   useHead({
     title: opts.title,
-    meta: [
-      { name: 'description', content: opts.description },
-      { property: 'og:title', content: opts.title },
-      { property: 'og:description', content: opts.description },
-      { property: 'og:url', content: fullUrl },
-      { property: 'og:image', content: image },
-      { property: 'og:type', content: opts.type || 'website' },
-      { name: 'twitter:title', content: opts.title },
-      { name: 'twitter:description', content: opts.description },
-      { name: 'twitter:image', content: image },
-    ],
+    meta,
     link: [
       { rel: 'canonical', href: fullUrl },
     ],

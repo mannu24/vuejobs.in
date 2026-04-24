@@ -6,7 +6,10 @@
     </div>
 
     <!-- Stats -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div v-if="loading">
+      <SkeletonDashboardStats :count="4" />
+    </div>
+    <div v-else class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       <div class="bg-white rounded-xl border border-gray-200 p-5">
         <div class="text-2xl font-bold text-vue">{{ stats.published ?? 0 }}</div>
         <div class="text-xs text-gray-500 mt-1">Active Jobs</div>
@@ -41,8 +44,17 @@
         <h2 class="font-semibold text-gray-900 text-sm">Recent Jobs</h2>
         <NuxtLink to="/recruiter/jobs" class="text-xs text-vue hover:underline">View all</NuxtLink>
       </div>
-      <div v-if="loading" class="p-5">
-        <AppSpinner />
+      <div v-if="loading" class="p-5 space-y-3 animate-pulse">
+        <div v-for="i in 4" :key="i" class="flex items-center justify-between py-2">
+          <div class="flex-1">
+            <div class="h-4 bg-gray-200 rounded w-2/3 mb-1" />
+            <div class="h-3 bg-gray-200 rounded w-1/3" />
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="h-5 bg-gray-200 rounded w-16" />
+            <div class="h-3 bg-gray-200 rounded w-10" />
+          </div>
+        </div>
       </div>
       <div v-else-if="recentJobs.length" class="divide-y divide-gray-100">
         <NuxtLink
@@ -101,7 +113,6 @@ onMounted(async () => {
     const allJobs = jobsRes.data ?? []
     recentJobs.value = allJobs.slice(0, 5)
 
-    // Count applications across all jobs
     let totalApps = 0
     for (const job of allJobs) {
       try {

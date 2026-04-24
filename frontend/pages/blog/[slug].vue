@@ -1,9 +1,28 @@
 <template>
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div v-if="pending" class="animate-pulse space-y-4">
-      <div class="h-8 bg-gray-200 rounded w-2/3" />
-      <div class="h-4 bg-gray-200 rounded w-1/3" />
-      <div class="h-64 bg-gray-200 rounded" />
+    <div v-if="pending" class="space-y-4 animate-pulse">
+      <div class="h-4 bg-gray-200 rounded w-20 mb-6" />
+      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div class="h-64 sm:h-80 bg-gray-200" />
+        <div class="p-6 sm:p-8 space-y-4">
+          <div class="flex gap-1.5">
+            <div class="h-5 bg-gray-200 rounded-full w-14" />
+            <div class="h-5 bg-gray-200 rounded-full w-16" />
+          </div>
+          <div class="h-8 bg-gray-200 rounded w-2/3" />
+          <div class="flex gap-3">
+            <div class="h-3 bg-gray-200 rounded w-20" />
+            <div class="h-3 bg-gray-200 rounded w-24" />
+          </div>
+          <div class="space-y-2 pt-4">
+            <div class="h-3 bg-gray-200 rounded w-full" />
+            <div class="h-3 bg-gray-200 rounded w-full" />
+            <div class="h-3 bg-gray-200 rounded w-5/6" />
+            <div class="h-3 bg-gray-200 rounded w-4/6" />
+            <div class="h-3 bg-gray-200 rounded w-full" />
+          </div>
+        </div>
+      </div>
     </div>
 
     <template v-else-if="blog">
@@ -62,7 +81,7 @@ const { data, pending } = await useAsyncData(`blog-${route.params.slug}`, () =>
 
 const blog = computed(() => data.value?.data)
 
-// SEO + Article JSON-LD
+// SEO + Article JSON-LD + Breadcrumbs
 watch(blog, (b) => {
   if (!b) return
   useSeo({
@@ -71,16 +90,44 @@ watch(blog, (b) => {
     url: `/blog/${b.slug}`,
     image: b.hero_image || undefined,
     type: 'article',
+    article: {
+      publishedTime: b.published_at,
+      modifiedTime: b.updated_at,
+      author: b.author?.name,
+      tags: b.tags,
+    },
     jsonLd: {
       '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: b.title,
-      description: b.meta_description || b.title,
-      image: b.hero_image || undefined,
-      datePublished: b.published_at,
-      dateModified: b.updated_at,
-      author: b.author ? { '@type': 'Person', name: b.author.name } : undefined,
-      publisher: { '@type': 'Organization', name: 'VueJobs', url: 'https://vuejobs.in' },
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          headline: b.title,
+          description: b.meta_description || b.title,
+          image: b.hero_image || undefined,
+          datePublished: b.published_at,
+          dateModified: b.updated_at,
+          author: b.author ? { '@type': 'Person', name: b.author.name } : undefined,
+          publisher: {
+            '@type': 'Organization',
+            name: 'VueJobs',
+            url: 'https://vuejobs.in',
+            logo: { '@type': 'ImageObject', url: 'https://vuejobs.in/logo.png' },
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `https://vuejobs.in/blog/${b.slug}`,
+          },
+          keywords: b.tags?.join(', '),
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vuejobs.in' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://vuejobs.in/blog' },
+            { '@type': 'ListItem', position: 3, name: b.title },
+          ],
+        },
+      ],
     },
   })
 }, { immediate: true })

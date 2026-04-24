@@ -8,10 +8,7 @@
     </div>
 
     <div v-if="loading" class="space-y-4">
-      <div v-for="i in 3" :key="i" class="bg-white rounded-xl p-6 border border-gray-200 animate-pulse">
-        <div class="h-4 bg-gray-200 rounded w-1/2 mb-2" />
-        <div class="h-3 bg-gray-200 rounded w-1/3" />
-      </div>
+      <SkeletonJobCard v-for="i in 3" :key="i" />
     </div>
 
     <div v-else-if="jobs.length" class="space-y-4">

@@ -30,8 +30,9 @@ export const useAuthStore = defineStore('auth', () => {
   const isRecruiter = computed(() => user.value?.role === 'recruiter')
   const isDeveloper = computed(() => user.value?.role === 'developer')
 
-  async function fetchUser() {
+  async function fetchUser(force = false) {
     if (!token.value) return
+    if (user.value && !force) return // Already fetched, skip redundant call
     try {
       const res = await apiFetch<{ data: User }>('/me')
       user.value = res.data

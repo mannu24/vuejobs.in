@@ -1,10 +1,12 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div>
     <div class="flex justify-between items-center mb-6">
       <h1 class="text-2xl font-bold text-gray-900">Job Alerts</h1>
     </div>
 
-    <AppSpinner v-if="loading" />
+    <div v-if="loading" class="space-y-4">
+      <SkeletonListItem v-for="i in 3" :key="i" />
+    </div>
 
     <div v-else-if="alerts.length" class="space-y-4">
       <div v-for="alert in alerts" :key="alert.id" class="bg-white rounded-xl border border-gray-200 p-6 flex items-center justify-between">

@@ -78,10 +78,7 @@
       <!-- Job List -->
       <div class="flex-1">
         <div v-if="pending" class="space-y-4">
-          <div v-for="i in 6" :key="i" class="bg-white rounded-xl p-6 border border-gray-200 animate-pulse">
-            <div class="h-4 bg-gray-200 rounded w-3/4 mb-3" />
-            <div class="h-3 bg-gray-200 rounded w-1/2" />
-          </div>
+          <SkeletonJobCard v-for="i in 6" :key="i" />
         </div>
 
         <div v-else-if="jobs.length" class="space-y-4">

@@ -1,8 +1,10 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div>
     <h1 class="text-2xl font-bold text-gray-900 mb-6">My Applications</h1>
 
-    <AppSpinner v-if="loading" />
+    <div v-if="loading" class="space-y-4">
+      <SkeletonListItem v-for="i in 5" :key="i" />
+    </div>
 
     <div v-else-if="applications.length" class="space-y-4">
       <div v-for="app in applications" :key="app.id" class="bg-white rounded-xl border border-gray-200 p-6">

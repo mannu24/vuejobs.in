@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\Job;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class JobController extends Controller
@@ -45,6 +46,8 @@ class JobController extends Controller
             ],
         ));
 
+        Cache::flush();
+
         return response()->json([
             'job' => new JobResource($job->load('company')),
             'message' => 'Job created',
@@ -63,6 +66,8 @@ class JobController extends Controller
 
         $job->update($data);
 
+        Cache::flush();
+
         return response()->json([
             'job' => new JobResource($job->fresh('company')),
             'message' => 'Job updated',
@@ -74,6 +79,8 @@ class JobController extends Controller
         $this->ensureJobOwner($job);
 
         $job->delete();
+
+        Cache::flush();
 
         return response()->json(['message' => 'Job deleted']);
     }
@@ -87,6 +94,8 @@ class JobController extends Controller
             'published_at' => now(),
             'expires_at' => $job->expires_at ?? now()->addMonth(),
         ]);
+
+        Cache::flush();
 
         return response()->json([
             'job' => new JobResource($job),
@@ -102,6 +111,8 @@ class JobController extends Controller
             'featured_until' => now()->addWeeks(2),
         ]);
 
+        Cache::flush();
+
         return response()->json([
             'job' => new JobResource($job),
             'message' => 'Job featured for two weeks',
@@ -116,6 +127,8 @@ class JobController extends Controller
             'status' => 'archived',
         ]);
 
+        Cache::flush();
+
         return response()->json([
             'job' => new JobResource($job),
             'message' => 'Job archived',
@@ -124,67 +137,73 @@ class JobController extends Controller
 
     public function publicIndex(Request $request)
     {
-        $query = Job::query()
-            ->published()
-            ->with('company')
-            ->where(function ($q) {
-                $q->whereNull('expires_at')
-                    ->orWhere('expires_at', '>=', now());
-            });
+        $cacheKey = 'jobs:public:' . md5($request->fullUrl());
 
-        if ($search = $request->string('search')->toString()) {
-            $query->where(function ($q) use ($search) {
-                $q->where('title', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
-            });
-        }
+        return Cache::remember($cacheKey, 300, function () use ($request) {
+            $query = Job::query()
+                ->published()
+                ->with('company')
+                ->where(function ($q) {
+                    $q->whereNull('expires_at')
+                        ->orWhere('expires_at', '>=', now());
+                });
 
-        foreach ([
-            'experience_level',
-            'location_type',
-            'country',
-            'contract_type',
-            'vue_version',
-            'nuxt_version',
-        ] as $filter) {
-            if ($value = $request->string($filter)->toString()) {
-                $query->where($filter, $value);
+            if ($search = $request->string('search')->toString()) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%");
+                });
             }
-        }
 
-        if ($request->boolean('requires_typescript')) {
-            $query->where('requires_typescript', true);
-        }
-
-        $skills = $request->input('skills');
-        if (is_array($skills) && filled($skills)) {
-            foreach ($skills as $skill) {
-                $query->whereJsonContains('skills', $skill);
+            foreach ([
+                'experience_level',
+                'location_type',
+                'country',
+                'contract_type',
+                'vue_version',
+                'nuxt_version',
+            ] as $filter) {
+                if ($value = $request->string($filter)->toString()) {
+                    $query->where($filter, $value);
+                }
             }
-        } elseif (is_string($skills) && strlen($skills)) {
-            $query->whereJsonContains('skills', $skills);
-        }
 
-        if ($request->filled('salary_min')) {
-            $query->where('salary_min', '>=', (int) $request->input('salary_min'));
-        }
+            if ($request->boolean('requires_typescript')) {
+                $query->where('requires_typescript', true);
+            }
 
-        if ($request->filled('salary_max')) {
-            $query->where('salary_max', '<=', (int) $request->input('salary_max'));
-        }
+            $skills = $request->input('skills');
+            if (is_array($skills) && filled($skills)) {
+                foreach ($skills as $skill) {
+                    $query->whereJsonContains('skills', $skill);
+                }
+            } elseif (is_string($skills) && strlen($skills)) {
+                $query->whereJsonContains('skills', $skills);
+            }
 
-        $jobs = $query->latest('featured_until')
-            ->latest()
-            ->paginate(12);
+            if ($request->filled('salary_min')) {
+                $query->where('salary_min', '>=', (int) $request->input('salary_min'));
+            }
 
-        return JobResource::collection($jobs);
+            if ($request->filled('salary_max')) {
+                $query->where('salary_max', '<=', (int) $request->input('salary_max'));
+            }
+
+            $jobs = $query->latest('featured_until')
+                ->latest()
+                ->paginate(12);
+
+            return JobResource::collection($jobs);
+        });
     }
 
     public function showPublic(Job $job): JobResource
     {
         abort_unless($job->status === 'published', 404);
 
-        return new JobResource($job->load('company'));
+        return Cache::remember("jobs:show:{$job->id}", 300, function () use ($job) {
+            return new JobResource($job->load('company'));
+        });
     }
 
     public function saveJob(Request $request, Job $job): JsonResponse

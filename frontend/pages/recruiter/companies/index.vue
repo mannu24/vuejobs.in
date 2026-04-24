@@ -7,7 +7,18 @@
       </NuxtLink>
     </div>
 
-    <AppSpinner v-if="loading" />
+    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div v-for="i in 4" :key="i" class="bg-white rounded-xl border border-gray-200 p-5 animate-pulse">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-lg bg-gray-200 shrink-0" />
+          <div class="flex-1 min-w-0">
+            <div class="h-4 bg-gray-200 rounded w-2/3 mb-1" />
+            <div class="h-3 bg-gray-200 rounded w-1/2" />
+          </div>
+          <div class="h-4 bg-gray-200 rounded w-10" />
+        </div>
+      </div>
+    </div>
 
     <div v-else-if="companies.length" class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div v-for="c in companies" :key="c.id" class="bg-white rounded-xl border border-gray-200 p-5">

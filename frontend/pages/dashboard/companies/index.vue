@@ -8,8 +8,15 @@
     </div>
 
     <div v-if="loading" class="space-y-4">
-      <div v-for="i in 2" :key="i" class="bg-white rounded-xl p-6 border border-gray-200 animate-pulse">
-        <div class="h-4 bg-gray-200 rounded w-1/2" />
+      <div v-for="i in 3" :key="i" class="bg-white rounded-xl p-6 border border-gray-200 animate-pulse">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-lg bg-gray-200 shrink-0" />
+          <div class="flex-1">
+            <div class="h-4 bg-gray-200 rounded w-1/3 mb-1" />
+            <div class="h-3 bg-gray-200 rounded w-1/5" />
+          </div>
+          <div class="h-4 bg-gray-200 rounded w-10" />
+        </div>
       </div>
     </div>
 

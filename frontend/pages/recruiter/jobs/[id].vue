@@ -1,6 +1,33 @@
 <template>
   <div>
-    <AppSpinner v-if="loading" />
+    <div v-if="loading" class="space-y-6 animate-pulse">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <div class="h-3 bg-gray-200 rounded w-20 mb-2" />
+          <div class="h-6 bg-gray-200 rounded w-48 mb-1" />
+          <div class="h-4 bg-gray-200 rounded w-32" />
+        </div>
+        <div class="flex gap-2">
+          <div class="h-7 bg-gray-200 rounded w-16" />
+          <div class="h-7 bg-gray-200 rounded w-14" />
+          <div class="h-7 bg-gray-200 rounded w-16" />
+        </div>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div v-for="i in 4" :key="i" class="bg-white rounded-xl border border-gray-200 p-4">
+          <div class="h-5 bg-gray-200 rounded w-8 mb-1" />
+          <div class="h-3 bg-gray-200 rounded w-16" />
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-5">
+        <div class="h-4 bg-gray-200 rounded w-24 mb-3" />
+        <div class="space-y-2">
+          <div class="h-3 bg-gray-200 rounded w-full" />
+          <div class="h-3 bg-gray-200 rounded w-5/6" />
+          <div class="h-3 bg-gray-200 rounded w-3/4" />
+        </div>
+      </div>
+    </div>
 
     <template v-else-if="job">
       <!-- Header -->

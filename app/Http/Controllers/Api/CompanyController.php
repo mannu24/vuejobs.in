@@ -8,6 +8,7 @@ use App\Http\Resources\CompanyResource;
 use App\Models\Company;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class CompanyController extends Controller
@@ -34,6 +35,8 @@ class CompanyController extends Controller
 
         $company = Company::create($data);
 
+        Cache::flush();
+
         return response()->json([
             'company' => new CompanyResource($company),
             'message' => 'Company created',
@@ -53,6 +56,8 @@ class CompanyController extends Controller
 
         $company->update($request->validated());
 
+        Cache::flush();
+
         return response()->json([
             'company' => new CompanyResource($company),
             'message' => 'Company updated',
@@ -65,6 +70,8 @@ class CompanyController extends Controller
 
         $company->delete();
 
+        Cache::flush();
+
         return response()->json(['message' => 'Company deleted']);
     }
 
@@ -72,7 +79,9 @@ class CompanyController extends Controller
     {
         abort_unless($company->is_public, 404);
 
-        return new CompanyResource($company->loadCount('jobs'));
+        return Cache::remember("companies:show:{$company->id}", 300, function () use ($company) {
+            return new CompanyResource($company->loadCount('jobs'));
+        });
     }
 
     protected function ensureOwner(Company $company): void

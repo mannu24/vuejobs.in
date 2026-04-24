@@ -1,8 +1,10 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div>
     <h1 class="text-2xl font-bold text-gray-900 mb-6">Saved Jobs</h1>
 
-    <AppSpinner v-if="loading" />
+    <div v-if="loading" class="space-y-4">
+      <SkeletonJobCard v-for="i in 4" :key="i" />
+    </div>
 
     <div v-else-if="jobs.length" class="space-y-4">
       <JobCard v-for="job in jobs" :key="job.id" :job="job" />

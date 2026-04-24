@@ -8,6 +8,7 @@ use App\Http\Resources\BlogResource;
 use App\Models\Blog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -37,6 +38,8 @@ class BlogController extends Controller
             'slug' => Str::slug($data['title']) . '-' . Str::random(8),
             'published_at' => ($data['status'] ?? 'draft') === 'published' ? now() : null,
         ]));
+
+        Cache::flush();
 
         return response()->json([
             'blog' => new BlogResource($blog),
@@ -70,6 +73,8 @@ class BlogController extends Controller
 
         $blog->update($data);
 
+        Cache::flush();
+
         return response()->json([
             'blog' => new BlogResource($blog->fresh('author')),
             'message' => 'Blog updated',
@@ -85,6 +90,8 @@ class BlogController extends Controller
 
         $blog->delete();
 
+        Cache::flush();
+
         return response()->json(['message' => 'Blog deleted']);
     }
 
@@ -93,17 +100,21 @@ class BlogController extends Controller
      */
     public function publicIndex(Request $request)
     {
-        $query = Blog::query()
-            ->published()
-            ->with('author');
+        $cacheKey = 'blogs:public:' . md5($request->fullUrl());
 
-        if ($tag = $request->string('tag')->toString()) {
-            $query->whereJsonContains('tags', $tag);
-        }
+        return Cache::remember($cacheKey, 300, function () use ($request) {
+            $query = Blog::query()
+                ->published()
+                ->with('author');
 
-        $blogs = $query->latest('published_at')->paginate(12);
+            if ($tag = $request->string('tag')->toString()) {
+                $query->whereJsonContains('tags', $tag);
+            }
 
-        return BlogResource::collection($blogs);
+            $blogs = $query->latest('published_at')->paginate(12);
+
+            return BlogResource::collection($blogs);
+        });
     }
 
     /**
@@ -113,7 +124,9 @@ class BlogController extends Controller
     {
         abort_unless($blog->status === 'published', 404);
 
-        return new BlogResource($blog->load('author'));
+        return Cache::remember("blogs:show:{$blog->id}", 300, function () use ($blog) {
+            return new BlogResource($blog->load('author'));
+        });
     }
 
     protected function ensureAuthor(Blog $blog): void

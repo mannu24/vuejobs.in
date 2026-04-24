@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Company;
 use App\Models\Job;
 use Illuminate\Http\Response;
@@ -19,6 +20,7 @@ class SitemapController extends Controller
         $urls->push(['loc' => $siteUrl . '/', 'priority' => '1.0', 'changefreq' => 'daily']);
         $urls->push(['loc' => $siteUrl . '/jobs', 'priority' => '0.9', 'changefreq' => 'daily']);
         $urls->push(['loc' => $siteUrl . '/about', 'priority' => '0.5', 'changefreq' => 'monthly']);
+        $urls->push(['loc' => $siteUrl . '/blog', 'priority' => '0.8', 'changefreq' => 'daily']);
 
         // Published jobs
         Job::query()
@@ -48,6 +50,22 @@ class SitemapController extends Controller
                         'loc' => $siteUrl . '/companies/' . $company->slug,
                         'lastmod' => $company->updated_at->toW3cString(),
                         'priority' => '0.6',
+                        'changefreq' => 'weekly',
+                    ]);
+                }
+            });
+
+        // Published blogs
+        Blog::query()
+            ->where('status', 'published')
+            ->select(['slug', 'updated_at'])
+            ->orderByDesc('updated_at')
+            ->chunk(500, function ($blogs) use ($urls, $siteUrl) {
+                foreach ($blogs as $blog) {
+                    $urls->push([
+                        'loc' => $siteUrl . '/blog/' . $blog->slug,
+                        'lastmod' => $blog->updated_at->toW3cString(),
+                        'priority' => '0.7',
                         'changefreq' => 'weekly',
                     ]);
                 }

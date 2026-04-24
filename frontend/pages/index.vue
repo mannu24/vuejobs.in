@@ -73,11 +73,7 @@
       </div>
 
       <div v-if="pending" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div v-for="i in 6" :key="i" class="bg-white rounded-xl p-6 border border-gray-200 animate-pulse">
-          <div class="h-4 bg-gray-200 rounded w-3/4 mb-3" />
-          <div class="h-3 bg-gray-200 rounded w-1/2 mb-4" />
-          <div class="h-3 bg-gray-200 rounded w-full" />
-        </div>
+        <SkeletonJobCard v-for="i in 6" :key="i" />
       </div>
 
       <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
