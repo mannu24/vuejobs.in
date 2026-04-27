@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\JobImportController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect()->route('admin.login'));
+Route::get('/', fn () => auth()->check() ? redirect()->route('admin.blogs.index') : redirect()->route('admin.login'));
 
 // Admin panel
 Route::prefix('admin')->group(function () {
@@ -38,5 +38,10 @@ Route::prefix('admin')->group(function () {
             Artisan::call('optimize:clear');
             return back()->with('success', 'Cache cleared: ' . Artisan::output());
         })->name('admin.run.optimize-clear');
+
+        Route::get('run/seed-blogs', function () {
+            Artisan::call('db:seed', ['--class' => 'Database\\Seeders\\BlogPostsSeeder', '--force' => true]);
+            return back()->with('success', 'Blog seeder executed: ' . Artisan::output());
+        })->name('admin.run.seed-blogs');
     });
 });

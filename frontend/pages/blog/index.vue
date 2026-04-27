@@ -229,18 +229,6 @@
             </div>
           </div>
 
-          <!-- CTA -->
-          <div class="bg-gradient-to-br from-vue-dark to-gray-900 rounded-xl p-5 text-white">
-            <h3 class="font-bold mb-2">Write for VueJobs</h3>
-            <p class="text-sm text-white/70 mb-4">Share your Vue.js knowledge with the community.</p>
-            <NuxtLink
-              to="/login"
-              class="inline-block bg-white text-vue px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
-            >
-              Start Writing
-            </NuxtLink>
-          </div>
-
           <!-- Browse Jobs CTA -->
           <div class="bg-white rounded-xl border border-gray-200 p-5">
             <h3 class="text-sm font-bold text-gray-900 mb-2">Looking for work?</h3>
